@@ -12,7 +12,7 @@ const baseConfig = {
       path: path.resolve(__dirname, 'dist'),
       filename: 'js/bundle.[name].[chunkhash].js',
       assetModuleFilename: 'assets/[hash][ext]',
-      clean: this.mode === 'production',
+      clean: true,
     },
     module: {
         rules: [
