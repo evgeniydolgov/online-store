@@ -1,10 +1,11 @@
 .body {
+    height: 100%;
     margin: 0;
     padding: 0;
 }
 
 .header {
-    background-color: #1a1a1a;
+    background-color: #000000;
 }
 
 .header_section {
@@ -27,7 +28,7 @@
     }
 }
 
-.basket-icon {
+.header_basket-icon {
     padding: 8px;
     display: flex;
     align-items: center;
@@ -35,4 +36,24 @@
     border-radius: 5px;
     border: 1px solid #76b900;
     box-shadow: 2px 2px 5px #76b900;
+}
+.main {
+    flex: 1 1 auto;
+}
+
+.footer {
+    background-color: #000000;
+}
+
+.footer_section {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer_year {
+    color: aliceblue;
 }
