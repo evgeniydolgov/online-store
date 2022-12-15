@@ -2,7 +2,10 @@
 module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
-    // devServer: {
-    //     contentBase: path.resolve(__dirname, '../dist'),
-    // },
+    devServer: {
+        open: true,
+        port: 3000,
+        hot: false,
+        liveReload: true,
+    },
 };
