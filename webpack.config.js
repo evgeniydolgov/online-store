@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const { merge } = require('webpack-merge');
 
@@ -16,6 +17,10 @@ const baseConfig = {
     },
     module: {
         rules: [
+          {
+            test:/\.html$/i,
+            loader: 'html-loader'
+          },
           {
             test: /\.(c|sa|sc)ss$/i,
             use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
