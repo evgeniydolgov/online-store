@@ -1,0 +1,19 @@
+.body_main {
+    height: 100vh;
+    background-color: $color_black;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main {
+    background-color: $color_main_black;
+    flex: 1 1 auto;
+}

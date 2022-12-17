@@ -18,10 +18,6 @@ const baseConfig = {
     module: {
         rules: [
           {
-            test:/\.html$/i,
-            loader: 'html-loader'
-          },
-          {
             test: /\.(c|sa|sc)ss$/i,
             use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
           },

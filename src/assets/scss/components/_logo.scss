@@ -1,0 +1,12 @@
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .logo_img {
+        fill: $color_main_green;
+    }
+
+    .logo_title {
+        color: $color_white;
+    }
+}
