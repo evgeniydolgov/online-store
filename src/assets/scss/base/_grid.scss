@@ -1,19 +1,25 @@
+html {
+    height: 100%;
+}
 .body_main {
-    height: 100vh;
+    height: 100%;
     background-color: $color_black;
-    display: flex;
-    flex-direction: column;
+    // display: flex;
+    // flex-direction: column;
 }
 
 .wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
 }
 
-.main {
-    background-color: $color_main_black;
-    flex: 1 1 auto;
+.container {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
 }
