@@ -1,4 +1,5 @@
-export const goods:object = [{
+import { GoodsItem } from '../interfaces/goodsItem'
+export const goods: GoodsItem[] = [{
     id: 1,
     title: 'GIGABYTE GeForce RTX 3090 TI GAMING',
     description: 'Видеокарты GIGABYTE GeForce RTX 3090 TI GAMING обеспечивают рекордную производительность для геймеров, работая на базе Ampere — архитектуры NVIDIA RTX второго поколения. Они оснащены улучшенными ядрами RT и тензорными ядрами, потоковыми мультипроцессорами и высокоскоростной памятью G6X для потрясающих игровых возможностей.',
