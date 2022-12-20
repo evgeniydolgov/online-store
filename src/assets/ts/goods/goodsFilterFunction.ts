@@ -1,7 +1,7 @@
-import { GoodsItem } from '../interfaces/goodsItem'
+import { GoodsItem } from '../../interfaces/goodsItem'
 
-export function goodsFilter (goods: GoodsItem[], args: string[], sum: number[]) {
-    const arg: number = [...args].length;
+export function goodsFilter(goods: GoodsItem[], args: string[], sum: number[]) {
+    const arg = [...args].length;
     let newArr: GoodsItem[] = [];
     if (arg) {
         for (let i = 0; i < goods.length; i++) {
