@@ -1,4 +1,8 @@
-export interface GoodsItem {
+export interface GoodsItemProto {
+    [key: string]: number | string | string[];
+}
+
+export interface GoodsItem extends GoodsItemProto {
     id: number;
     title: string;
     description: string;
