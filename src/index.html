@@ -11,13 +11,15 @@
             <header id="header" class="header">
                 <div class="wrapper">
                     <div class="logo">
-                        <svg viewBox="0 0 300 179.7" width="50" height="44">
-                            <path
-                                fill="#76B900"
-                                class="logo_img"
-                                d="m101.3 53.6v-16.2c1.6-0.1 3.2-0.2 4.8-0.2 44.4-1.4 73.5 38.2 73.5 38.2s-31.4 43.6-65.1 43.6c-4.5 0-8.9-0.7-13.1-2.1v-49.2c17.3 2.1 20.8 9.7 31.1 27l23.1-19.4s-16.9-22.1-45.3-22.1c-3-0.1-6 0.1-9 0.4m0-53.6v24.2l4.8-0.3c61.7-2.1 102 50.6 102 50.6s-46.2 56.2-94.3 56.2c-4.2 0-8.3-0.4-12.4-1.1v15c3.4 0.4 6.9 0.7 10.3 0.7 44.8 0 77.2-22.9 108.6-49.9 5.2 4.2 26.5 14.3 30.9 18.7-29.8 25-99.3 45.1-138.7 45.1-3.8 0-7.4-0.2-11-0.6v21.1h170.2v-179.7h-170.4zm0 116.9v12.8c-41.4-7.4-52.9-50.5-52.9-50.5s19.9-22 52.9-25.6v14h-0.1c-17.3-2.1-30.9 14.1-30.9 14.1s7.7 27.3 31 35.2m-73.5-39.5s24.5-36.2 73.6-40v-13.2c-54.4 4.4-101.4 50.4-101.4 50.4s26.6 77 101.3 84v-14c-54.8-6.8-73.5-67.2-73.5-67.2z"
-                            ></path>
-                        </svg>
+                        <a href="/">
+                            <svg viewBox="0 0 300 179.7" width="50" height="44">
+                                <path
+                                    fill="#76B900"
+                                    class="logo_img"
+                                    d="m101.3 53.6v-16.2c1.6-0.1 3.2-0.2 4.8-0.2 44.4-1.4 73.5 38.2 73.5 38.2s-31.4 43.6-65.1 43.6c-4.5 0-8.9-0.7-13.1-2.1v-49.2c17.3 2.1 20.8 9.7 31.1 27l23.1-19.4s-16.9-22.1-45.3-22.1c-3-0.1-6 0.1-9 0.4m0-53.6v24.2l4.8-0.3c61.7-2.1 102 50.6 102 50.6s-46.2 56.2-94.3 56.2c-4.2 0-8.3-0.4-12.4-1.1v15c3.4 0.4 6.9 0.7 10.3 0.7 44.8 0 77.2-22.9 108.6-49.9 5.2 4.2 26.5 14.3 30.9 18.7-29.8 25-99.3 45.1-138.7 45.1-3.8 0-7.4-0.2-11-0.6v21.1h170.2v-179.7h-170.4zm0 116.9v12.8c-41.4-7.4-52.9-50.5-52.9-50.5s19.9-22 52.9-25.6v14h-0.1c-17.3-2.1-30.9 14.1-30.9 14.1s7.7 27.3 31 35.2m-73.5-39.5s24.5-36.2 73.6-40v-13.2c-54.4 4.4-101.4 50.4-101.4 50.4s26.6 77 101.3 84v-14c-54.8-6.8-73.5-67.2-73.5-67.2z"
+                                ></path>
+                            </svg>
+                        </a>
                         <h1 class="logo_title">G-line</h1>
                     </div>
                     <div class="header_basket-icon">
@@ -45,118 +47,7 @@
                     </div>
                 </div>
             </header>
-            <main id="app" class="app">
-                <section class="shop-page">
-                    <div class="shop-page__filters">
-                        <div class="shop-page__search">
-                            <form>
-                                <input type="text" placeholder="Поиск товара...">
-                                <button type="submit"></button>
-                              </form>
-                        </div>
-                        <div class="shop-page__check-brand">
-                            <h3>Бренд</h3>
-                            <ul class="checkbox-list">
-                                <li>
-                                    <label class="checkbox">
-                                      <input type="checkbox" value="ASUS">
-                                      <div class="checkbox__text">ASUS</div>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="checkbox">
-                                        <input type="checkbox" value="GIGABYTE">
-                                        <div class="checkbox__text">GIGABYTE</div>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="checkbox">
-                                        <input type="checkbox" value="MSI">
-                                        <div class="checkbox__text">MSI</div>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="checkbox">
-                                        <input type="checkbox" value="Palit">
-                                        <div class="checkbox__text">Palit</div>
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="shop-page__check-price">
-                            <h3>Цена (₽)</h3>
-                            <div class="center">
-                                <div class="dual-range" data-min="23999" data-max="151999" id="range-slider-price">
-                                    <span class="handle left"></span>
-                                    <span class="highlight"></span>
-                                    <span class="handle right"></span>
-                                </div>
-                                <div class="costs_sum">
-                                    <div id="min_price" class="min_cost"></div>
-                                    <div id="max_price" class="max_cost"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-page__check-price2">
-                            <h3>Количество товара (шт)</h3>
-                            <div class="center">
-                                <div class="dual-range" data-min="1" data-max="50" id="range-slider-stock">
-                                    <span class="handle left"></span>
-                                    <span class="highlight"></span>
-                                    <span class="handle right"></span>
-                                </div>
-                                <div class="costs_sum">
-                                    <div id="min_stock" class="min_cost"></div>
-                                    <div id="max_stock" class="max_cost"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-page__reset-button">
-                            <div class="button__container">
-                                <button>Сбросить фильтры</button>
-                                <button>Сбросить Настройки</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-page__container">
-                        <div class="shop-page__sort">
-                            <div class="sort__container">
-                                <div>
-                                    <select class="sort-list">
-                                        <option>По имени (А-Я)</option>
-                                        <option>По имени (Я-А)</option>
-                                        <option>По возрастанию цены</option>
-                                        <option>По убыванию цены</option>
-                                        <option>По возрастанию рейтинга</option>
-                                        <option>По убыванию рейтинга</option>
-                                    </select>
-                                </div>
-                                <div>Кол-во найденных товаров:  </div>
-                            </div>
-                            <div>
-                                <div class="form_radio_btn">
-                                    <input id="radio-1" type="radio" name="radio" value="1" checked>
-                                    <label for="radio-1">сетка</label>
-                                </div>
-                                <div class="form_radio_btn">
-                                    <input id="radio-2" type="radio" name="radio" value="2">
-                                    <label for="radio-2">список</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-page__content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem assumenda in reiciendis autem ratione voluptates ipsa accusantium maxime ipsam corrupti consequatur alias eum aliquid omnis dolorum itaque nihil, ullam iure?
-                        Natus asperiores ab exercitationem? Quia, eligendi ut adipisci error autem tempora nesciunt maxime modi enim molestias provident quam, eos nemo harum voluptas corporis! Ad voluptates voluptatibus officiis magni deserunt suscipit.
-                        Molestias est voluptas sint, ipsa asperiores alias architecto nesciunt? Architecto fuga eveniet cupiditate quos possimus animi, porro nemo asperiores eos delectus similique beatae sint nesciunt aperiam et amet magnam rem.
-                        Iure autem doloremque ab hic totam! Iste dolorum blanditiis sunt, voluptas nam, explicabo labore temporibus error aliquam omnis tempora consequuntur dicta quia. Dolorum voluptate a vitae. Eveniet incidunt magnam ab!
-                        Veritatis dolores iste dolorum! Repudiandae, aliquid assumenda fugiat vel unde ullam praesentium ducimus. In iure non, laboriosam doloremque, possimus numquam, distinctio quia suscipit corrupti necessitatibus nesciunt qui commodi magnam omnis?
-                        Sequi magnam quasi reprehenderit enim alias vitae ab voluptas, aspernatur magni perferendis libero laboriosam veniam aperiam fuga omnis dolores! Ea molestias natus omnis, voluptate molestiae adipisci quisquam neque ab ut?
-                        Veritatis autem delectus fugit tenetur maiores, nisi similique repellat aliquid, magni sed odit soluta voluptas fuga quibusdam dignissimos error cupiditate aperiam. Sint repudiandae, enim eligendi non laudantium accusantium eos assumenda!
-                        Maxime animi laboriosam repellat officiis quae consequuntur eaque eligendi corrupti provident consectetur sint aut, velit, quod magni? Cumque esse dolor commodi eius nemo expedita! In ullam alias harum dignissimos! Aut?
-                        Minima adipisci quo tenetur quidem non tempora, nam quas dicta, vel, cupiditate consequatur facere assumenda inventore odio accusantium repellendus ipsum totam quaerat molestiae aliquid autem. In vitae maxime totam. Repudiandae.
-                        Voluptatibus, cumque dolorum et magni esse asperiores dolores labore quis, accusamus repudiandae repellat rerum consectetur voluptatem eligendi ipsa dignissimos provident architecto est hic nihil ea vel quod quas. Harum, voluptatibus.</div>
-                        </div>
-                </section>
-            </main>
+            <main id="app" class="app"></main>
             <footer id="footer" class="footer">
                 <div class="wrapper">
                     <a href="https://rs.school/">

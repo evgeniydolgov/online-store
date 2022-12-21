@@ -25,5 +25,4 @@ window.addEventListener('load', () => {
 window.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', handlerDocumentClick);
 });
-
 // addHandlersToMenu(getMenuItems());

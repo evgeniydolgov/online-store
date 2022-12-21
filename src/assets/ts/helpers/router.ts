@@ -1,4 +1,4 @@
-import { checkElem } from './checkers';
+import { renderPage } from '../lib/render';
 
 const ROUTES = ['goods', 'cart', ''];
 
@@ -7,28 +7,26 @@ export const changePage = async (href: string | null) => {
 
     const url = new URL(href);
 
-    let tplToRender = url.origin + '/';
+    // let tplToRender = url.origin + '/';
 
-    let request = url.pathname.split('/');
+    const request = url.pathname.split('/');
 
-    request = request.filter((item) => item !== '');
+    let renderPageName = request[1];
 
-    if (!ROUTES.includes(request[0]) || request.length > 2) {
-        tplToRender += '404Page.html';
+    console.log(request);
+
+    // request = request.filter((item) => item !== '');
+
+    console.log(request);
+    console.log(url);
+    if (!ROUTES.includes(request[1]) || request.length > 2) {
+        renderPageName = '404';
     } else {
-        if (url.pathname === '/') tplToRender += 'store';
-        tplToRender += request[0] + 'Page.html';
+        if (url.pathname === '/') renderPageName = 'store';
     }
     // render(tplToRender, {id: request[2] || null})
+    console.log(renderPageName);
+    await renderPage(renderPageName);
 
-    const newPage = await fetch(tplToRender)
-        .then((response) => response.text())
-        .then((text) => {
-            const domParcer = new DOMParser();
-            const html = domParcer.parseFromString(text, 'text/html');
-            return html.querySelector('#page');
-        });
-    const app = checkElem(document.querySelector('#app'));
-    app.innerHTML = '';
-    app.append(checkElem(newPage));
+    // const newPage =
 };
