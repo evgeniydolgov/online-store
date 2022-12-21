@@ -1,3 +1,4 @@
 import { GoodsItem } from './goodsItem';
+import { Filter } from './filter';
 
-export { GoodsItem };
+export { GoodsItem, Filter };
