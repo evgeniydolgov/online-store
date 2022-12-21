@@ -1,23 +1,28 @@
 window.addEventListener('DOMContentLoaded', () => {
-	new dualRangeSlider(document.querySelector(".dual-range") as HTMLElement)
+	new dualRangeSlider(document.getElementById('range-slider-price') as HTMLElement, "min_price", "max_price")
+	new dualRangeSlider(document.getElementById('range-slider-stock') as HTMLElement, "min_stock", "max_stock")
 })
 
 class dualRangeSlider {
-    range;
-    min;
-    max;
-    handles: Element[];
-    startPos;
-    activeHandle: HTMLElement | undefined;
-  moveTouchListener!: ((e: TouchEvent) => void);
-  moveListener!: ((e: MouseEvent) => void);
-	constructor(rangeElement: HTMLElement) {
+	range;
+	min;
+	max;
+	handles: Element[];
+	startPos;
+	activeHandle: HTMLElement | undefined;
+	moveTouchListener!: ((e: TouchEvent) => void);
+	moveListener!: ((e: MouseEvent) => void);
+	minCost: HTMLElement;
+	maxCost: HTMLElement;
+	constructor(rangeElement: HTMLElement, minId: string,maxId: string) {
 		this.range = rangeElement;
 		this.min = Number(rangeElement.dataset.min)
 		this.max = Number(rangeElement.dataset.max)
 		this.handles = [...this.range.querySelectorAll(".handle")]
 		this.startPos = 0;
 		this.activeHandle;
+		this.minCost = document.getElementById(minId) as HTMLElement;
+		this.maxCost = document.getElementById(maxId) as HTMLElement;
 
 		this.handles.forEach(handle => {
 			(handle as HTMLElement).addEventListener("mousedown", this.startMove.bind(this));
@@ -29,14 +34,14 @@ class dualRangeSlider {
 		window.addEventListener("touchcancel", this.stopMove.bind(this));
 		window.addEventListener("touchleave", this.stopMove.bind(this));
 
-    // const minCost = document.getElementById('min_cost') as HTMLElement;
-    
 		const rangeRect = this.range.getBoundingClientRect();
 		const handleRect = this.handles[0].getBoundingClientRect();
 		this.range.style.setProperty("--x-1", "0px");
 		this.range.style.setProperty("--x-2", rangeRect.width - handleRect.width/2 + "px");
-    (this.handles[0] as HTMLElement).dataset.value = this.range.dataset.min;
-    (this.handles[1] as HTMLElement).dataset.value = this.range.dataset.max;
+		(this.handles[0] as HTMLElement).dataset.value = this.range.dataset.min;
+		(this.handles[1] as HTMLElement).dataset.value = this.range.dataset.max;
+    this.minCost.textContent = `${this.range.dataset.min}`;
+    this.maxCost.textContent = `${this.range.dataset.max}`;
 	}
 
 	startMoveTouch(e: TouchEvent): void {
@@ -73,9 +78,18 @@ class dualRangeSlider {
 			newX = Math.max(newX, otherX + handleRect.width);
 			newX = Math.min(newX, parentRect.width - handleRect.width/2);
 		}
-		(this.activeHandle as HTMLElement).dataset.value = `${this.calcHandleValue((newX + handleRect.width/2) / parentRect.width)}`
+		(this.activeHandle as HTMLElement).dataset.value = `${this.calcHandleValue((newX + handleRect.width / 2) / parentRect.width)}`
 		this.range.style.setProperty(property, newX + "px");
-
+    (this.handles[0] as HTMLElement).addEventListener('click',() => {
+      (this.handles[0] as HTMLElement).style.zIndex = `1`;
+      (this.handles[1] as HTMLElement).style.zIndex = `0`;
+    });
+    (this.handles[1] as HTMLElement).addEventListener('click',() => {
+      (this.handles[0] as HTMLElement).style.zIndex = `0`;
+      (this.handles[1] as HTMLElement).style.zIndex = `1`;
+    });
+    this.minCost.textContent = `${(this.handles[0] as HTMLElement).dataset.value}`;
+    this.maxCost.textContent = `${(this.handles[1] as HTMLElement).dataset.value}`;
 	}
 
 	calcHandleValue(percentage: number): number {

@@ -86,20 +86,34 @@
                         <div class="shop-page__check-price">
                             <h3>Цена (₽)</h3>
                             <div class="center">
-                                <div class="dual-range" data-min="23999" data-max="151999">
+                                <div class="dual-range" data-min="23999" data-max="151999" id="range-slider-price">
                                     <span class="handle left"></span>
                                     <span class="highlight"></span>
                                     <span class="handle right"></span>
                                 </div>
-                                <div id="min_cost" class="min_cost">aaa</div>
-                                <div id="max_cost">aaa</div>
+                                <div class="costs_sum">
+                                    <div id="min_price" class="min_cost"></div>
+                                    <div id="max_price" class="max_cost"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shop-page__check-price2">
+                            <h3>Количество товара (шт)</h3>
+                            <div class="center">
+                                <div class="dual-range" data-min="1" data-max="50" id="range-slider-stock">
+                                    <span class="handle left"></span>
+                                    <span class="highlight"></span>
+                                    <span class="handle right"></span>
+                                </div>
+                                <div class="costs_sum">
+                                    <div id="min_stock" class="min_cost"></div>
+                                    <div id="max_stock" class="max_cost"></div>
+                                </div>
                             </div>
                         </div>
                         <div class="shop-page__reset-button">
-                            <div>
+                            <div class="button__container">
                                 <button>Сбросить фильтры</button>
-                            </div>
-                            <div>
                                 <button>Сбросить Настройки</button>
                             </div>
                         </div>
