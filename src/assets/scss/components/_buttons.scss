@@ -1,18 +1,40 @@
 .form_radio_btn {
+    position: relative;
+    padding: 0;
     display: inline-block;
+}
+
+.btn__list {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    height: 20px;
+    width: 20px;
+    z-index: 5;
+    pointer-events:none;
+    background: url(../images/icons-list.png) 0 0/100% auto no-repeat;
+}
+.btn__block {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    height: 20px;
+    width: 20px;
+    z-index: 5;
+    pointer-events:none;
+    background: url(../images/icons-block.png) 0 0/100% auto no-repeat;
 }
 
 .form_radio_btn input[type=radio] {
-display: none;
+    display: none;
 }
 
 .form_radio_btn label {
+    width: 40px;
+    height: 40px;
     display: inline-block;
     cursor: pointer;
-    padding: 0px 15px;
-    line-height: 34px;
-    border: 1px solid $color_gray;
-    border-radius: 6px;
+    border-radius: 3px;
     user-select: none;
 }
 /* Checked */
@@ -34,5 +56,23 @@ display: none;
 }
 
 .button__container {
-    margin: 20px 0 0 0;
+    display: flex;
+    margin: 30px 0 0 0;
+}
+
+.button__container>button {
+    margin: 0 2%;
+    padding: 5px 0;
+    font-size: 1em;
+    color: $color_white;
+    width: 50%;
+    border: 0;
+    background-color: $color_main_green;
+    border-radius: 3%;
+    box-shadow: 0 2px 5px rgba(0,0,0,.9);
+
+    &:hover {
+        cursor: pointer;
+        box-shadow: inset 0 2px 5px rgba(0,0,0,.9);
+    }
 }
