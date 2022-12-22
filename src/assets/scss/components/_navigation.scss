@@ -1,3 +1,6 @@
+.shop-page__search{
+    margin-top: 7px;
+}
 .shop-page__search>form {
     position: relative;
     width: 300px;
@@ -7,7 +10,7 @@
 
 .shop-page__search>form>input {
     font-size: 1rem;
-    color: aliceblue;
+    color: rgb(255, 240, 240);
     height: 42px;
     width: 0;
     padding: 0 42px 0 70px;
@@ -24,7 +27,7 @@
 }
 
 .shop-page__search>form>input:focus {
-    width: 300px;
+    width: 312px;
     z-index: 1;
     border-bottom: 2px solid $color_main_green;
 }
@@ -45,7 +48,7 @@
 }
 
 .shop-page__check-brand{
-    margin-top: 50px;
+    margin-top: 40px;
     color: $color_gray;
     font-size: 1rem;
 }
@@ -102,4 +105,50 @@
 }
 .checkbox>input:checked + .checkbox__text:after {
 	left: 26px;
+}
+
+.shop-page__sort {
+    padding: 0 0 3px 0;
+    border-bottom: 2px solid $color_main_green ;
+}
+
+.sort__option-container {
+    position: relative;
+}
+
+.sort-header{
+    color: $color_main_green;
+    display: flex;
+    position:absolute;
+    width: 80px;
+    top: -5px;
+    left: 0;
+    margin: 0;
+    font-size: 0.7em;
+    background-color: $color_main_black ;
+}
+
+.sort-list {
+    font-size: .8rem;
+    padding: 10px;
+    background-color: $color_main_black;
+    color: $color_gray;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid $color_light_green;
+    border-radius: 5px;
+    outline: none;
+}
+
+.sort-list>option {
+    font-size: .8rem;
+    color: $color_gray;
+}
+
+.sort__all-cards-number {
+    margin: 0 0 0 1.5rem;
+    display: flex;
+    align-items: center;
+    color: $color_gray;
 }
