@@ -3,7 +3,7 @@ import { Store } from '../interfaces/store';
 export const store: Store = {
     goodsItems: [],
     filteredGoodsItems: [],
-    cart: [],
+    cart: {},
     sumCartItems: 0.0,
 
     filters_settings: {
