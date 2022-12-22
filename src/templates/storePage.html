@@ -1,124 +1,106 @@
 <section class="shop-page" id="page">
-    <div class="shop-page__filters">
-        <div class="shop-page__search">
-            <form>
-                <input type="text" placeholder="Поиск товара..." />
-                <button type="submit"></button>
-            </form>
-        </div>
-        <div class="shop-page__check-brand">
-            <h3>Бренд</h3>
-            <ul class="checkbox-list">
-                <li>
-                    <label class="checkbox">
-                        <input type="checkbox" value="ASUS" />
-                        <div class="checkbox__text">ASUS</div>
-                    </label>
-                </li>
-                <li>
-                    <label class="checkbox">
-                        <input type="checkbox" value="GIGABYTE" />
-                        <div class="checkbox__text">GIGABYTE</div>
-                    </label>
-                </li>
-                <li>
-                    <label class="checkbox">
-                        <input type="checkbox" value="MSI" />
-                        <div class="checkbox__text">MSI</div>
-                    </label>
-                </li>
-                <li>
-                    <label class="checkbox">
-                        <input type="checkbox" value="Palit" />
-                        <div class="checkbox__text">Palit</div>
-                    </label>
-                </li>
-            </ul>
-        </div>
-        <div class="shop-page__check-price">
-            <h3>Цена (₽)</h3>
-            <div class="center">
-                <div class="dual-range" data-min="23999" data-max="151999" id="range-slider-price">
-                    <span class="handle left"></span>
-                    <span class="highlight"></span>
-                    <span class="handle right"></span>
+    <div class="wrapper shop-page_wrapper">
+        <div class="shop-page__filters">
+            <div class="shop-page__search">
+                <form>
+                    <input type="text" placeholder="Поиск товара..." />
+                    <button type="submit"></button>
+                </form>
+            </div>
+            <div class="shop-page__check-brand">
+                <h3>Бренд</h3>
+                <ul class="checkbox-list">
+                    <li>
+                        <label class="checkbox">
+                            <input type="checkbox" value="ASUS" />
+                            <div class="checkbox__text">ASUS</div>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="checkbox">
+                            <input type="checkbox" value="GIGABYTE" />
+                            <div class="checkbox__text">GIGABYTE</div>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="checkbox">
+                            <input type="checkbox" value="MSI" />
+                            <div class="checkbox__text">MSI</div>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="checkbox">
+                            <input type="checkbox" value="Palit" />
+                            <div class="checkbox__text">Palit</div>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <div class="shop-page__check-price">
+                <h3>Цена (₽)</h3>
+                <div class="center">
+                    <div class="dual-range" data-min="23999" data-max="151999" id="range-slider-price">
+                        <span class="handle left"></span>
+                        <span class="highlight"></span>
+                        <span class="handle right"></span>
+                    </div>
+                    <div class="costs_sum">
+                        <div id="min_price" class="min_cost"></div>
+                        <div id="max_price" class="max_cost"></div>
+                    </div>
                 </div>
-                <div class="costs_sum">
-                    <div id="min_price" class="min_cost"></div>
-                    <div id="max_price" class="max_cost"></div>
+            </div>
+            <div class="shop-page__check-price2">
+                <h3>Количество товара (шт)</h3>
+                <div class="center">
+                    <div class="dual-range" data-min="2" data-max="26" id="range-slider-stock">
+                        <span class="handle left"></span>
+                        <span class="highlight"></span>
+                        <span class="handle right"></span>
+                    </div>
+                    <div class="costs_sum">
+                        <div id="min_stock" class="min_cost"></div>
+                        <div id="max_stock" class="max_cost"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="shop-page__reset-button">
+                <div class="button__container">
+                    <button>Сбросить фильтры</button>
+                    <button>Сбросить настройки</button>
                 </div>
             </div>
         </div>
-        <div class="shop-page__check-price2">
-            <h3>Количество товара (шт)</h3>
-            <div class="center">
-                <div class="dual-range" data-min="1" data-max="50" id="range-slider-stock">
-                    <span class="handle left"></span>
-                    <span class="highlight"></span>
-                    <span class="handle right"></span>
+        <div class="shop-page__container">
+            <div class="shop-page__sort">
+                <div class="sort__container">
+                    <div class="sort__option-container">
+                        <h3 class="sort-header">сортировать</h3>
+                        <select class="sort-list">
+                            <option>По имени (А-Я)</option>
+                            <option>По имени (Я-А)</option>
+                            <option>По возрастанию цены</option>
+                            <option>По убыванию цены</option>
+                            <option>По возрастанию рейтинга</option>
+                            <option>По убыванию рейтинга</option>
+                        </select>
+                    </div>
+                    <div class="sort__all-cards-number">Найдено товаров:</div>
                 </div>
-                <div class="costs_sum">
-                    <div id="min_stock" class="min_cost"></div>
-                    <div id="max_stock" class="max_cost"></div>
-                </div>
-            </div>
-        </div>
-        <div class="shop-page__reset-button">
-            <div class="button__container">
-                <button>Сбросить фильтры</button>
-                <button>Сбросить Настройки</button>
-            </div>
-        </div>
-    </div>
-    <div class="shop-page__container">
-        <div class="shop-page__sort">
-            <div class="sort__container">
                 <div>
-                    <select class="sort-list">
-                        <option>По имени (А-Я)</option>
-                        <option>По имени (Я-А)</option>
-                        <option>По возрастанию цены</option>
-                        <option>По убыванию цены</option>
-                        <option>По возрастанию рейтинга</option>
-                        <option>По убыванию рейтинга</option>
-                    </select>
-                </div>
-                <div>Кол-во найденных товаров:</div>
-            </div>
-            <div>
-                <div class="form_radio_btn">
-                    <input id="radio-1" type="radio" name="radio" value="1" checked />
-                    <label for="radio-1">сетка</label>
-                </div>
-                <div class="form_radio_btn">
-                    <input id="radio-2" type="radio" name="radio" value="2" />
-                    <label for="radio-2">список</label>
+                    <div class="form_radio_btn">
+                        <input id="radio-1" type="radio" name="radio" value="1" checked />
+                        <label for="radio-1"></label>
+                        <div class="btn__list"></div>
+                    </div>
+                    <div class="form_radio_btn">
+                        <input id="radio-2" type="radio" name="radio" value="2" />
+                        <label for="radio-2"></label>
+                        <div class="btn__block"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="shop-page__content">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem assumenda in reiciendis autem ratione
-            voluptates ipsa accusantium maxime ipsam corrupti consequatur alias eum aliquid omnis dolorum itaque nihil,
-            ullam iure? Natus asperiores ab exercitationem? Quia, eligendi ut adipisci error autem tempora nesciunt
-            maxime modi enim molestias provident quam, eos nemo harum voluptas corporis! Ad voluptates voluptatibus
-            officiis magni deserunt suscipit. Molestias est voluptas sint, ipsa asperiores alias architecto nesciunt?
-            Architecto fuga eveniet cupiditate quos possimus animi, porro nemo asperiores eos delectus similique beatae
-            sint nesciunt aperiam et amet magnam rem. Iure autem doloremque ab hic totam! Iste dolorum blanditiis sunt,
-            voluptas nam, explicabo labore temporibus error aliquam omnis tempora consequuntur dicta quia. Dolorum
-            voluptate a vitae. Eveniet incidunt magnam ab! Veritatis dolores iste dolorum! Repudiandae, aliquid
-            assumenda fugiat vel unde ullam praesentium ducimus. In iure non, laboriosam doloremque, possimus numquam,
-            distinctio quia suscipit corrupti necessitatibus nesciunt qui commodi magnam omnis? Sequi magnam quasi
-            reprehenderit enim alias vitae ab voluptas, aspernatur magni perferendis libero laboriosam veniam aperiam
-            fuga omnis dolores! Ea molestias natus omnis, voluptate molestiae adipisci quisquam neque ab ut? Veritatis
-            autem delectus fugit tenetur maiores, nisi similique repellat aliquid, magni sed odit soluta voluptas fuga
-            quibusdam dignissimos error cupiditate aperiam. Sint repudiandae, enim eligendi non laudantium accusantium
-            eos assumenda! Maxime animi laboriosam repellat officiis quae consequuntur eaque eligendi corrupti provident
-            consectetur sint aut, velit, quod magni? Cumque esse dolor commodi eius nemo expedita! In ullam alias harum
-            dignissimos! Aut? Minima adipisci quo tenetur quidem non tempora, nam quas dicta, vel, cupiditate
-            consequatur facere assumenda inventore odio accusantium repellendus ipsum totam quaerat molestiae aliquid
-            autem. In vitae maxime totam. Repudiandae. Voluptatibus, cumque dolorum et magni esse asperiores dolores
-            labore quis, accusamus repudiandae repellat rerum consectetur voluptatem eligendi ipsa dignissimos provident
-            architecto est hic nihil ea vel quod quas. Harum, voluptatibus.
+            <div class="shop-page__content"></div>
         </div>
     </div>
 </section>

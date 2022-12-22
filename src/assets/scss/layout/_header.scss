@@ -1,4 +1,9 @@
 .header {
+    width: 100%;
     padding: 1rem 0;
-    flex: 0 0 auto;
+    margin: 0 auto;
+
+    .header_wrapper {
+        @include header-footer-wrapper;
+    }
 }

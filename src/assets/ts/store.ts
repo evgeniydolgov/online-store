@@ -5,6 +5,17 @@ export const store: Store = {
     filteredGoodsItems: [],
     cart: [],
     sumCartItems: 0.0,
+
+    filters_settings: {
+        _brand: [],
+
+        _category: [],
+
+        price: [],
+
+        stock: [],
+    },
+
     ls_key_cart: 'dudarik_online_shop_cart',
     ls_key_settings: 'dudarik_online_shop_settings',
     settings: {

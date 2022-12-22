@@ -1,5 +1,10 @@
 .footer {
-    flex: 0 0 auto;
+    width: 100%;
+
+    .footer_wrapper {
+        @include header-footer-wrapper;
+    }
+
     .footer_year {
         color: aliceblue;
     }
