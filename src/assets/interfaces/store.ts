@@ -7,13 +7,13 @@ export interface Store {
     sumCartItems: number;
 
     filters_settings: {
-        brands: string[];
+        _brand: string[];
 
-        min_price: number;
-        max_price: number;
+        _category: string[];
 
-        min_count_goods: number;
-        max_count_goods: number;
+        price: string[];
+
+        stock: string[];
     };
 
     ls_key_cart: string;

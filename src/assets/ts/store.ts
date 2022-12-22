@@ -7,13 +7,13 @@ export const store: Store = {
     sumCartItems: 0.0,
 
     filters_settings: {
-        brands: [],
+        _brand: [],
 
-        min_price: 0,
-        max_price: 0,
+        _category: [],
 
-        min_count_goods: 0,
-        max_count_goods: 0,
+        price: [],
+
+        stock: [],
     },
 
     ls_key_cart: 'dudarik_online_shop_cart',
