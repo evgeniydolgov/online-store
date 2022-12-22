@@ -1,4 +1,4 @@
-import { GoodsItem } from '../../interfaces/goodsItem.js';
+import { CartItems } from '../../types/';
 import { store } from '../store.js';
 
 export abstract class LS {
@@ -30,7 +30,7 @@ export abstract class LS {
         return returnValue;
     };
 
-    static saveCartDataFromLS = (data: GoodsItem[]) => {
+    static saveCartDataToLS = (data: CartItems) => {
         if (!store.settings.isLSAvailabel) return false;
 
         localStorage.setItem(store.ls_key_cart, JSON.stringify(data));
@@ -43,7 +43,7 @@ export abstract class LS {
 
         const strData = localStorage.getItem(store.ls_key_cart);
 
-        let cartData: GoodsItem[] = [];
+        let cartData: CartItems = {};
 
         if (strData) cartData = JSON.parse(strData);
 
