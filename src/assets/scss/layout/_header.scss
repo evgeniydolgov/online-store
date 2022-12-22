@@ -1,6 +1,9 @@
 .header {
     width: 100%;
     padding: 1rem 0;
-    max-width: 1200px;
     margin: 0 auto;
+
+    .header_wrapper {
+        @include header-footer-wrapper;
+    }
 }

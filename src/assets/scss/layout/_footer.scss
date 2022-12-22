@@ -1,7 +1,10 @@
 .footer {
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+
+    .footer_wrapper {
+        @include header-footer-wrapper;
+    }
+
     .footer_year {
         color: aliceblue;
     }

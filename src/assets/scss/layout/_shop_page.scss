@@ -1,0 +1,45 @@
+.shop-page {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    height: 100%;
+    // max-width: 1200px;
+    margin: 0 auto;
+
+    .shop-page_wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    .shop-page__filters {
+        padding-left: 0.5em;
+    }
+
+    .checkbox-list {
+        list-style: none;
+    }
+
+    .shop-page__reset-button {
+        display: flex;
+        justify-content: space-around;
+        padding: 2%;
+    }
+
+    .shop-page__reset-button > form > button {
+        height: 50px;
+        width: 100px;
+    }
+
+    .shop-page__container {
+        margin: 0 0 0 1%;
+        flex: 1 1 auto;
+    }
+    .shop-page__sort {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .sort__container {
+        display: flex;
+    }
+}

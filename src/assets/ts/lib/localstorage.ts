@@ -1,3 +1,4 @@
+import { CartItems } from '../../types/';
 import { store } from '../store.js';
 
 export abstract class LS {
@@ -27,5 +28,25 @@ export abstract class LS {
         let returnValue = '';
         if (lsStrJson) returnValue = JSON.parse(lsStrJson);
         return returnValue;
+    };
+
+    static saveCartDataToLS = (data: CartItems) => {
+        if (!store.settings.isLSAvailabel) return false;
+
+        localStorage.setItem(store.ls_key_cart, JSON.stringify(data));
+
+        return true;
+    };
+
+    static loadCartDataFromLS = () => {
+        if (!store.settings.isLSAvailabel) return false;
+
+        const strData = localStorage.getItem(store.ls_key_cart);
+
+        let cartData: CartItems = {};
+
+        if (strData) cartData = JSON.parse(strData);
+
+        return cartData;
     };
 }
