@@ -40,7 +40,7 @@ export function initStore() {
 
     store.filteredGoodsItems = filterGoods(store.goodsItems, filters, getSearchStringFromUrl());
 
-    LS.saveCartDataToLS({ '1': '2', '5': '2' }); //fake data
+    // LS.saveCartDataToLS({ '1': '2', '5': '2' }); //fake data
 
     // console.log(filters);
     // console.log(getGoodsBrands(store.goodsItems), getGoodsCategories(store.goodsItems));
