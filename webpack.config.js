@@ -6,6 +6,7 @@ const { readdirSync } = require('fs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const EslingWebpackPlugin = require('eslint-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin')
 
 const DEV = 'development'
 const PROD = 'production'
@@ -59,6 +60,15 @@ const baseConfig = {
         extensions: ['.ts', '.js'],
     },
     plugins: [
+        new CopyPlugin({
+          patterns: [
+            {
+              from: path.resolve(__dirname, 'src', 'assets', 'images', 'goodsimg'),
+              to: path.resolve(__dirname, 'dist', 'assets', 'images', 'goodsimg')
+            },
+          ],
+        }),
+
         new MiniCssExtractPlugin({
           filename: 'css/bundle.[name].css',
         }),

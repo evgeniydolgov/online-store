@@ -1,5 +1,5 @@
 import { CartItems } from '../../types/';
-import { store } from '../store.js';
+import { store } from '../store';
 
 export abstract class LS {
     static isLSAvailabel = () => {

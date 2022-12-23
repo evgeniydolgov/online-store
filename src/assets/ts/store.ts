@@ -7,12 +7,15 @@ export const store: Store = {
     sumCartItems: 0.0,
 
     filters_settings: {
+        all_brand: [],
+        all_category: [],
+
+        minMaxPrice: [],
+        minMaxStock: [],
+
         _brand: [],
-
         _category: [],
-
         price: [],
-
         stock: [],
     },
 
