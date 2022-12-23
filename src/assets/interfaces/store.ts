@@ -8,13 +8,14 @@ export interface Store {
     sumCartItems: number;
 
     filters_settings: {
-        _brand: string[];
+        [key: string]: string[];
+        // _brand: string[];
 
-        _category: string[];
+        // _category: string[];
 
-        price: string[];
+        // price: string[];
 
-        stock: string[];
+        // stock: string[];
     };
 
     ls_key_cart: string;
