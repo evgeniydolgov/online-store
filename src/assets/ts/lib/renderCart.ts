@@ -37,6 +37,7 @@ export async function renderCart() {
         const cartImg = document.createElement('div') as HTMLElement;
         cartImg.className = 'cart__img';
         cartImg.textContent = 'я картинка';
+        cartImg.style.background = `url(${goodsElem.images[0]})`
 
         const cartTitle = document.createElement('div') as HTMLElement;
         cartTitle.className = 'cart__title';
