@@ -1,6 +1,7 @@
 import { store } from '../store';
 import { checkElem } from '../helpers/checkers';
 import { dualRangeSlider } from '../helpers/slide_finctions';
+import { getCard } from './getCard';
 
 export async function renderStore() {
     console.log(store);
@@ -13,6 +14,12 @@ export async function renderStore() {
             const html = domParcer.parseFromString(text, 'text/html');
             return html.querySelector('#page');
         });
+
+    const cardData = store.filteredGoodsItems[0];
+
+    const card = await getCard(cardData);
+
+    checkElem(newPage).append(checkElem(card));
 
     const app = checkElem(document.querySelector('#app'));
     app.innerHTML = '';
