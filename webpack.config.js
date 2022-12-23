@@ -47,12 +47,12 @@ const baseConfig = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.(?:ico|gif|jpg|jpeg|png|webp|svg)$/i,
-                type: 'asset/resource', //asset/resource
-                generator: {
-                  filename: 'assets/images/[name][ext]',
-                }
-            }
+              test: /\.(?:ico|gif|jpg|jpeg|png|webp|svg)$/i,
+              type: 'asset/resource', //asset/resource
+              generator: {
+                filename: 'images/[name][ext]',
+              }
+          }
         ],
     },
     resolve: {
