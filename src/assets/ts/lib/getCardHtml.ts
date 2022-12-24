@@ -1,5 +1,7 @@
 import { GoodsItem } from '../../interfaces';
 import { checkElem } from '../helpers/checkers';
+import { isGoodsItemInCart } from './cartFunctions';
+import { handlerAddToCartClick } from './handlers';
 
 export async function getCardHtml(cardData: GoodsItem, options?: Record<string, string>) {
     const tplToRender = 'goodsCardTpl.html';
@@ -27,6 +29,16 @@ export async function getCardHtml(cardData: GoodsItem, options?: Record<string, 
             checkElem(card.querySelector(`#${item}`)).innerText = String(cardData[item.slice(3)]);
         });
     }
+
+    const btnAddToCart = checkElem(card.querySelector('#btn_add_to_cart'));
+
+    const goodsItemInCart = isGoodsItemInCart(cardData.id);
+
+    btnAddToCart.dataset.btnTitle = goodsItemInCart ? 'Удалить из корзины' : 'Добавить в корзину';
+
+    if (goodsItemInCart) btnAddToCart.classList.add('in-cart');
+
+    btnAddToCart.addEventListener('click', handlerAddToCartClick);
 
     return card;
 }

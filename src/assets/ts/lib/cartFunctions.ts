@@ -1,4 +1,5 @@
 import { CartItems } from '../../types';
+import { store } from '../store';
 import { loadDataStore } from './loadData';
 
 export const getCartSum = (cart: CartItems) => {
@@ -13,3 +14,5 @@ export const getCartSum = (cart: CartItems) => {
         return acc;
     }, 0);
 };
+
+export const isGoodsItemInCart = (id: number) => Object.prototype.hasOwnProperty.call(store.cart, id);

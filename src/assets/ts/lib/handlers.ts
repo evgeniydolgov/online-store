@@ -19,3 +19,12 @@ export const handlerDocumentClick = async (event: Event) => {
         history.pushState(null, '', href);
     }
 };
+
+export const handlerAddToCartClick = (event: Event) => {
+    const btn = checkEventTarget(event.target);
+
+    if (btn) btn.classList.toggle('in-cart');
+
+    if (btn.classList.contains('in-cart')) btn.dataset.btnTitle = 'Удалить из корзины';
+    else btn.dataset.btnTitle = 'Добавить в корзину';
+};

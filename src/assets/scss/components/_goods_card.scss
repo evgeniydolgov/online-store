@@ -1,2 +1,101 @@
 .goods_card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 0 0.2rem 0.05rem $color_main_green;
+    // border-radius: 0.1rem;
+
+    & .top_section {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        & .card_img {
+            width: 300px;
+            height: 300px;
+            object-fit: contain;
+        }
+        .card_description_section {
+            display: flex;
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            & .card_description p {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                line-height: 1.3rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                height: 2.6rem;
+            }
+
+            & .card_price {
+                letter-spacing: 0.1rem;
+            }
+
+            & .card_buttons {
+                display: flex;
+                justify-content: flex-end;
+                gap: 1rem;
+
+                & .btn_card {
+                    cursor: pointer;
+                    background-color: $color_main_green;
+                    border: none;
+                    padding: 0.7rem 1rem;
+                    border-radius: 0.5rem;
+                    color: white;
+                    font-size: 1.3rem;
+                    line-height: 1.2rem;
+                    text-align: left;
+                    width: 13rem;
+                }
+                & .btn_add-to-cart {
+                    background-image: url(../images/cart_icon.png);
+                    background-repeat: no-repeat;
+                    background-position: 9.5rem;
+                    position: relative;
+
+                    &::before {
+                        content: attr(data-btn-title);
+                        display: block;
+                        width: 7rem;
+                        text-align: center;
+                    }
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        width: 18px;
+                        height: 18px;
+                        top: 0.7rem;
+                        right: 1.6rem;
+                        border-radius: 50%;
+                        background-image: url(../images/add-delete_icon.png);
+                        transform: rotate(45deg);
+                        transition: all 0.5s;
+                    }
+                    &.in-cart {
+                        color: red;
+                    }
+                    &.in-cart.btn_add-to-cart::after {
+                        transform: rotate(0);
+                    }
+                    & .btn_more-info {
+                    }
+                }
+            }
+        }
+    }
+
+    .bottom_section {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+
+    // & * {
+    //     border: 1px dotted green;
+    // }
 }

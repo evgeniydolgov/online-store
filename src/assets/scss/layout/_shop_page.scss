@@ -42,4 +42,10 @@
     .sort__container {
         display: flex;
     }
+
+    .shop-page__content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
 }
