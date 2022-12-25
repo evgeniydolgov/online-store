@@ -1,5 +1,8 @@
 import { checkElem, checkEventTarget } from '../helpers/checkers';
 import { changePage } from '../helpers/router';
+import { store } from '../store';
+import { addGoodsItemToCart, isGoodsItemInCart, removeGoodsItemsFromCart } from './cartFunctions';
+import { LS } from './localstorage';
 
 export const handlerDocumentClick = async (event: Event) => {
     const target = checkEventTarget(event.target);
@@ -23,8 +26,18 @@ export const handlerDocumentClick = async (event: Event) => {
 export const handlerAddToCartClick = (event: Event) => {
     const btn = checkEventTarget(event.target);
 
+    let goodsId = -1;
+
+    if (btn.dataset.btnGoodsId) goodsId = parseInt(btn.dataset.btnGoodsId);
+
     if (btn) btn.classList.toggle('in-cart');
 
-    if (btn.classList.contains('in-cart')) btn.dataset.btnTitle = 'Удалить из корзины';
-    else btn.dataset.btnTitle = 'Добавить в корзину';
+    if (isGoodsItemInCart(goodsId)) {
+        removeGoodsItemsFromCart(goodsId);
+        btn.dataset.btnTitle = 'Добавить в корзину';
+    } else {
+        addGoodsItemToCart(goodsId);
+        btn.dataset.btnTitle = 'Удалить из корзины';
+    }
+    LS.saveCartDataToLS(store.cart);
 };

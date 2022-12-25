@@ -16,3 +16,11 @@ export const getCartSum = (cart: CartItems) => {
 };
 
 export const isGoodsItemInCart = (id: number) => Object.prototype.hasOwnProperty.call(store.cart, id);
+
+export const addGoodsItemToCart = (id: number) => {
+    if (!isGoodsItemInCart(id)) store.cart[id] = '1';
+};
+
+export const removeGoodsItemsFromCart = (id: number) => {
+    if (isGoodsItemInCart(id)) delete store.cart[id];
+};

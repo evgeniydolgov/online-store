@@ -38,6 +38,7 @@ export async function getCardHtml(cardData: GoodsItem, options?: Record<string, 
     const goodsItemInCart = isGoodsItemInCart(cardData.id);
 
     btnAddToCart.dataset.btnTitle = goodsItemInCart ? 'Удалить из корзины' : 'Добавить в корзину';
+    btnAddToCart.dataset.btnGoodsId = String(cardData.id);
 
     if (goodsItemInCart) btnAddToCart.classList.add('in-cart');
 
