@@ -4,7 +4,16 @@
     gap: 0.5rem;
     padding: 1rem;
     box-shadow: 0 0 0.2rem 0.05rem $color_main_green;
-    // border-radius: 0.1rem;
+    border-radius: 0.3rem;
+
+    transition: box-shadow 0.2s;
+
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 0 0.4rem 0.05rem $color_main_green;
+        border-radius: 0.3rem;
+    }
     &.small_card {
         width: 17rem;
 
@@ -12,7 +21,7 @@
             flex-direction: column;
             align-items: center;
             .card_img {
-                --img-size: 250px;
+                --img-size: 230px;
                 width: var(--img-size);
                 height: var(--img-size);
                 object-fit: contain;
@@ -46,6 +55,10 @@
                     }
                 }
             }
+        }
+        .bottom_section {
+            display: none;
+            // font-size: 0.9rem;
         }
     }
 
