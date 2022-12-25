@@ -5,14 +5,58 @@
     padding: 1rem;
     box-shadow: 0 0 0.2rem 0.05rem $color_main_green;
     // border-radius: 0.1rem;
+    &.small_card {
+        width: 17rem;
+
+        .top_section {
+            flex-direction: column;
+            align-items: center;
+            .card_img {
+                --img-size: 250px;
+                width: var(--img-size);
+                height: var(--img-size);
+                object-fit: contain;
+            }
+            .card_description_section {
+                gap: 0.5rem;
+                .card_title h2 {
+                    font-size: 1rem;
+                }
+                .card_description p {
+                    display: none;
+                }
+                .card_price {
+                    letter-spacing: 0.1rem;
+                    font-size: 1rem;
+                }
+                .card_buttons {
+                    .btn_card {
+                        width: 4rem;
+                        height: 3.9rem;
+                    }
+                    .btn_add-to-cart {
+                        background-position: 0.6rem;
+                        &::before {
+                            display: none;
+                        }
+                        &::after {
+                            top: 0.75rem;
+                            right: 1.5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     .top_section {
         display: flex;
         flex-direction: row;
         gap: 1rem;
         .card_img {
-            width: 300px;
-            height: 300px;
+            --img-size: 300px;
+            width: var(--img-size);
+            height: var(--img-size);
             object-fit: contain;
         }
         .card_description_section {
