@@ -31,6 +31,9 @@ export async function getCardHtml(cardData: GoodsItem, options?: Record<string, 
     }
 
     const btnAddToCart = checkElem(card.querySelector('#btn_add_to_cart'));
+    const btnMoreInfo = card.querySelector('#btn_more_info');
+
+    if (btnMoreInfo instanceof HTMLAnchorElement) btnMoreInfo.href = `/goods/${cardData.id}`;
 
     const goodsItemInCart = isGoodsItemInCart(cardData.id);
 

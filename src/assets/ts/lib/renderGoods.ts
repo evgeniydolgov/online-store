@@ -5,7 +5,8 @@ export async function renderGoods() {
     console.log(store);
 
     const tplToRender = 'goodsPage.html';
-    const newPage = await fetch(tplToRender)
+    const url = new URL(location.href);
+    const newPage = await fetch(url.origin + '/' + tplToRender)
         .then((response) => response.text())
         .then((text) => {
             const domParcer = new DOMParser();

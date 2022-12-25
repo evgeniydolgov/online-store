@@ -19,7 +19,7 @@ export const changePage = async (href: string | null) => {
 
     // console.log(request);
     // console.log(url);
-    if (!ROUTES.includes(request[1]) || request.length > 2) {
+    if (!ROUTES.includes(request[1]) || request.length > 3) {
         renderPageName = '404';
     } else {
         if (url.pathname === '/') renderPageName = 'store';

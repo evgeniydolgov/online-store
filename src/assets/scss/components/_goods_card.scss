@@ -46,7 +46,7 @@
                     border: none;
                     padding: 0.7rem 1rem;
                     border-radius: 0.5rem;
-                    color: white;
+                    color: $color_white;
                     font-size: 1.3rem;
                     line-height: 1.2rem;
                     text-align: left;
@@ -151,10 +151,6 @@
                                 transform: translate(var(--x-shift), 0.5rem);
                             }
                         }
-
-                        // .point{
-
-                        // }
                     }
                 }
             }
