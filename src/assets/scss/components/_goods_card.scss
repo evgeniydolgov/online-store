@@ -6,11 +6,11 @@
     box-shadow: 0 0 0.2rem 0.05rem $color_main_green;
     // border-radius: 0.1rem;
 
-    & .top_section {
+    .top_section {
         display: flex;
         flex-direction: row;
         gap: 1rem;
-        & .card_img {
+        .card_img {
             width: 300px;
             height: 300px;
             object-fit: contain;
@@ -21,7 +21,7 @@
 
             justify-content: space-between;
 
-            & .card_description p {
+            .card_description p {
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
@@ -31,16 +31,16 @@
                 height: 2.6rem;
             }
 
-            & .card_price {
+            .card_price {
                 letter-spacing: 0.1rem;
             }
 
-            & .card_buttons {
+            .card_buttons {
                 display: flex;
                 justify-content: flex-end;
                 gap: 1rem;
 
-                & .btn_card {
+                .btn_card {
                     cursor: pointer;
                     background-color: $color_main_green;
                     border: none;
@@ -52,7 +52,7 @@
                     text-align: left;
                     width: 13rem;
                 }
-                & .btn_add-to-cart {
+                .btn_add-to-cart {
                     background-image: url(../images/cart_icon.png);
                     background-repeat: no-repeat;
                     background-position: 9.5rem;
@@ -82,7 +82,79 @@
                     &.in-cart.btn_add-to-cart::after {
                         transform: rotate(0);
                     }
-                    & .btn_more-info {
+                }
+                .btn_more-info {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    width: 4rem;
+                    padding: 0;
+
+                    .circle {
+                        --c-size: 2.3rem;
+                        display: flex;
+
+                        width: var(--c-size);
+                        height: var(--c-size);
+
+                        border-radius: 50%;
+                        border: 0.2rem solid $color_white;
+
+                        transition: all 0.3s;
+                        position: relative;
+
+                        .point {
+                            --p-size: 0.3rem;
+
+                            display: inline-block;
+
+                            width: var(--p-size);
+                            height: var(--p-size);
+
+                            background-color: white;
+                            border-radius: 50%;
+                            transition: all 0.5s;
+                            position: absolute;
+                            top: calc(50% - var(--p-size) / 2);
+                            left: calc(50% - var(--p-size) / 2);
+
+                            &:first-of-type {
+                                transform: translateX(-0.5rem);
+                            }
+                            &:last-of-type {
+                                transform: translateX(0.5rem);
+                            }
+                        }
+                    }
+                    &:hover {
+                        .circle {
+                            --c-size: 2.8rem;
+                            width: var(--c-size);
+                            height: var(--c-size);
+                        }
+
+                        .point {
+                            --h-p-size: 1.5rem;
+                            --x-shift: calc(-1 * (0.5rem + (var(--p-size) / 2)));
+                            width: 1.5rem;
+                            border-radius: 0.2rem;
+                            &:first-of-type {
+                                transform: translate(var(--x-shift), -0.5rem);
+                            }
+
+                            &:nth-child(2) {
+                                transform: translateX(var(--x-shift));
+                            }
+
+                            &:last-of-type {
+                                transform: translate(var(--x-shift), 0.5rem);
+                            }
+                        }
+
+                        // .point{
+
+                        // }
                     }
                 }
             }
