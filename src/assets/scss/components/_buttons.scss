@@ -49,6 +49,7 @@
 }
 /* Checked */
 .form_radio_btn input[type='radio']:checked + label {
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.9);
     background: $color_main_green;
 }
 /* Hover */
