@@ -1,4 +1,4 @@
 export enum CardView {
-    tile,
-    simple,
+    tile = 'tile',
+    simple = 'simple',
 }

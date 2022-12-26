@@ -10,6 +10,7 @@ import { LS } from './localstorage';
 import { store } from '../store';
 import { loadDataStore } from './loadData';
 import { getCartSum } from './cartFunctions';
+import { getCardViewFromUrl } from './cardView';
 
 const getGoodsBrands = (goods: GoodsItem[]) => Array.from(new Set(goods.map((goodsItem) => String(goodsItem.brand))));
 
@@ -18,6 +19,7 @@ const getGoodsCategories = (goods: GoodsItem[]) =>
 
 export function initStore() {
     store.settings.isLSAvailabel = LS.isLSAvailabel();
+    store.view_settings.mode = getCardViewFromUrl();
 
     store.goodsItems = loadDataStore();
 

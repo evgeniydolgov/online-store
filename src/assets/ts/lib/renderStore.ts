@@ -17,10 +17,14 @@ export async function renderStore() {
 
     const app = checkElem(document.querySelector('#app'));
 
+    const view = store.view_settings.mode;
+
+    newPage?.querySelector(`#radio-${view}`)?.setAttribute('checked', 'true');
+
     const goodsCardsHtmlArr: HTMLElement[] = [];
 
     for (let i = 0; i < store.filteredGoodsItems.length; i++)
-        goodsCardsHtmlArr.push(await getCardHtml(store.filteredGoodsItems[i]));
+        goodsCardsHtmlArr.push(await getCardHtml(store.filteredGoodsItems[i], { view }));
 
     const goodsDiv = checkElem(newPage).querySelector('#goods');
 
