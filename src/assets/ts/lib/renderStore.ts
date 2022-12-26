@@ -1,14 +1,15 @@
 import { store } from '../store';
 import { checkElem } from '../helpers/checkers';
-import { dualRangeSlider } from '../helpers/slide_finctions';
+// import { dualRangeSlider } from '../helpers/slide_finctions';
 import { getCardHtml } from './getCardHtml';
 import { handlerViewSwitch } from './handlers';
+import { getValueFilterHtml } from './getValueFilterHtml';
 
 export async function renderStore() {
     console.log(store);
 
     const tplToRender = 'storePage.html';
-    const newPage = await fetch(tplToRender)
+    let newPage = await fetch(tplToRender)
         .then((response) => response.text())
         .then((text) => {
             const domParcer = new DOMParser();
@@ -16,23 +17,44 @@ export async function renderStore() {
             return html.querySelector('#page');
         });
 
+    newPage = checkElem(newPage);
+
     const app = checkElem(document.querySelector('#app'));
 
     const view = store.view_settings.mode;
 
     const goodsCardsHtmlArr: HTMLElement[] = [];
 
-    const viewSwithcer = checkElem(checkElem(newPage).querySelector(`#radio-${view}`));
+    const viewSwithcer = checkElem(newPage.querySelector(`#radio-${view}`));
 
     if (viewSwithcer instanceof HTMLInputElement) viewSwithcer.checked = true;
 
-    newPage?.querySelector('#select-shop-view')?.addEventListener('click', handlerViewSwitch);
+    newPage.querySelector('#select-shop-view')?.addEventListener('click', handlerViewSwitch);
 
     for (let i = 0; i < store.filteredGoodsItems.length; i++)
         goodsCardsHtmlArr.push(await getCardHtml(store.filteredGoodsItems[i], { view }));
 
     const goodsDiv = checkElem(newPage).querySelector('#goods');
 
+    // render filters ===============================================================================
+
+    const brand_filter = await getValueFilterHtml(store.filters_settings.all_brand, 'Брэнды');
+
+    const category_filter = await getValueFilterHtml(store.filters_settings.all_category, 'Каегории');
+
+    console.log(brand_filter);
+    const filtersDiv = checkElem(newPage).querySelector('#shop_filters');
+
+    const filtersArr: HTMLElement[] = [];
+
+    if (brand_filter) filtersArr.push(brand_filter);
+    if (category_filter) filtersArr.push(category_filter);
+
+    if (filtersDiv) filtersDiv.append(...filtersArr);
+
+    // render filters ===============================================================================
+
+    // console.log(brand_filter);
     if (goodsDiv) goodsDiv.append(...goodsCardsHtmlArr);
 
     checkElem(
@@ -42,6 +64,6 @@ export async function renderStore() {
     app.innerHTML = '';
     app.append(checkElem(newPage));
 
-    new dualRangeSlider(document.getElementById('range-slider-price') as HTMLElement, 'min_price', 'max_price');
-    new dualRangeSlider(document.getElementById('range-slider-stock') as HTMLElement, 'min_stock', 'max_stock');
+    // new dualRangeSlider(document.getElementById('range-slider-price') as HTMLElement, 'min_price', 'max_price');
+    // new dualRangeSlider(document.getElementById('range-slider-stock') as HTMLElement, 'min_stock', 'max_stock');
 }
