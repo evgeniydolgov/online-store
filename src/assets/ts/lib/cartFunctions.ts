@@ -1,7 +1,6 @@
 import { CartItems } from '../../types';
 import { store } from '../store';
 import { PromoArray } from './handlers';
-import { store } from '../store';
 import { loadDataStore } from './loadData';
 
 export const getCartSum = (cart: CartItems) => {

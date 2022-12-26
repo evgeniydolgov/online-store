@@ -4,10 +4,9 @@ import { changePage } from '../helpers/router';
 import { store } from '../store';
 import { LS } from './localstorage';
 import { renderCart } from './renderCart';
-import { store } from '../store';
+
 import { setCardView } from './cardView';
 import { addGoodsItemToCart, isGoodsItemInCart, removeGoodsItemsFromCart } from './cartFunctions';
-import { LS } from './localstorage';
 
 export const handlerDocumentClick = async (event: Event) => {
     const target = checkEventTarget(event.target);
