@@ -78,7 +78,7 @@ export const getFiltersFromUrl = () => {
                 });
             } else {
                 currFilterParams =
-                    parseInt(currFilterParams[0]) >= parseInt(currFilterParams[1]) ? currFilterParams : [];
+                    parseInt(currFilterParams[0]) <= parseInt(currFilterParams[1]) ? currFilterParams : [];
             }
             if (currFilterParams.length > 0) acc = [...acc, { name: filterName, value: currFilterParams }];
         }

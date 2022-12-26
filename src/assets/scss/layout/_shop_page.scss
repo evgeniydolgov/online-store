@@ -42,4 +42,11 @@
     .sort__container {
         display: flex;
     }
+
+    .shop-page__content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
 }

@@ -1,3 +1,4 @@
+import { CardView } from '../enums/cardView';
 import { CartItems } from '../types';
 import { GoodsItem } from './goodsItem';
 
@@ -16,6 +17,10 @@ export interface Store {
         // price: string[];
 
         // stock: string[];
+    };
+
+    view_settings: {
+        mode: CardView;
     };
 
     ls_key_cart: string;

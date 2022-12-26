@@ -1,3 +1,4 @@
+import { CardView } from '../enums/cardView';
 import { Store } from '../interfaces/store';
 
 export const store: Store = {
@@ -17,6 +18,10 @@ export const store: Store = {
         _category: [],
         price: [],
         stock: [],
+    },
+
+    view_settings: {
+        mode: CardView.simple,
     },
 
     ls_key_cart: 'dudarik_online_shop_cart',
