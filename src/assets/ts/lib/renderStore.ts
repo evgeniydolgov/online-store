@@ -2,6 +2,7 @@ import { store } from '../store';
 import { checkElem } from '../helpers/checkers';
 import { dualRangeSlider } from '../helpers/slide_finctions';
 import { getCardHtml } from './getCardHtml';
+import { handlerViewSwitch } from './handlers';
 
 export async function renderStore() {
     console.log(store);
@@ -19,9 +20,13 @@ export async function renderStore() {
 
     const view = store.view_settings.mode;
 
-    newPage?.querySelector(`#radio-${view}`)?.setAttribute('checked', 'true');
-
     const goodsCardsHtmlArr: HTMLElement[] = [];
+
+    const viewSwithcer = checkElem(checkElem(newPage).querySelector(`#radio-${view}`));
+
+    if (viewSwithcer instanceof HTMLInputElement) viewSwithcer.checked = true;
+
+    newPage?.querySelector('#select-shop-view')?.addEventListener('click', handlerViewSwitch);
 
     for (let i = 0; i < store.filteredGoodsItems.length; i++)
         goodsCardsHtmlArr.push(await getCardHtml(store.filteredGoodsItems[i], { view }));

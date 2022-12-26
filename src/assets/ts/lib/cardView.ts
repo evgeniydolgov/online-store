@@ -19,4 +19,6 @@ export const setCardView = (newView: CardView) => {
     const url = new URL(location.href);
 
     url.searchParams.set(CARD_VIEW_KEY, newView.toString());
+
+    location.href = url.toString();
 };
