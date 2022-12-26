@@ -1,14 +1,19 @@
 import { store } from '../store';
 import { checkElem } from '../helpers/checkers';
 import { goods } from '../goods/goodsArray';
+import { handlerAddBtnClick, handlerButtonClick, handlerPromoCodeInputChanges, renderPromoHtml } from './handlers';
+import { creatNewPrice, getCartSum } from './cartFunctions';
+
+localStorage.setItem(store.ls_key_cart, JSON.stringify({
+    '1' : '1',
+    '2' : '1',
+    '3' : '1',
+    '8' : '5'
+
+}))
+
 
 export async function renderCart() {
-    store.cart = {
-        '1' : '1',
-        '2' : '1',
-        '3' : '1',
-        '5' : '8'
-    };
 
     console.log(store);
 
@@ -24,20 +29,19 @@ export async function renderCart() {
     const app = checkElem(document.querySelector('#app'));
     app.innerHTML = '';
     app.append(checkElem(newPage));
+    let stockNum = 0;
 
-    const cartList = (document.querySelector('#cart-goods')) as HTMLElement;
     for (const key in store.cart){
+        const cartList = (document.querySelector('#cart-goods')) as HTMLElement;
         const goodsElem = goods.find(elem => elem.id === Number(key));
         if (goodsElem !== undefined) {
-        console.log(goodsElem);
 
         const cartElem = document.createElement('div') as HTMLElement;
         cartElem.className = 'cart__container';
 
         const cartImg = document.createElement('div') as HTMLElement;
         cartImg.className = 'cart__img';
-        cartImg.textContent = 'я картинка';
-        cartImg.style.background = `url(${goodsElem.images[0]})`
+        cartImg.style.background = `url(${goodsElem.images[0]})0 0/100% no-repeat`;
 
         const cartTitle = document.createElement('div') as HTMLElement;
         cartTitle.className = 'cart__title';
@@ -50,31 +54,59 @@ export async function renderCart() {
         const cartButtons = document.createElement('div') as HTMLElement;
         cartButtons.className = 'cart-button__container';
 
-        const buttonPlus = document.createElement('button') as HTMLElement;
-        buttonPlus.textContent = '-';
-        const buttonCounter = document.createElement('div') as HTMLElement;
-        buttonCounter.textContent = '$';
         const buttonMinus = document.createElement('button') as HTMLElement;
-        buttonMinus.textContent = '+';
+        buttonMinus.textContent = '-';
+        buttonMinus.dataset.goodsId = key;
+        buttonMinus.dataset.maxCount = goodsElem.stock.toString();
+        buttonMinus.addEventListener('click', handlerButtonClick);
 
-        cartButtons.append(buttonPlus);
-        cartButtons.append(buttonCounter);
+        const buttonCounter = document.createElement('div') as HTMLElement;
+        buttonCounter.textContent = `${store.cart[key]}`;
+
+        const buttonPlus = document.createElement('button') as HTMLElement;
+        buttonPlus.textContent = '+';
+        buttonPlus.dataset.typeButton = '+'
+        buttonPlus.dataset.goodsId = key;
+        buttonPlus.dataset.maxCount = goodsElem.stock.toString();
+        buttonPlus.addEventListener('click', handlerButtonClick);
+
         cartButtons.append(buttonMinus);
+        cartButtons.append(buttonCounter);
+        cartButtons.append(buttonPlus);
 
         const cartDelete = document.createElement('div') as HTMLElement;
-        cartDelete.textContent = 'удалить из корзины'
+        cartDelete.textContent = 'удалить из корзины';
         cartDelete.className = 'cart__deleted';
 
         cartElem.append(cartImg);
         cartElem.append(cartTitle);
-        cartElem.append(cartStock)
+        cartElem.append(cartStock);
         cartElem.append(cartButtons);
         cartElem.append(cartDelete);
         cartList.append(cartElem);
+
+        const allCartStock = document.querySelector('#allCartStock') as HTMLElement;
+        stockNum += Number(store.cart[key]);
+
+        allCartStock.textContent = `Всего товара ${stockNum}`;
         }
     }
 
-    const buyContainer = document.createElement('div');
-    buyContainer.className = 'cart__buy';
-    cartList.append(buyContainer);
+    // const promoCode = document.getElementById('promo-text') as HTMLInputElement;
+
+    const totalPrice = document.querySelector('#totalPrice') as HTMLElement;
+    totalPrice.textContent = `${getCartSum(store.cart)}`;
+
+    const promoText = document.querySelector('#promo-text') as HTMLInputElement;
+    promoText.addEventListener('keyup', handlerPromoCodeInputChanges);
+
+    const promoButton = document.querySelector('#promo-button') as HTMLElement;
+
+    if (localStorage.getItem('PromoARR') !== null) {
+        renderPromoHtml(promoText)
+    }
+
+    promoButton.addEventListener('click', handlerAddBtnClick)
+    creatNewPrice ();
+    console.log(store.sumCartItems)
 }
