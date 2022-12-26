@@ -5,7 +5,7 @@
     padding: 1rem;
     box-shadow: 0 0 0.2rem 0.05rem $color_main_green;
     border-radius: 0.3rem;
-
+    color: $color_gray;
     transition: box-shadow 0.2s;
 
     &:hover {
@@ -75,6 +75,9 @@
             flex-direction: column;
 
             justify-content: space-between;
+            .card_title h2 {
+                color: $color_main_green;
+            }
 
             .card_description p {
                 display: -webkit-box;
@@ -88,6 +91,7 @@
 
             .card_price {
                 letter-spacing: 0.1rem;
+                color: $color_white;
             }
 
             .card_buttons {
