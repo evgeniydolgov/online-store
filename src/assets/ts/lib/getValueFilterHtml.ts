@@ -1,18 +1,10 @@
-import { GoodsItem } from '../../interfaces';
+import { OptionsFilter } from '../../types';
 import { checkElem } from '../helpers/checkers';
 import { getCountGoodsByFieldName } from './filterGoods';
 import { getHtmlTpl } from './getHtmlTpl';
 import { handlerFilterValueSwitch } from './handlers';
 
-type OptionsValueFilter = {
-    filter_title: string;
-    filter_name: string;
-    filter_settings: string[];
-    goods: GoodsItem[];
-    filtredGoods: GoodsItem[];
-};
-
-export async function getValueFilterHtml(filterData: string[], options: OptionsValueFilter) {
+export async function getValueFilterHtml(filterData: string[], options: OptionsFilter) {
     const tplToRender = 'valueFilterTpl.html';
 
     const valueFilterHtml = await getHtmlTpl(tplToRender, 'value_filter');
