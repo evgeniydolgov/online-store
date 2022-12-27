@@ -1,16 +1,15 @@
 import { GoodsItem } from '../../interfaces';
-import {
-    filterGoods,
-    // getCountGoodsByFieldName,
-    getFiltersFromUrl,
-    // getMinMaxByFieldName,
-    getSearchStringFromUrl,
-} from './filterGoods';
+// import // filterGoods,
+// // getCountGoodsByFieldName,
+// // getFiltersFromUrl,
+// // getMinMaxByFieldName,
+// // getSearchStringFromUrl,
+// './filterGoods';
 import { LS } from './localstorage';
 import { store } from '../store';
 import { loadDataStore } from './loadData';
 import { getCartSum } from './cartFunctions';
-import { getCardViewFromUrl } from './cardView';
+// import { getCardViewFromUrl } from './cardView';
 
 const getGoodsBrands = (goods: GoodsItem[]) => Array.from(new Set(goods.map((goodsItem) => String(goodsItem.brand))));
 
@@ -19,7 +18,7 @@ const getGoodsCategories = (goods: GoodsItem[]) =>
 
 export function initStore() {
     store.settings.isLSAvailabel = LS.isLSAvailabel();
-    store.view_settings.mode = getCardViewFromUrl();
+    // store.view_settings.mode = getCardViewFromUrl();
 
     store.goodsItems = loadDataStore();
 
@@ -30,17 +29,6 @@ export function initStore() {
 
     store.filters_settings.all_brand = getGoodsBrands(store.goodsItems);
     store.filters_settings.all_category = getGoodsCategories(store.goodsItems);
-
-    const filters = getFiltersFromUrl();
-
-    for (const filter in filters) {
-        if (Object.prototype.hasOwnProperty.call(filters, filter)) {
-            const element = filters[filter];
-            store.filters_settings[element.name] = element.value;
-        }
-    }
-
-    store.filteredGoodsItems = filterGoods(store.goodsItems, filters, getSearchStringFromUrl());
 
     // LS.saveCartDataToLS({ '1': '2', '5': '2' }); //fake data
 

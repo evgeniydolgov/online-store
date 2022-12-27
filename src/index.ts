@@ -5,7 +5,7 @@ import { initStore } from './assets/ts/lib/initStore';
 
 window.addEventListener('popstate', () => {
     // console.log('popstate', location.href);
-    // changePage(location.href);
+    changePage(location.href);
     // console.log(location.pathname);
 });
 
@@ -25,6 +25,7 @@ window.addEventListener('load', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
     initStore();
+    console.log('init');
     document.addEventListener('click', handlerDocumentClick);
 });
 // addHandlersToMenu(getMenuItems());
