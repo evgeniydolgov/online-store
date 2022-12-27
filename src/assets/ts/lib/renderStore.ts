@@ -38,9 +38,19 @@ export async function renderStore() {
 
     // render filters ===============================================================================
 
-    const brand_filter = await getValueFilterHtml(store.filters_settings.all_brand, 'Брэнды');
+    const brand_filter = await getValueFilterHtml(store.filters_settings.all_brand, {
+        filter_title: 'Брэнды',
+        filter_name: 'brand',
+        goods: store.goodsItems,
+        filtredGoods: store.filteredGoodsItems,
+    });
 
-    const category_filter = await getValueFilterHtml(store.filters_settings.all_category, 'Каегории');
+    const category_filter = await getValueFilterHtml(store.filters_settings.all_category, {
+        filter_title: 'Категории',
+        filter_name: 'category',
+        goods: store.goodsItems,
+        filtredGoods: store.filteredGoodsItems,
+    });
 
     console.log(brand_filter);
     const filtersDiv = checkElem(newPage).querySelector('#shop_filters');
