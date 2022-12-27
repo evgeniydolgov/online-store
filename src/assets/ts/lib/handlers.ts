@@ -46,7 +46,7 @@ export const handlerAddToCartClick = (event: Event) => {
     LS.saveCartDataToLS(store.cart);
 };
 
-export const handlerViewSwitch = (event: Event) => {
+export const handlerViewSwitch = async (event: Event) => {
     event.preventDefault();
 
     const target = checkEventTarget(event.target);
@@ -57,7 +57,7 @@ export const handlerViewSwitch = (event: Event) => {
         if (option.value === CardView.tile) setCardView(CardView.tile);
         if (option.value === CardView.simple) setCardView(CardView.simple);
     }
-    changePage(location.href);
+    await changePage(location.href);
 };
 
 const promoCodes = [
