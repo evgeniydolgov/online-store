@@ -1,4 +1,5 @@
 import { store } from '../store';
+import { getRangeFilterHtml } from './getRangeFilterHtml';
 import { getValueFilterHtml } from './getValueFilterHtml';
 
 export const renderFilters = async () => {
@@ -18,6 +19,14 @@ export const renderFilters = async () => {
         filtredGoods: store.filteredGoodsItems,
     });
 
+    const price_filter = await getRangeFilterHtml(store.filters_settings.minMaxPrice, {
+        filter_title: 'Цена',
+        filter_name: 'price',
+        filter_settings: store.filters_settings.price,
+        goods: store.goodsItems,
+        filtredGoods: store.filteredGoodsItems,
+    });
+
     // console.log(brand_filter);
     const filtersDiv = document.querySelector('#shop_filters');
 
@@ -25,6 +34,8 @@ export const renderFilters = async () => {
 
     if (brand_filter) filtersArr.push(brand_filter);
     if (category_filter) filtersArr.push(category_filter);
+
+    if (price_filter) filtersArr.push(price_filter);
 
     if (filtersDiv) {
         filtersDiv.innerHTML = '';
