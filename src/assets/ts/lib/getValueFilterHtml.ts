@@ -2,8 +2,15 @@ import { GoodsItem } from '../../interfaces';
 import { checkElem } from '../helpers/checkers';
 import { getCountGoodsByFieldName } from './filterGoods';
 import { getHtmlTpl } from './getHtmlTpl';
+import { handlerFilterValueSwitch } from './handlers';
 
-type OptionsValueFilter = { filter_title: string; filter_name: string; goods: GoodsItem[]; filtredGoods: GoodsItem[] };
+type OptionsValueFilter = {
+    filter_title: string;
+    filter_name: string;
+    filter_settings: string[];
+    goods: GoodsItem[];
+    filtredGoods: GoodsItem[];
+};
 
 export async function getValueFilterHtml(filterData: string[], options: OptionsValueFilter) {
     const tplToRender = 'valueFilterTpl.html';
@@ -12,7 +19,7 @@ export async function getValueFilterHtml(filterData: string[], options: OptionsV
 
     const ft = valueFilterHtml.querySelector('#filter_title');
 
-    const { filter_title, filter_name, goods, filtredGoods } = options;
+    const { filter_title, filter_name, filter_settings, goods, filtredGoods } = options;
 
     checkElem(ft).innerText = filter_title;
     checkElem(ft).setAttribute('id', Date.now().toString());
@@ -20,9 +27,9 @@ export async function getValueFilterHtml(filterData: string[], options: OptionsV
     const ul = checkElem(valueFilterHtml.querySelector('#value_list'));
 
     if (valueFilterHtml) {
-        const liTpl = <HTMLTemplateElement>valueFilterHtml.querySelector('#value_filter_tpl');
+        const liTpl = valueFilterHtml.querySelector('#value_filter_tpl');
 
-        if (!liTpl) return;
+        if (!(liTpl instanceof HTMLTemplateElement)) return;
 
         const tArr: DocumentFragment[] = [];
 
@@ -38,6 +45,10 @@ export async function getValueFilterHtml(filterData: string[], options: OptionsV
 
                 // getCountGoodsByFieldName
 
+                if (!(input instanceof HTMLInputElement)) return;
+
+                input.checked = filter_settings.includes(filterData[i]);
+
                 if (!input || !count_filter_goods || !total_count_filter_goods)
                     throw new Error('cant find field in template');
                 count_filter_goods.innerHTML = String(
@@ -51,6 +62,8 @@ export async function getValueFilterHtml(filterData: string[], options: OptionsV
                 const li = checkElem(clone.querySelector('#filter_name'));
 
                 input.setAttribute('id', `visible_value_${filterData[i]}`);
+                input.setAttribute('value', filterData[i]);
+                input.dataset.filterName = `_${filter_name}`;
 
                 li.innerText = filterData[i];
                 li.setAttribute('id', `filter_name_${filterData[i]}`);
@@ -60,6 +73,7 @@ export async function getValueFilterHtml(filterData: string[], options: OptionsV
         }
         ul.append(...tArr);
     }
+    valueFilterHtml.addEventListener('change', handlerFilterValueSwitch);
 
     return valueFilterHtml;
 }

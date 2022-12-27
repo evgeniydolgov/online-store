@@ -12,5 +12,8 @@ export const renderShopCards = async (goodsRenderId: string) => {
     for (let i = 0; i < store.filteredGoodsItems.length; i++)
         goodsCardsHtmlArr.push(await getCardHtml(store.filteredGoodsItems[i], { view }));
 
-    if (goodsDiv) goodsDiv.append(...goodsCardsHtmlArr);
+    if (goodsDiv) {
+        goodsDiv.innerHTML = '';
+        goodsDiv.append(...goodsCardsHtmlArr);
+    }
 };
