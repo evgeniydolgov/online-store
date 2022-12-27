@@ -25,7 +25,6 @@ window.addEventListener('load', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
     initStore();
-    console.log('init');
     document.addEventListener('click', handlerDocumentClick);
 });
 // addHandlersToMenu(getMenuItems());

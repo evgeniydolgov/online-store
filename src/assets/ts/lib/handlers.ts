@@ -8,6 +8,8 @@ import { renderCart } from './renderCart';
 import { setCardView } from './cardView';
 import { addGoodsItemToCart, isGoodsItemInCart, removeGoodsItemsFromCart } from './cartFunctions';
 import { renderShopCards } from './renderShopCards';
+import { renderFilters } from './renderFilters';
+import { renderGoodsCount } from './renderGoodsCount';
 
 export const handlerDocumentClick = async (event: Event) => {
     const target = checkEventTarget(event.target);
@@ -90,14 +92,15 @@ export const handlerFilterValueSwitch = (event: Event) => {
     if (currFilterParams.length > 0) url.searchParams.set(filter_name, currFilterParams.join(','));
     else url.searchParams.delete(filter_name);
 
+    store.filters_settings[filter_name] = currFilterParams;
+    // store.filteredGoodsItems = filterGoods(store.goodsItems, filters, getSearchStringFromUrl());
+    // console.log(store);
     // location.href = decodeURIComponent(url.toString());
 
     history.pushState(null, '', decodeURIComponent(url.toString()));
     renderShopCards('#goods');
-
-    // console.log(target.checked);
-
-    // console.log(filter_name, filter_value);
+    renderFilters();
+    renderGoodsCount();
 };
 
 const promoCodes = [
