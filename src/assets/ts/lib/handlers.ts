@@ -7,6 +7,9 @@ import { renderCart } from './renderCart';
 
 import { setCardView } from './cardView';
 import { addGoodsItemToCart, isGoodsItemInCart, removeGoodsItemsFromCart } from './cartFunctions';
+import { renderShopCards } from './renderShopCards';
+import { renderFilters } from './renderFilters';
+import { renderGoodsCount } from './renderGoodsCount';
 
 export const handlerDocumentClick = async (event: Event) => {
     const target = checkEventTarget(event.target);
@@ -46,7 +49,7 @@ export const handlerAddToCartClick = (event: Event) => {
     LS.saveCartDataToLS(store.cart);
 };
 
-export const handlerViewSwitch = (event: Event) => {
+export const handlerViewSwitch = async (event: Event) => {
     event.preventDefault();
 
     const target = checkEventTarget(event.target);
@@ -57,7 +60,47 @@ export const handlerViewSwitch = (event: Event) => {
         if (option.value === CardView.tile) setCardView(CardView.tile);
         if (option.value === CardView.simple) setCardView(CardView.simple);
     }
-    changePage(location.href);
+
+    // await changePage(location.href);
+};
+
+export const handlerFilterValueSwitch = (event: Event) => {
+    event.preventDefault();
+
+    const target = event.target;
+
+    if (!(target instanceof HTMLInputElement)) return;
+
+    const url = new URL(location.href);
+    // console.log(target.checked);
+    const filter_name = target.dataset.filterName;
+    const filter_value = target.getAttribute('value');
+
+    if (!filter_name || !filter_value) return;
+
+    const currFilterUrlParams = url.searchParams.get(filter_name);
+
+    let currFilterParams: string[] = [];
+
+    if (currFilterUrlParams !== null) currFilterParams = currFilterUrlParams.split(',');
+
+    if (!target.checked) {
+        currFilterParams = currFilterParams.filter((param) => param !== filter_value);
+    } else {
+        currFilterParams.push(filter_value);
+    }
+    if (currFilterParams.length > 0) url.searchParams.set(filter_name, currFilterParams.join(','));
+    else url.searchParams.delete(filter_name);
+
+    store.filters_settings[filter_name] = currFilterParams;
+    // store.filteredGoodsItems = filterGoods(store.goodsItems, filters, getSearchStringFromUrl());
+    // console.log(store);
+    // location.href = decodeURIComponent(url.toString());
+
+    history.pushState(null, '', decodeURIComponent(url.toString()));
+    renderShopCards('#goods');
+    renderFilters();
+    renderGoodsCount();
 };
 
 const promoCodes = [

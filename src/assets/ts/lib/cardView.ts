@@ -1,5 +1,6 @@
 import { CardView } from '../../enums/cardView';
 import { store } from '../store';
+import { renderShopCards } from './renderShopCards';
 
 const CARD_VIEW_KEY = 'mode';
 
@@ -20,5 +21,7 @@ export const setCardView = (newView: CardView) => {
 
     url.searchParams.set(CARD_VIEW_KEY, newView.toString());
 
-    location.href = url.toString();
+    // location.href = decodeURIComponent(url.toString());
+    history.pushState(null, '', decodeURIComponent(url.toString()));
+    renderShopCards('#goods');
 };
