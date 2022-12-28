@@ -73,3 +73,45 @@
 .after-promo {
     text-decoration: line-through;
 }
+
+.cart__pay {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    border: 1px solid #fff;
+    color: $color_gray;
+    padding: 0 10px;
+}
+
+.cart__pay>div{
+    margin-top: 10px;
+    font-size: 1.5em;
+}
+
+.cart__pay-logo {
+    padding-left: 10%;
+    border-bottom: 2px solid $color_main_green;
+    font-size: 1.7em;
+}
+
+.cart__total-price {
+    display: flex;
+    padding-right: 10%;
+    justify-content:end;
+}
+
+.cart__pay>input {
+    color: $color_gray;
+    padding-left: 5px;
+    width: 60%;
+    outline: 0;
+    font-size: 1.5em;
+    border-radius: 2%;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,.9);
+    border: none;
+    border:solid 1px $color_main_black;
+    border-radius: 10px;
+    background-color: $color_main_black;
+    font-family: "Montserrat", sans-serif;
+}
