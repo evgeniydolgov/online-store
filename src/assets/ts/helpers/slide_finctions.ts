@@ -45,8 +45,8 @@ export class dualRangeSlider {
         window.addEventListener('touchcancel', this.stopMove.bind(this));
         window.addEventListener('touchleave', this.stopMove.bind(this));
 
-        const rangeRect = this.range.getBoundingClientRect();
-        const handleRect = this.handles[0].getBoundingClientRect();
+        // const rangeRect = this.range.getBoundingClientRect();
+        // const handleRect = this.handles[0].getBoundingClientRect();
 
         const min_value = parseInt(String(left.dataset.value));
         const max_value = parseInt(String(right.dataset.value));
@@ -54,22 +54,51 @@ export class dualRangeSlider {
         this.prevMin = min_value;
         this.prevMax = max_value;
 
-        const min_position = ((min_value - this.min) / this.max) * (rangeRect.width - handleRect.width / 2) + 'px';
+        this.setThumbsPosition(min_value, max_value);
+        //==================
+        // const min_position = ((min_value - this.min) / this.max) * (rangeRect.width - handleRect.width / 2) + 'px';
+        // let max_position = rangeRect.width - handleRect.width / 2 + 'px';
+
+        // if (this.max - max_value !== 0)
+        //     max_position = (max_value / this.max) * (rangeRect.width - handleRect.width / 2) + 'px';
+
+        // this.range.style.setProperty('--x-1', min_position);
+        // this.range.style.setProperty('--x-2', max_position);
+        // // this.range.style.setProperty('--x-2', rangeRect.width - handleRect.width / 2 + 'px');
+        // // (this.handles[0] as HTMLElement).dataset.value = this.range.dataset.min;
+        // // (this.handles[1] as HTMLElement).dataset.value = this.range.dataset.max;
+
+        // this.minCost.textContent = `${left.dataset.value}`;
+        // this.maxCost.textContent = `${right.dataset.value}`;
+        // // this.minCost.textContent = `${this.range.dataset.min}`;
+        // // this.maxCost.textContent = `${this.range.dataset.max}`;
+        //+==========
+    }
+
+    public setThumbsPosition(valLeft: number, valRight: number) {
+        if (valLeft === 0 && valRight === 0) return;
+        const left = this.range.querySelector('.handle.left');
+        const right = this.range.querySelector('.handle.right');
+
+        const rangeRect = this.range.getBoundingClientRect();
+        const handleRect = this.handles[0].getBoundingClientRect();
+
+        if (!(left instanceof HTMLElement) || !(right instanceof HTMLElement)) throw new Error('No divs for slider');
+
+        this.prevMin = valLeft;
+        this.prevMax = valRight;
+
+        const min_position = ((valLeft - this.min) / this.max) * (rangeRect.width - handleRect.width / 2) + 'px';
         let max_position = rangeRect.width - handleRect.width / 2 + 'px';
 
-        if (this.max - max_value !== 0)
-            max_position = (max_value / this.max) * (rangeRect.width - handleRect.width / 2) + 'px';
+        if (this.max - valRight !== 0)
+            max_position = (valRight / this.max) * (rangeRect.width - handleRect.width / 2) + 'px';
 
         this.range.style.setProperty('--x-1', min_position);
         this.range.style.setProperty('--x-2', max_position);
-        // this.range.style.setProperty('--x-2', rangeRect.width - handleRect.width / 2 + 'px');
-        // (this.handles[0] as HTMLElement).dataset.value = this.range.dataset.min;
-        // (this.handles[1] as HTMLElement).dataset.value = this.range.dataset.max;
 
-        this.minCost.textContent = `${left.dataset.value}`;
-        this.maxCost.textContent = `${right.dataset.value}`;
-        // this.minCost.textContent = `${this.range.dataset.min}`;
-        // this.maxCost.textContent = `${this.range.dataset.max}`;
+        this.minCost.textContent = `${valLeft}`;
+        this.maxCost.textContent = `${valRight}`;
     }
 
     startMoveTouch(e: TouchEvent): void {

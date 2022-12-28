@@ -39,4 +39,6 @@ export async function renderStore() {
     await renderShopCards('#goods');
     await renderFilters();
     await renderGoodsCount();
+
+    // store.sliders = sliders;
 }

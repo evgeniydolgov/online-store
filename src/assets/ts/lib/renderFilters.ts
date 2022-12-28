@@ -34,6 +34,14 @@ export const renderValueFilters = async () => {
         filtersDiv.innerHTML = '';
         filtersDiv.append(...filtersArr);
     }
+
+    // const minMaxPrice = getMinMaxByFieldName(store.filteredGoodsItems, 'price');
+    // const minMaxStock = getMinMaxByFieldName(store.filteredGoodsItems, 'stock');
+
+    // if (store.sliders) {
+    //     store.sliders.priceSlider.setThumbsPosition(parseInt(minMaxPrice[0]), parseInt(minMaxPrice[1]));
+    //     store.sliders.stockSlider.setThumbsPosition(parseInt(minMaxStock[0]), parseInt(minMaxStock[1]));
+    // }
 };
 
 export const renderRangeFilters = async () => {
@@ -78,4 +86,9 @@ export const renderFilters = async () => {
 
     new dualRangeSlider(priceFilterRendered, 'min_price', 'max_price', 'price');
     new dualRangeSlider(stockFilterRendered, 'min_stock', 'max_stock', 'stock');
+
+    // return {
+    //     priceSlider,
+    //     stockSlider,
+    // };
 };
