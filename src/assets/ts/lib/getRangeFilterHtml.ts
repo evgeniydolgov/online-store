@@ -33,7 +33,7 @@ export const getRangeFilterHtml = async (filterData: string[], options: FilterRa
     const current_min = rangeFilterHtml.querySelector('.handle.left');
     const current_max = rangeFilterHtml.querySelector('.handle.right');
 
-    console.log(current_min, filterData[0]);
+    // console.log(current_min, filterData[0]);
 
     if (!(min_value instanceof HTMLDivElement) || !(max_value instanceof HTMLDivElement))
         throw new Error('Cant find min, max value divs in html template');

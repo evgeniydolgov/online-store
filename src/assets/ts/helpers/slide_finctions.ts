@@ -1,4 +1,5 @@
 // import { renderFilters } from '../lib/renderFilters';
+import { renderValueFilters } from '../lib/renderFilters';
 import { renderGoodsCount } from '../lib/renderGoodsCount';
 import { renderShopCards } from '../lib/renderShopCards';
 import { store } from '../store';
@@ -7,6 +8,8 @@ export class dualRangeSlider {
     range;
     min;
     max;
+    prevMin;
+    prevMax;
     handles: HTMLElement[];
     filter_name: string;
     startPos;
@@ -34,7 +37,7 @@ export class dualRangeSlider {
 
         this.handles.forEach((handle) => {
             (handle as HTMLElement).addEventListener('mousedown', this.startMove.bind(this));
-            (handle as HTMLElement).addEventListener('touchstart', this.startMoveTouch.bind(this));
+            // (handle as HTMLElement).addEventListener('touchstart', this.startMoveTouch.bind(this));
         });
 
         window.addEventListener('mouseup', this.stopMove.bind(this));
@@ -45,14 +48,20 @@ export class dualRangeSlider {
         const rangeRect = this.range.getBoundingClientRect();
         const handleRect = this.handles[0].getBoundingClientRect();
 
-        // console.log(this.max, right.dataset.value);
-        const min_value =
-            (parseInt(String(left.dataset.value)) / this.max) * (rangeRect.width - handleRect.width / 2) + 'px';
-        const max_value =
-            (parseInt(String(right.dataset.value)) / this.max) * (rangeRect.width - handleRect.width / 2) + 'px';
-        // this.range.style.setProperty('--x-1', '0px');
-        this.range.style.setProperty('--x-1', min_value);
-        this.range.style.setProperty('--x-2', max_value);
+        const min_value = parseInt(String(left.dataset.value));
+        const max_value = parseInt(String(right.dataset.value));
+
+        this.prevMin = min_value;
+        this.prevMax = max_value;
+
+        const min_position = ((min_value - this.min) / this.max) * (rangeRect.width - handleRect.width / 2) + 'px';
+        let max_position = rangeRect.width - handleRect.width / 2 + 'px';
+
+        if (this.max - max_value !== 0)
+            max_position = (max_value / this.max) * (rangeRect.width - handleRect.width / 2) + 'px';
+
+        this.range.style.setProperty('--x-1', min_position);
+        this.range.style.setProperty('--x-2', max_position);
         // this.range.style.setProperty('--x-2', rangeRect.width - handleRect.width / 2 + 'px');
         // (this.handles[0] as HTMLElement).dataset.value = this.range.dataset.min;
         // (this.handles[1] as HTMLElement).dataset.value = this.range.dataset.max;
@@ -101,17 +110,24 @@ export class dualRangeSlider {
         (this.activeHandle as HTMLElement).dataset.value = `${this.calcHandleValue(
             (newX + handleRect.width / 2) / parentRect.width
         )}`;
+
         this.range.style.setProperty(property, newX + 'px');
+
         (this.handles[0] as HTMLElement).addEventListener('click', () => {
             (this.handles[0] as HTMLElement).style.zIndex = `1`;
             (this.handles[1] as HTMLElement).style.zIndex = `0`;
         });
+
         (this.handles[1] as HTMLElement).addEventListener('click', () => {
             (this.handles[0] as HTMLElement).style.zIndex = `0`;
             (this.handles[1] as HTMLElement).style.zIndex = `1`;
         });
-        this.minCost.textContent = `${(this.handles[0] as HTMLElement).dataset.value}`;
-        this.maxCost.textContent = `${(this.handles[1] as HTMLElement).dataset.value}`;
+
+        this.minCost.textContent = `${this.handles[0].dataset.value}`;
+        this.maxCost.textContent = `${this.handles[1].dataset.value}`;
+
+        // this.minCost.textContent = `${this.handles[0].dataset.value}`;
+        // this.maxCost.textContent = `${this.handles[1].dataset.value}`;
     }
 
     calcHandleValue(percentage: number): number {
@@ -119,7 +135,14 @@ export class dualRangeSlider {
     }
 
     stopMove() {
-        // console.log(this.handles);
+        window.removeEventListener('mousemove', this.moveListener);
+        window.removeEventListener('touchmove', this.moveTouchListener);
+
+        if (
+            this.prevMin === parseInt(String(this.handles[0].dataset.value)) &&
+            this.prevMax === parseInt(String(this.handles[1].dataset.value))
+        )
+            return;
         const url = new URL(location.href);
 
         const min_value = this.handles[0].dataset.value;
@@ -129,17 +152,15 @@ export class dualRangeSlider {
 
         store.filters_settings[this.filter_name] = [min_value, max_value];
 
-        // console.log(this.filter_name, store.filters_settings[this.filter_name].join(','));
-
         url.searchParams.set(this.filter_name, store.filters_settings[this.filter_name].join(','));
+
+        this.prevMin = parseInt(min_value);
+        this.prevMax = parseInt(max_value);
 
         history.pushState(null, '', decodeURIComponent(url.toString()));
 
         renderShopCards('#goods');
-        // renderFilters();
+        renderValueFilters();
         renderGoodsCount();
-        console.log('stop slide', this);
-        window.removeEventListener('mousemove', this.moveListener);
-        window.removeEventListener('touchmove', this.moveTouchListener);
     }
 }
