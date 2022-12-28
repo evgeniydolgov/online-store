@@ -99,7 +99,6 @@ export const getCountGoodsByFieldName = (goods: GoodsItem[], fieldName: string, 
 
 export const getMinMaxByFieldName = (goods: GoodsItem[], fieldName: string) => {
     const retArr = [0, 0];
-    console.log(goods);
     if (goods.length > 0) {
         retArr[0] = parseInt(String(goods[0][fieldName]));
         retArr[1] = parseInt(String(goods[0][fieldName]));
