@@ -99,7 +99,6 @@ export const getCountGoodsByFieldName = (goods: GoodsItem[], fieldName: string, 
 
 export const getMinMaxByFieldName = (goods: GoodsItem[], fieldName: string) => {
     const retArr = [0, 0];
-
     if (goods.length > 0) {
         retArr[0] = parseInt(String(goods[0][fieldName]));
         retArr[1] = parseInt(String(goods[0][fieldName]));
@@ -113,5 +112,18 @@ export const getMinMaxByFieldName = (goods: GoodsItem[], fieldName: string) => {
         }
     }
 
-    return retArr;
+    return retArr.map((item) => String(item));
+};
+
+export const setFiltredItemsToStore = () => {
+    const filters = getFiltersFromUrl();
+
+    for (const filter in filters) {
+        if (Object.prototype.hasOwnProperty.call(filters, filter)) {
+            const element = filters[filter];
+            store.filters_settings[element.name] = element.value;
+        }
+    }
+
+    store.filteredGoodsItems = filterGoods(store.goodsItems, filters, getSearchStringFromUrl());
 };

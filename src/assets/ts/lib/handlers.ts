@@ -8,7 +8,7 @@ import { renderCart } from './renderCart';
 import { setCardView } from './cardView';
 import { addGoodsItemToCart, isGoodsItemInCart, removeGoodsItemsFromCart } from './cartFunctions';
 import { renderShopCards } from './renderShopCards';
-import { renderFilters } from './renderFilters';
+import { renderValueFilters } from './renderFilters';
 import { renderGoodsCount } from './renderGoodsCount';
 
 export const handlerDocumentClick = async (event: Event) => {
@@ -89,11 +89,14 @@ export const handlerFilterValueSwitch = (event: Event) => {
     if (currFilterParams.length > 0) url.searchParams.set(filter_name, currFilterParams.join(','));
     else url.searchParams.delete(filter_name);
 
+    // url.searchParams.delete('price');
+    // url.searchParams.delete('stock');
+
     store.filters_settings[filter_name] = currFilterParams;
 
     history.pushState(null, '', decodeURIComponent(url.toString()));
     renderShopCards('#goods');
-    renderFilters();
+    renderValueFilters();
     renderGoodsCount();
 };
 
@@ -202,35 +205,35 @@ export function renderPromoHtml(input: HTMLInputElement) {
 export function handlerGoodsOnPage(event: Event) {
     const inputValue = event.target as HTMLInputElement;
     if (typeof Number(inputValue.value) === 'number' && Number(inputValue.value) > 0) {
-       localStorage.setItem('numOfElem', JSON.stringify(inputValue.value))
+        localStorage.setItem('numOfElem', JSON.stringify(inputValue.value));
     } else {
-        localStorage.setItem('numOfElem', JSON.stringify(null))
+        localStorage.setItem('numOfElem', JSON.stringify(null));
     }
-    localStorage.setItem('pageNumber', JSON.stringify(0))
+    localStorage.setItem('pageNumber', JSON.stringify(0));
     setTimeout(() => {
         renderCart();
     }, 1000);
 }
- 
-export function nextPage(){
+
+export function nextPage() {
     let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
     if (!checkPage) {
         checkPage = 0;
     }
-    if(checkPage < JSON.parse(localStorage.getItem('maxNumberPage') as string) - 1) {
-        checkPage +=1;
+    if (checkPage < JSON.parse(localStorage.getItem('maxNumberPage') as string) - 1) {
+        checkPage += 1;
         localStorage.setItem('pageNumber', JSON.stringify(checkPage));
         renderCart();
     }
 }
 
-export function prevPage(){
+export function prevPage() {
     let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
     if (!checkPage) {
         checkPage = 0;
     }
-    if(checkPage > 0) {
-        checkPage -=1;
+    if (checkPage > 0) {
+        checkPage -= 1;
         localStorage.setItem('pageNumber', JSON.stringify(checkPage));
         renderCart();
     }

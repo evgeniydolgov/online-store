@@ -1,4 +1,5 @@
 import { CardView } from '../enums/cardView';
+import { dualRangeSlider } from '../ts/helpers/slide_finctions';
 import { CartItems } from '../types';
 import { GoodsItem } from './goodsItem';
 
@@ -21,6 +22,10 @@ export interface Store {
 
     view_settings: {
         mode: CardView;
+    };
+
+    sliders?: {
+        [key: string]: dualRangeSlider;
     };
 
     ls_key_cart: string;

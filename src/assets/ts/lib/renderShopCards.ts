@@ -1,5 +1,5 @@
 import { store } from '../store';
-import { filterGoods, getFiltersFromUrl, getSearchStringFromUrl } from './filterGoods';
+import { setFiltredItemsToStore } from './filterGoods';
 import { getCardHtml } from './getCardHtml';
 
 export const renderShopCards = async (goodsRenderId: string) => {
@@ -9,16 +9,17 @@ export const renderShopCards = async (goodsRenderId: string) => {
 
     const goodsCardsHtmlArr: HTMLElement[] = [];
 
-    const filters = getFiltersFromUrl();
+    setFiltredItemsToStore();
+    // const filters = getFiltersFromUrl();
 
-    for (const filter in filters) {
-        if (Object.prototype.hasOwnProperty.call(filters, filter)) {
-            const element = filters[filter];
-            store.filters_settings[element.name] = element.value;
-        }
-    }
+    // for (const filter in filters) {
+    //     if (Object.prototype.hasOwnProperty.call(filters, filter)) {
+    //         const element = filters[filter];
+    //         store.filters_settings[element.name] = element.value;
+    //     }
+    // }
 
-    store.filteredGoodsItems = filterGoods(store.goodsItems, filters, getSearchStringFromUrl());
+    // store.filteredGoodsItems = filterGoods(store.goodsItems, filters, getSearchStringFromUrl());
 
     // console.log('render cards');
 
