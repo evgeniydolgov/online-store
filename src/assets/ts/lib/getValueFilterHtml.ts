@@ -1,10 +1,10 @@
-import { OptionsFilter } from '../../types';
+import { FilterValueOptions } from '../../types';
 import { checkElem } from '../helpers/checkers';
 import { getCountGoodsByFieldName } from './filterGoods';
 import { getHtmlTpl } from './getHtmlTpl';
 import { handlerFilterValueSwitch } from './handlers';
 
-export async function getValueFilterHtml(filterData: string[], options: OptionsFilter) {
+export async function getValueFilterHtml(filterData: string[], options: FilterValueOptions) {
     const tplToRender = 'valueFilterTpl.html';
 
     const valueFilterHtml = await getHtmlTpl(tplToRender, 'value_filter');

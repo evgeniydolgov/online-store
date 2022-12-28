@@ -1,16 +1,15 @@
-import { OptionsFilter } from '../../types';
+import { FilterRangeOptions } from '../../types';
 import { checkElem } from '../helpers/checkers';
 import { getHtmlTpl } from './getHtmlTpl';
 
-export const getRangeFilterHtml = async (filterData: string[], options: OptionsFilter) => {
+export const getRangeFilterHtml = async (filterData: string[], options: FilterRangeOptions) => {
     const tplToRender = 'rangeFilterTpl.html';
 
     const rangeFilterHtml = await getHtmlTpl(tplToRender, 'range_filter');
 
     const filterTitle = rangeFilterHtml.querySelector('#filter_title');
 
-    const { filter_title, filter_name, filter_settings, goods, filtredGoods } = options;
-    console.log(goods, filtredGoods);
+    const { filter_title, filter_name, filter_settings } = options;
 
     checkElem(filterTitle).innerText = filter_title;
     checkElem(filterTitle).setAttribute('id', Date.now().toString());
@@ -28,14 +27,17 @@ export const getRangeFilterHtml = async (filterData: string[], options: OptionsF
     range_slider.dataset.min = filter_settings[0];
     range_slider.dataset.max = filter_settings[1];
 
-    const min_price = rangeFilterHtml.querySelector('#min_price');
-    const max_price = rangeFilterHtml.querySelector('#max_price');
+    const min_value = rangeFilterHtml.querySelector('#min_');
+    const max_value = rangeFilterHtml.querySelector('#max_');
 
-    if (!(min_price instanceof HTMLDivElement) || !(max_price instanceof HTMLDivElement))
+    if (!(min_value instanceof HTMLDivElement) || !(max_value instanceof HTMLDivElement))
         throw new Error('No min, max divs in html template');
 
-    min_price.innerText = filter_settings[0];
-    max_price.innerText = filter_settings[1];
+    min_value.innerText = filter_settings[0];
+    max_value.innerText = filter_settings[1];
+
+    min_value.setAttribute('id', `min_${filter_name}`);
+    max_value.setAttribute('id', `max_${filter_name}`);
 
     return rangeFilterHtml;
 };

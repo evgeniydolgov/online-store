@@ -1,6 +1,5 @@
 import { store } from '../store';
 import { checkElem } from '../helpers/checkers';
-import { dualRangeSlider } from '../helpers/slide_finctions';
 
 import { handlerViewSwitch } from './handlers';
 import { renderShopCards } from './renderShopCards';
@@ -40,14 +39,4 @@ export async function renderStore() {
     await renderShopCards('#goods');
     await renderFilters();
     await renderGoodsCount();
-
-    new dualRangeSlider(document.getElementById('range_slider_price') as HTMLElement, 'min_price', 'max_price');
-    // new dualRangeSlider(document.getElementById('range-slider-price') as HTMLElement, 'min_price', 'max_price');
-
-    // const s = new dualRangeSlider(
-    //     document.getElementById('range-slider-stock') as HTMLElement,
-    //     'min_stock',
-    //     'max_stock'
-    // );
-    // console.log(s);
 }
