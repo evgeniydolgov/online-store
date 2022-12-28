@@ -60,8 +60,6 @@ export const handlerViewSwitch = async (event: Event) => {
         if (option.value === CardView.tile) setCardView(CardView.tile);
         if (option.value === CardView.simple) setCardView(CardView.simple);
     }
-
-    // await changePage(location.href);
 };
 
 export const handlerFilterValueSwitch = (event: Event) => {
@@ -72,7 +70,6 @@ export const handlerFilterValueSwitch = (event: Event) => {
     if (!(target instanceof HTMLInputElement)) return;
 
     const url = new URL(location.href);
-    // console.log(target.checked);
     const filter_name = target.dataset.filterName;
     const filter_value = target.getAttribute('value');
 
@@ -93,9 +90,6 @@ export const handlerFilterValueSwitch = (event: Event) => {
     else url.searchParams.delete(filter_name);
 
     store.filters_settings[filter_name] = currFilterParams;
-    // store.filteredGoodsItems = filterGoods(store.goodsItems, filters, getSearchStringFromUrl());
-    // console.log(store);
-    // location.href = decodeURIComponent(url.toString());
 
     history.pushState(null, '', decodeURIComponent(url.toString()));
     renderShopCards('#goods');
@@ -135,7 +129,7 @@ export type PromoArray = {
     disc: number;
 };
 
-export function handlerDeleteBtnClick(event: Event) {
+export function handlerDeleteOneItemBtn(event: Event) {
     let promoArr: PromoArray[] = JSON.parse(localStorage.getItem('PromoARR') as string);
     const targetBtn = event.target;
     if (!(targetBtn instanceof HTMLButtonElement)) return;
@@ -145,7 +139,7 @@ export function handlerDeleteBtnClick(event: Event) {
     renderCart();
 }
 
-export function handlerAddBtnClick(event: Event) {
+export function handlerAddOneItemBtn(event: Event) {
     let promoArr: PromoArray[] = JSON.parse(localStorage.getItem('PromoARR') as string);
     if (!promoArr) {
         promoArr = [];
@@ -198,9 +192,46 @@ export function renderPromoHtml(input: HTMLInputElement) {
         const deleteButton = document.createElement('button');
         deleteButton.dataset.promoCode = arr[i]['promoCode'];
         deleteButton.textContent = 'Удалить';
-        deleteButton.addEventListener('click', handlerDeleteBtnClick);
+        deleteButton.addEventListener('click', handlerDeleteOneItemBtn);
         promoBlock.append(messageForUser);
         promoBlock.append(deleteButton);
     }
     input.before(promoBlock);
+}
+
+export function handlerGoodsOnPage(event: Event) {
+    const inputValue = event.target as HTMLInputElement;
+    if (typeof Number(inputValue.value) === 'number' && Number(inputValue.value) > 0) {
+       localStorage.setItem('numOfElem', JSON.stringify(inputValue.value))
+    } else {
+        localStorage.setItem('numOfElem', JSON.stringify(null))
+    }
+    localStorage.setItem('pageNumber', JSON.stringify(0))
+    setTimeout(() => {
+        renderCart();
+    }, 1000);
+}
+ 
+export function nextPage(){
+    let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
+    if (!checkPage) {
+        checkPage = 0;
+    }
+    if(checkPage < JSON.parse(localStorage.getItem('maxNumberPage') as string) - 1) {
+        checkPage +=1;
+        localStorage.setItem('pageNumber', JSON.stringify(checkPage));
+        renderCart();
+    }
+}
+
+export function prevPage(){
+    let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
+    if (!checkPage) {
+        checkPage = 0;
+    }
+    if(checkPage > 0) {
+        checkPage -=1;
+        localStorage.setItem('pageNumber', JSON.stringify(checkPage));
+        renderCart();
+    }
 }

@@ -1,8 +1,9 @@
 import { store } from '../store';
 import { checkElem } from '../helpers/checkers';
-import { goods } from '../goods/goodsArray';
-import { handlerAddBtnClick, handlerButtonClick, handlerPromoCodeInputChanges, renderPromoHtml } from './handlers';
+import { handlerAddOneItemBtn, handlerGoodsOnPage, handlerPromoCodeInputChanges, nextPage, prevPage, renderPromoHtml } from './handlers';
 import { creatNewPrice, getCartSum } from './cartFunctions';
+import { displayShowListPagination } from './paginationGoodsCart';
+
 
 localStorage.setItem(store.ls_key_cart, JSON.stringify({
     '1' : '1',
@@ -11,7 +12,6 @@ localStorage.setItem(store.ls_key_cart, JSON.stringify({
     '8' : '5'
 
 }))
-
 
 export async function renderCart() {
 
@@ -30,83 +30,41 @@ export async function renderCart() {
     app.innerHTML = '';
     app.append(checkElem(newPage));
     let stockNum = 0;
+    const buysGoodsIdArr = [];
 
     for (const key in store.cart){
-        const cartList = (document.querySelector('#cart-goods')) as HTMLElement;
-        const goodsElem = goods.find(elem => elem.id === Number(key));
-        if (goodsElem !== undefined) {
-
-        const cartElem = document.createElement('div') as HTMLElement;
-        cartElem.className = 'cart__container';
-
-        const cartImg = document.createElement('div') as HTMLElement;
-        cartImg.className = 'cart__img';
-        cartImg.style.background = `url(${goodsElem.images[0]})0 0/100% no-repeat`;
-
-        const cartTitle = document.createElement('div') as HTMLElement;
-        cartTitle.className = 'cart__title';
-        cartTitle.textContent = goodsElem.title;
-
-        const cartStock = document.createElement('div') as HTMLElement;
-        cartStock.className = 'cart__stock';
-        cartStock.textContent = `Остаток товара: ${goodsElem.stock}`;
-
-        const cartButtons = document.createElement('div') as HTMLElement;
-        cartButtons.className = 'cart-button__container';
-
-        const buttonMinus = document.createElement('button') as HTMLElement;
-        buttonMinus.textContent = '-';
-        buttonMinus.dataset.goodsId = key;
-        buttonMinus.dataset.maxCount = goodsElem.stock.toString();
-        buttonMinus.addEventListener('click', handlerButtonClick);
-
-        const buttonCounter = document.createElement('div') as HTMLElement;
-        buttonCounter.textContent = `${store.cart[key]}`;
-
-        const buttonPlus = document.createElement('button') as HTMLElement;
-        buttonPlus.textContent = '+';
-        buttonPlus.dataset.typeButton = '+'
-        buttonPlus.dataset.goodsId = key;
-        buttonPlus.dataset.maxCount = goodsElem.stock.toString();
-        buttonPlus.addEventListener('click', handlerButtonClick);
-
-        cartButtons.append(buttonMinus);
-        cartButtons.append(buttonCounter);
-        cartButtons.append(buttonPlus);
-
-        const cartDelete = document.createElement('div') as HTMLElement;
-        cartDelete.textContent = 'удалить из корзины';
-        cartDelete.className = 'cart__deleted';
-
-        cartElem.append(cartImg);
-        cartElem.append(cartTitle);
-        cartElem.append(cartStock);
-        cartElem.append(cartButtons);
-        cartElem.append(cartDelete);
-        cartList.append(cartElem);
-
+        buysGoodsIdArr.push(key);
         const allCartStock = document.querySelector('#allCartStock') as HTMLElement;
         stockNum += Number(store.cart[key]);
-
-        allCartStock.textContent = `Всего товара ${stockNum}`;
-        }
+        allCartStock.textContent = `Всего товара: ${stockNum} шт`;
     }
 
-    // const promoCode = document.getElementById('promo-text') as HTMLInputElement;
+    const numElemPagination = document.getElementById('num_elems_pagination') as HTMLInputElement;
+    numElemPagination.addEventListener('input', handlerGoodsOnPage);
+
+    const sumOfPageGoods = JSON.parse(localStorage.getItem('numOfElem') as string);
+    const numberPage = JSON.parse(localStorage.getItem('pageNumber') as string);
+
+    displayShowListPagination(buysGoodsIdArr, sumOfPageGoods, numberPage);
+
+    const plusPageBtn = document.getElementById('plus-one-page') as HTMLElement;
+    plusPageBtn.addEventListener('click', nextPage);
+
+    const minusPageBtn = document.getElementById('minus-one-page') as HTMLElement;
+    minusPageBtn.addEventListener('click', prevPage);
 
     const totalPrice = document.querySelector('#totalPrice') as HTMLElement;
-    totalPrice.textContent = `${getCartSum(store.cart)}`;
+    totalPrice.textContent = `${getCartSum(store.cart)} ₽`;
 
     const promoText = document.querySelector('#promo-text') as HTMLInputElement;
-    promoText.addEventListener('keyup', handlerPromoCodeInputChanges);
+    promoText.addEventListener('input', handlerPromoCodeInputChanges);
 
     const promoButton = document.querySelector('#promo-button') as HTMLElement;
 
     if (localStorage.getItem('PromoARR') !== null) {
-        renderPromoHtml(promoText)
+        renderPromoHtml(promoText);
     }
 
-    promoButton.addEventListener('click', handlerAddBtnClick)
+    promoButton.addEventListener('click', handlerAddOneItemBtn)
     creatNewPrice ();
-    console.log(store.sumCartItems)
 }

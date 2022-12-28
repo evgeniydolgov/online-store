@@ -31,7 +31,7 @@ export function creatNewPrice() {
         }, 0);
         console.log(percent);
 
-        newPrice.textContent = `${getPromoSum(getCartSum(store.cart), percent / 100)}`;
+        newPrice.textContent = `${getPromoSum(getCartSum(store.cart), percent / 100)} ₽`;
     } else {
         totalPrice.classList.remove('after-promo');
     }
