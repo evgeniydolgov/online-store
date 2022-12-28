@@ -2,24 +2,27 @@
     <div class="cart__info">
         <div class="cart-page__about">
             <h3>Корзина</h3>
-            <p>Кол-во элементов:</p>
-            <input type="text" id="num_elems_pagination">
+            <p>Количествово элементов:</p>
+            <input type="text" id="num_elems_pagination" class="promo-text">
             <p>страница</p>
-            <button id="minus-one-page">--</button>
-            <div id="current-page">1</div>
-            <button id="plus-one-page">+</button>
+            <div class="button_block">
+                <button id="minus-one-page" class="minusOneitemBtn"></button>
+                <div id="current-page" class="counterNum">1</div>
+                <button id="plus-one-page" class="plusOneitemBtn"></button>
+            </div>
         </div>
     <div class="cart-page__goods" id="cart-goods"></div>
     </div>
     <div class="cart__pay">
         <h3 class="cart__pay-logo">Итого</h3>
         <div id="totalPrice" class="cart__total-price">0 ₽</div>
-        <div id="newPrice"></div>
+        <div id="newPrice" class="new-price"></div>
         <div id="allCartStock" class="cart__all-stock">Всего товара: 0</div>
         <div>Ввести промокод:</div>
-        <input type="text" class="promo-text" id="promo-text">
-        <button class="promo-button" id='promo-button' style="display: none;">Применить</button>
-        <div>Оформить товар</div>
+        <div class="input_block" id="inputBlock">
+            <input type="text" class="promo-text" id="promo-text">
+            <button class="promo-button" id='promo-button' style="display: none;"></button>
+        </div>
+        <div class="go_buy_page">Оформить товар</div>
     </div>
-
 </section>

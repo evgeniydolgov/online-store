@@ -179,7 +179,8 @@ export function handlerPromoCodeInputChanges(event: Event) {
     }
 }
 
-export function renderPromoHtml(input: HTMLInputElement) {
+export function renderPromoHtml() {
+    const inputBlock = document.getElementById('inputBlock') as HTMLButtonElement;
     if (localStorage.getItem('PromoARR') === null) {
         const promoArr: string[] = [];
         LS.saveToLS('PromoARR', JSON.stringify(promoArr));
@@ -187,19 +188,20 @@ export function renderPromoHtml(input: HTMLInputElement) {
 
     const arr: Record<string, string>[] = JSON.parse(localStorage.getItem('PromoARR') as string);
 
-    const promoBlock = document.createElement('div');
+    const promoBlock = document.createElement('div')
     for (let i = 0; i < arr.length; i++) {
-        const messageForUser = (document.createElement(
-            'span'
-        ).textContent = `скидка по промокоду ${arr[i]['promoCode']} - ${arr[i]['disc']}`);
+        const messageForUser = document.createElement('span')
+        messageForUser.textContent = `добавлена скидка "${arr[i]['promoCode']}" - ${arr[i]['disc']}%`;
+        messageForUser.classList.add('message_for_user')
+
         const deleteButton = document.createElement('button');
         deleteButton.dataset.promoCode = arr[i]['promoCode'];
-        deleteButton.textContent = 'Удалить';
+        deleteButton.classList.add('deletePromoBtn')
         deleteButton.addEventListener('click', handlerDeleteOneItemBtn);
         promoBlock.append(messageForUser);
         promoBlock.append(deleteButton);
     }
-    input.before(promoBlock);
+    inputBlock.after(promoBlock);
 }
 
 export function handlerGoodsOnPage(event: Event) {
