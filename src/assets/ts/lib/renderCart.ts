@@ -4,17 +4,7 @@ import { handlerAddOneItemBtn, handlerGoodsOnPage, handlerPromoCodeInputChanges,
 import { creatNewPrice, getCartSum } from './cartFunctions';
 import { displayShowListPagination } from './paginationGoodsCart';
 
-
-localStorage.setItem(store.ls_key_cart, JSON.stringify({
-    '1' : '1',
-    '2' : '1',
-    '3' : '1',
-    '8' : '5'
-
-}))
-
 export async function renderCart() {
-
     console.log(store);
 
     const tplToRender = 'cartPage.html';
@@ -62,7 +52,7 @@ export async function renderCart() {
     const promoButton = document.querySelector('#promo-button') as HTMLElement;
 
     if (localStorage.getItem('PromoARR') !== null) {
-        renderPromoHtml(promoText);
+        renderPromoHtml();
     }
 
     promoButton.addEventListener('click', handlerAddOneItemBtn)
