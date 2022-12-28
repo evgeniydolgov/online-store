@@ -6,8 +6,8 @@ import { getValueFilterHtml } from './getValueFilterHtml';
 import { dualRangeSlider } from '../helpers/slide_finctions';
 
 export const renderFilters = async () => {
-    store.filters_settings.minMaxPrice = getMinMaxByFieldName(store.filteredGoodsItems, 'price');
-    store.filters_settings.minMaxStock = getMinMaxByFieldName(store.filteredGoodsItems, 'stock');
+    store.filters_settings.minMaxPrice = getMinMaxByFieldName(store.goodsItems, 'price');
+    store.filters_settings.minMaxStock = getMinMaxByFieldName(store.goodsItems, 'stock');
 
     const brand_filter = await getValueFilterHtml(store.filters_settings.all_brand, {
         filter_title: 'Брэнды',
@@ -25,13 +25,13 @@ export const renderFilters = async () => {
         filtredGoods: store.filteredGoodsItems,
     });
 
-    const price_filter = await getRangeFilterHtml(store.filters_settings.minMaxPrice, {
+    const price_filter = await getRangeFilterHtml(store.filters_settings.price, {
         filter_title: 'Цена',
         filter_name: 'price',
         filter_settings: store.filters_settings.minMaxPrice,
     });
 
-    const stock_filter = await getRangeFilterHtml(store.filters_settings.minMaxPrice, {
+    const stock_filter = await getRangeFilterHtml(store.filters_settings.stock, {
         filter_title: 'Количество',
         filter_name: 'stock',
         filter_settings: store.filters_settings.minMaxStock,
@@ -58,6 +58,6 @@ export const renderFilters = async () => {
     if (!(priceFilterRendered instanceof HTMLDivElement) || !(stockFilterRendered instanceof HTMLDivElement))
         throw new Error('Out of div for range filter');
 
-    new dualRangeSlider(priceFilterRendered, 'min_price', 'max_price');
-    new dualRangeSlider(stockFilterRendered, 'min_stock', 'max_stock');
+    new dualRangeSlider(priceFilterRendered, 'min_price', 'max_price', 'price');
+    new dualRangeSlider(stockFilterRendered, 'min_stock', 'max_stock', 'stock');
 };

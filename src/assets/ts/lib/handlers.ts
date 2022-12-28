@@ -92,6 +92,9 @@ export const handlerFilterValueSwitch = (event: Event) => {
     if (currFilterParams.length > 0) url.searchParams.set(filter_name, currFilterParams.join(','));
     else url.searchParams.delete(filter_name);
 
+    // url.searchParams.delete('price');
+    // url.searchParams.delete('stock');
+
     store.filters_settings[filter_name] = currFilterParams;
     // store.filteredGoodsItems = filterGoods(store.goodsItems, filters, getSearchStringFromUrl());
     // console.log(store);
