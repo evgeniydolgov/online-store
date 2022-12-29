@@ -11,6 +11,26 @@ import { renderShopCards } from './renderShopCards';
 import { renderValueFilters } from './renderFilters';
 import { renderGoodsCount } from './renderGoodsCount';
 
+export const handlerSearchFieldKeyUp = (event: Event) => {
+    event.preventDefault();
+    const target = event.target;
+
+    if (!(target instanceof HTMLInputElement)) return;
+
+    console.log(target.value);
+    const url = new URL(location.href);
+
+    url.searchParams.set('search', target.value);
+
+    if (target.value.length === 0) url.searchParams.delete('search');
+
+    history.pushState(null, '', decodeURIComponent(url.toString()));
+
+    renderShopCards('#goods');
+    renderValueFilters();
+    renderGoodsCount();
+};
+
 export const handlerDocumentClick = async (event: Event) => {
     const target = checkEventTarget(event.target);
     const closestAnchor = target.closest('a');
@@ -188,15 +208,15 @@ export function renderPromoHtml() {
 
     const arr: Record<string, string>[] = JSON.parse(localStorage.getItem('PromoARR') as string);
 
-    const promoBlock = document.createElement('div')
+    const promoBlock = document.createElement('div');
     for (let i = 0; i < arr.length; i++) {
-        const messageForUser = document.createElement('span')
+        const messageForUser = document.createElement('span');
         messageForUser.textContent = `добавлена скидка "${arr[i]['promoCode']}" - ${arr[i]['disc']}%`;
-        messageForUser.classList.add('message_for_user')
+        messageForUser.classList.add('message_for_user');
 
         const deleteButton = document.createElement('button');
         deleteButton.dataset.promoCode = arr[i]['promoCode'];
-        deleteButton.classList.add('deletePromoBtn')
+        deleteButton.classList.add('deletePromoBtn');
         deleteButton.addEventListener('click', handlerDeleteOneItemBtn);
         promoBlock.append(messageForUser);
         promoBlock.append(deleteButton);

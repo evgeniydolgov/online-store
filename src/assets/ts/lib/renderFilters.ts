@@ -4,6 +4,7 @@ import { store } from '../store';
 import { getMinMaxByFieldName } from './filterGoods';
 import { getRangeFilterHtml } from './getRangeFilterHtml';
 import { getValueFilterHtml } from './getValueFilterHtml';
+import { handlerSearchFieldKeyUp } from './handlers';
 // import { dualRangeSlider } from '../helpers/slide_finctions';
 
 export const renderValueFilters = async () => {
@@ -71,6 +72,18 @@ export const renderRangeFilters = async () => {
 };
 
 export const renderFilters = async () => {
+    const url = new URL(location.href);
+
+    const search = url.searchParams.get('search');
+    const search_field = document.querySelector('#search_field');
+    console.log(search_field);
+
+    if (!(search_field instanceof HTMLInputElement)) throw new Error('Cant find search field div #search_field');
+
+    if (search) search_field.value = search;
+
+    search_field.addEventListener('keyup', handlerSearchFieldKeyUp);
+
     store.filters_settings.minMaxPrice = getMinMaxByFieldName(store.goodsItems, 'price');
     store.filters_settings.minMaxStock = getMinMaxByFieldName(store.goodsItems, 'stock');
 
