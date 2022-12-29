@@ -7,6 +7,10 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    .range-filter-info {
+        color: $color_gray;
+        margin-bottom: 1.2rem;
+    }
 }
 
 :root {

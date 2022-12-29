@@ -1,12 +1,14 @@
 // import { dualRangeSlider } from '../helpers/slide_finctions';
 import { dualRangeSlider } from '../helpers/slide_finctions';
 import { store } from '../store';
-import { getMinMaxByFieldName } from './filterGoods';
+import { getMinMaxByFieldName, setFiltredItemsToStore } from './filterGoods';
 import { getRangeFilterHtml } from './getRangeFilterHtml';
 import { getValueFilterHtml } from './getValueFilterHtml';
+import { renderRangeFiltersStats } from './renderRangeFiltersStats';
 // import { dualRangeSlider } from '../helpers/slide_finctions';
 
 export const renderValueFilters = async () => {
+    setFiltredItemsToStore();
     const brand_filter = await getValueFilterHtml(store.filters_settings.all_brand, {
         filter_title: 'Брэнды',
         filter_name: 'brand',
@@ -34,14 +36,6 @@ export const renderValueFilters = async () => {
         filtersDiv.innerHTML = '';
         filtersDiv.append(...filtersArr);
     }
-
-    // const minMaxPrice = getMinMaxByFieldName(store.filteredGoodsItems, 'price');
-    // const minMaxStock = getMinMaxByFieldName(store.filteredGoodsItems, 'stock');
-
-    // if (store.sliders) {
-    //     store.sliders.priceSlider.setThumbsPosition(parseInt(minMaxPrice[0]), parseInt(minMaxPrice[1]));
-    //     store.sliders.stockSlider.setThumbsPosition(parseInt(minMaxStock[0]), parseInt(minMaxStock[1]));
-    // }
 };
 
 export const renderRangeFilters = async () => {
@@ -77,6 +71,9 @@ export const renderFilters = async () => {
     await renderValueFilters();
 
     await renderRangeFilters();
+
+    await renderRangeFiltersStats('price');
+    await renderRangeFiltersStats('stock');
 
     const priceFilterRendered = document.getElementById('range_slider_price');
     const stockFilterRendered = document.getElementById('range_slider_stock');
