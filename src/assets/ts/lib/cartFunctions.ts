@@ -46,3 +46,16 @@ export const addGoodsItemToCart = (id: number) => {
 export const removeGoodsItemsFromCart = (id: number) => {
     if (isGoodsItemInCart(id)) delete store.cart[id];
 };
+
+export function checkerPriceInCart(price: number) {
+    const emptyElement = document.querySelector('#empty_cart_container') as HTMLElement;
+    const fullElement = document.querySelector('#cart_container') as HTMLElement;
+
+    if (price !== 0) {
+        emptyElement.style.display = 'none';
+        fullElement.style.display = 'flex';
+    } else {
+        fullElement.style.display = 'none';
+        emptyElement.style.display = 'flex';
+    }
+}

@@ -1,27 +1,28 @@
 import { store } from '../store';
 import { checkElem } from '../helpers/checkers';
 import { handlerAddOneItemBtn, handlerGoodsOnPage, handlerPromoCodeInputChanges, nextPage, prevPage, renderPromoHtml } from './handlers';
-import { creatNewPrice, getCartSum } from './cartFunctions';
+import {checkerPriceInCart, creatNewPrice, getCartSum } from './cartFunctions';
 import { displayShowListPagination } from './paginationGoodsCart';
 
 export async function renderCart() {
     console.log(store);
 
-    const tplToRender = 'cartPage.html';
-    const newPage = await fetch(tplToRender)
-        .then((response) => response.text())
-        .then((text) => {
-            const domParcer = new DOMParser();
-            const html = domParcer.parseFromString(text, 'text/html');
-            return html.querySelector('#page');
-        });
+        const tplToRender = 'cartPage.html';
+        const newPage = await fetch(tplToRender)
+            .then((response) => response.text())
+            .then((text) => {
+                const domParcer = new DOMParser();
+                const html = domParcer.parseFromString(text, 'text/html');
+                return html.querySelector('#page');
+            });
 
     const app = checkElem(document.querySelector('#app'));
     app.innerHTML = '';
     app.append(checkElem(newPage));
+    checkerPriceInCart(getCartSum(store.cart));
+
     let stockNum = 0;
     const buysGoodsIdArr = [];
-
     for (const key in store.cart){
         buysGoodsIdArr.push(key);
         const allCartStock = document.querySelector('#allCartStock') as HTMLElement;

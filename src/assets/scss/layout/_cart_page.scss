@@ -6,6 +6,23 @@
     justify-content: space-between;
     color: $color_gray;
 }
+.cart_container{
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}
+
+.empty{
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    color: $color_main_green;
+}
 
 .cart-page__goods>div {
     margin: 20px 0;
