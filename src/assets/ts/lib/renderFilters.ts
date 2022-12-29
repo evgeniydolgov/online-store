@@ -4,6 +4,7 @@ import { store } from '../store';
 import { getMinMaxByFieldName, setFiltredItemsToStore } from './filterGoods';
 import { getRangeFilterHtml } from './getRangeFilterHtml';
 import { getValueFilterHtml } from './getValueFilterHtml';
+import { handlerSearchFieldKeyUp } from './handlers';
 import { renderRangeFiltersStats } from './renderRangeFiltersStats';
 
 // import { dualRangeSlider } from '../helpers/slide_finctions';
