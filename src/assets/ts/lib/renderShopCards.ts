@@ -1,6 +1,7 @@
 import { store } from '../store';
 import { setFiltredItemsToStore } from './filterGoods';
 import { getCardHtml } from './getCardHtml';
+import { renderRangeFiltersStats } from './renderRangeFiltersStats';
 
 export const renderShopCards = async (goodsRenderId: string) => {
     const goodsDiv = document.querySelector(goodsRenderId);
@@ -30,4 +31,7 @@ export const renderShopCards = async (goodsRenderId: string) => {
         goodsDiv.innerHTML = '';
         goodsDiv.append(...goodsCardsHtmlArr);
     }
+
+    renderRangeFiltersStats('price');
+    renderRangeFiltersStats('stock');
 };

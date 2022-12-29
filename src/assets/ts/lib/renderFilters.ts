@@ -1,12 +1,16 @@
 // import { dualRangeSlider } from '../helpers/slide_finctions';
 import { dualRangeSlider } from '../helpers/slide_finctions';
 import { store } from '../store';
-import { getMinMaxByFieldName } from './filterGoods';
+import { getMinMaxByFieldName, setFiltredItemsToStore } from './filterGoods';
 import { getRangeFilterHtml } from './getRangeFilterHtml';
 import { getValueFilterHtml } from './getValueFilterHtml';
+import { handlerSearchFieldKeyUp } from './handlers';
+import { renderRangeFiltersStats } from './renderRangeFiltersStats';
+
 // import { dualRangeSlider } from '../helpers/slide_finctions';
 
 export const renderValueFilters = async () => {
+    setFiltredItemsToStore();
     const brand_filter = await getValueFilterHtml(store.filters_settings.all_brand, {
         filter_title: 'Брэнды',
         filter_name: 'brand',
@@ -34,14 +38,6 @@ export const renderValueFilters = async () => {
         filtersDiv.innerHTML = '';
         filtersDiv.append(...filtersArr);
     }
-
-    // const minMaxPrice = getMinMaxByFieldName(store.filteredGoodsItems, 'price');
-    // const minMaxStock = getMinMaxByFieldName(store.filteredGoodsItems, 'stock');
-
-    // if (store.sliders) {
-    //     store.sliders.priceSlider.setThumbsPosition(parseInt(minMaxPrice[0]), parseInt(minMaxPrice[1]));
-    //     store.sliders.stockSlider.setThumbsPosition(parseInt(minMaxStock[0]), parseInt(minMaxStock[1]));
-    // }
 };
 
 export const renderRangeFilters = async () => {
@@ -71,12 +67,27 @@ export const renderRangeFilters = async () => {
 };
 
 export const renderFilters = async () => {
+    const url = new URL(location.href);
+
+    const search = url.searchParams.get('search');
+    const search_field = document.querySelector('#search_field');
+    console.log(search_field);
+
+    if (!(search_field instanceof HTMLInputElement)) throw new Error('Cant find search field div #search_field');
+
+    if (search) search_field.value = search;
+
+    search_field.addEventListener('keyup', handlerSearchFieldKeyUp);
+
     store.filters_settings.minMaxPrice = getMinMaxByFieldName(store.goodsItems, 'price');
     store.filters_settings.minMaxStock = getMinMaxByFieldName(store.goodsItems, 'stock');
 
     await renderValueFilters();
 
     await renderRangeFilters();
+
+    await renderRangeFiltersStats('price');
+    await renderRangeFiltersStats('stock');
 
     const priceFilterRendered = document.getElementById('range_slider_price');
     const stockFilterRendered = document.getElementById('range_slider_stock');
