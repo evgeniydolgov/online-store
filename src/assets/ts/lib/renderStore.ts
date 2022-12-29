@@ -1,10 +1,10 @@
 import { store } from '../store';
 import { checkElem } from '../helpers/checkers';
 
-import { handlerViewSwitch } from './handlers';
 import { renderShopCards } from './renderShopCards';
 import { renderFilters } from './renderFilters';
 import { renderGoodsCount } from './renderGoodsCount';
+import { renderSwitchView } from './renderSwitchView';
 
 export async function renderStore() {
     console.log(store);
@@ -22,13 +22,13 @@ export async function renderStore() {
 
     const app = checkElem(document.querySelector('#app'));
 
-    const view = store.view_settings.mode;
+    // const view = store.view_settings.mode;
 
-    const viewSwithcer = checkElem(newPage.querySelector(`#radio-${view}`));
+    // const viewSwithcer = checkElem(newPage.querySelector(`#radio-${view}`));
 
-    if (viewSwithcer instanceof HTMLInputElement) viewSwithcer.checked = true;
+    // if (viewSwithcer instanceof HTMLInputElement) viewSwithcer.checked = true;
 
-    newPage.querySelector('#select-shop-view')?.addEventListener('click', handlerViewSwitch);
+    // newPage.querySelector('#select-shop-view')?.addEventListener('click', handlerViewSwitch);
 
     // for (let i = 0; i < store.filteredGoodsItems.length; i++)
     //     goodsCardsHtmlArr.push(await getCardHtml(store.filteredGoodsItems[i], { view }));
@@ -39,6 +39,7 @@ export async function renderStore() {
     await renderShopCards('#goods');
     await renderFilters();
     await renderGoodsCount();
+    await renderSwitchView();
 
     // store.sliders = sliders;
 }
