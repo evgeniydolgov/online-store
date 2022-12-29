@@ -12,6 +12,26 @@ import { renderValueFilters } from './renderFilters';
 import { renderGoodsCount } from './renderGoodsCount';
 import { renderSwitchView } from './renderSwitchView';
 
+export const handlerSearchFieldKeyUp = (event: Event) => {
+    event.preventDefault();
+    const target = event.target;
+
+    if (!(target instanceof HTMLInputElement)) return;
+
+    console.log(target.value);
+    const url = new URL(location.href);
+
+    url.searchParams.set('search', target.value);
+
+    if (target.value.length === 0) url.searchParams.delete('search');
+
+    history.pushState(null, '', decodeURIComponent(url.toString()));
+
+    renderShopCards('#goods');
+    renderValueFilters();
+    renderGoodsCount();
+};
+
 export const handlerDocumentClick = async (event: Event) => {
     const target = checkEventTarget(event.target);
     const closestAnchor = target.closest('a');
