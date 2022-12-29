@@ -22,17 +22,6 @@ export async function renderStore() {
 
     const app = checkElem(document.querySelector('#app'));
 
-    // const view = store.view_settings.mode;
-
-    // const viewSwithcer = checkElem(newPage.querySelector(`#radio-${view}`));
-
-    // if (viewSwithcer instanceof HTMLInputElement) viewSwithcer.checked = true;
-
-    // newPage.querySelector('#select-shop-view')?.addEventListener('click', handlerViewSwitch);
-
-    // for (let i = 0; i < store.filteredGoodsItems.length; i++)
-    //     goodsCardsHtmlArr.push(await getCardHtml(store.filteredGoodsItems[i], { view }));
-
     app.innerHTML = '';
     app.append(checkElem(newPage));
 
