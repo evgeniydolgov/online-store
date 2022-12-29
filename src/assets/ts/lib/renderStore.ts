@@ -5,6 +5,8 @@ import { renderShopCards } from './renderShopCards';
 import { renderFilters } from './renderFilters';
 import { renderGoodsCount } from './renderGoodsCount';
 import { renderSwitchView } from './renderSwitchView';
+import { sortGoods } from './sortGoods';
+import { SortFieldType, SortOrder } from '../../enums';
 
 export async function renderStore() {
     console.log(store);
@@ -29,6 +31,8 @@ export async function renderStore() {
     await renderShopCards('#goods');
     await renderGoodsCount();
     await renderSwitchView();
+
+    console.log(sortGoods(store.goodsItems, 'brand', SortFieldType.string, SortOrder.asc));
 
     // store.sliders = sliders;
 }
