@@ -25,8 +25,8 @@ export async function renderStore() {
     app.innerHTML = '';
     app.append(checkElem(newPage));
 
-    await renderShopCards('#goods');
     await renderFilters();
+    await renderShopCards('#goods');
     await renderGoodsCount();
     await renderSwitchView();
 

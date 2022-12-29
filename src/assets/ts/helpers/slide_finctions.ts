@@ -1,4 +1,3 @@
-// import { renderFilters } from '../lib/renderFilters';
 import { renderValueFilters } from '../lib/renderFilters';
 import { renderGoodsCount } from '../lib/renderGoodsCount';
 import { renderShopCards } from '../lib/renderShopCards';
@@ -101,7 +100,7 @@ export class dualRangeSlider {
         this.maxCost.textContent = `${valRight}`;
     }
 
-    startMoveTouch(e: TouchEvent): void {
+    private startMoveTouch(e: TouchEvent): void {
         const handleRect = (e.target as HTMLElement).getBoundingClientRect();
         this.startPos = e.touches[0].clientX - handleRect.x;
         this.activeHandle = e.target as HTMLElement;
@@ -109,18 +108,18 @@ export class dualRangeSlider {
         window.addEventListener('touchmove', this.moveTouchListener);
     }
 
-    startMove(e: MouseEvent) {
+    private startMove(e: MouseEvent) {
         this.startPos = e.offsetX;
         this.activeHandle = e.target as HTMLElement;
         this.moveListener = this.move.bind(this);
         window.addEventListener('mousemove', this.moveListener);
     }
 
-    moveTouch(e: TouchEvent) {
+    private moveTouch(e: TouchEvent) {
         this.move({ clientX: e.touches[0].clientX });
     }
 
-    move(e: { clientX: number }) {
+    private move(e: { clientX: number }) {
         const isLeft = (this.activeHandle as HTMLElement).classList.contains('left');
         const property = isLeft ? '--x-1' : '--x-2';
         const parentRect = this.range.getBoundingClientRect();
@@ -159,11 +158,11 @@ export class dualRangeSlider {
         // this.maxCost.textContent = `${this.handles[1].dataset.value}`;
     }
 
-    calcHandleValue(percentage: number): number {
+    private calcHandleValue(percentage: number): number {
         return Math.round(percentage * (this.max - this.min) + this.min);
     }
 
-    stopMove() {
+    private stopMove() {
         window.removeEventListener('mousemove', this.moveListener);
         window.removeEventListener('touchmove', this.moveTouchListener);
 
