@@ -11,18 +11,6 @@ export const renderShopCards = async (goodsRenderId: string) => {
     const goodsCardsHtmlArr: HTMLElement[] = [];
 
     setFiltredItemsToStore();
-    // const filters = getFiltersFromUrl();
-
-    // for (const filter in filters) {
-    //     if (Object.prototype.hasOwnProperty.call(filters, filter)) {
-    //         const element = filters[filter];
-    //         store.filters_settings[element.name] = element.value;
-    //     }
-    // }
-
-    // store.filteredGoodsItems = filterGoods(store.goodsItems, filters, getSearchStringFromUrl());
-
-    // console.log('render cards');
 
     for (let i = 0; i < store.filteredGoodsItems.length; i++)
         goodsCardsHtmlArr.push(await getCardHtml(store.filteredGoodsItems[i], { view }));
