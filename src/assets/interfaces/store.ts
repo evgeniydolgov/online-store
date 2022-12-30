@@ -1,3 +1,4 @@
+import { SortOrder } from '../enums';
 import { CardView } from '../enums/cardView';
 import { dualRangeSlider } from '../ts/helpers/slide_finctions';
 import { CartItems, PromoCode } from '../types';
@@ -18,6 +19,11 @@ export interface Store {
         // price: string[];
 
         // stock: string[];
+    };
+
+    sort_settings: {
+        field_name: string;
+        direction: SortOrder;
     };
 
     view_settings: {

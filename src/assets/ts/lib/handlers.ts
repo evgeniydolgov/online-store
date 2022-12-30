@@ -12,6 +12,7 @@ import { renderValueFilters } from './renderFilters';
 import { renderGoodsCount } from './renderGoodsCount';
 import { renderSwitchView } from './renderSwitchView';
 import { PromoCode } from '../../types';
+
 import { removeAllFiltersFromUrl, removeSearchStringFromUrl } from './filterGoods';
 
 export const handlerResetFiltersButtonClick = (event: Event) => {
@@ -26,13 +27,32 @@ export const handlerResetFiltersButtonClick = (event: Event) => {
     location.href = url;
 };
 
+import { setSortingSettings } from './sortGoods';
+
+export const handlerSortSelectChange = (event: Event) => {
+    event.preventDefault();
+
+    const target = event.target;
+
+    const url = new URL(location.href);
+
+    if (!(target instanceof HTMLSelectElement)) return;
+
+    url.searchParams.set('sortBy', target.value);
+
+    history.pushState(null, '', decodeURIComponent(url.toString()));
+
+    setSortingSettings();
+
+    renderShopCards('#goods');
+};
+
 export const handlerSearchFieldKeyUp = (event: Event) => {
     event.preventDefault();
     const target = event.target;
 
     if (!(target instanceof HTMLInputElement)) return;
 
-    console.log(target.value);
     const url = new URL(location.href);
 
     url.searchParams.set('search', target.value);

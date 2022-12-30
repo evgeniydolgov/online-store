@@ -6,6 +6,9 @@ import { renderFilters } from './renderFilters';
 import { renderGoodsCount } from './renderGoodsCount';
 import { renderSwitchView } from './renderSwitchView';
 import { handlerResetFiltersButtonClick } from './handlers';
+import { renderSortSelect } from './renderSortSelect';
+import { setSortingSettings } from './sortGoods';
+
 
 export async function renderStore() {
     console.log(store);
@@ -31,8 +34,10 @@ export async function renderStore() {
 
     app.innerHTML = '';
     app.append(checkElem(newPage));
+    setSortingSettings();
 
     await renderFilters();
+    await renderSortSelect();
     await renderShopCards('#goods');
     await renderGoodsCount();
     await renderSwitchView();
