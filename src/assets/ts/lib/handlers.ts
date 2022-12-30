@@ -12,6 +12,19 @@ import { renderValueFilters } from './renderFilters';
 import { renderGoodsCount } from './renderGoodsCount';
 import { renderSwitchView } from './renderSwitchView';
 import { PromoCode } from '../../types';
+import { removeAllFiltersFromUrl, removeSearchStringFromUrl } from './filterGoods';
+
+export const handlerResetFiltersButtonClick = (event: Event) => {
+    const target = event.target;
+
+    if (!(target instanceof HTMLButtonElement)) return;
+
+    let url = removeAllFiltersFromUrl(location.href);
+
+    url = removeSearchStringFromUrl(url);
+
+    location.href = url;
+};
 
 export const handlerSearchFieldKeyUp = (event: Event) => {
     event.preventDefault();
