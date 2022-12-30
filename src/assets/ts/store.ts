@@ -25,6 +25,8 @@ export const store: Store = {
         direction: SortOrder.asc,
     },
 
+    promoCodes: [],
+
     view_settings: {
         mode: CardView.simple,
     },

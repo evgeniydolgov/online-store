@@ -11,6 +11,7 @@ import { renderShopCards } from './renderShopCards';
 import { renderValueFilters } from './renderFilters';
 import { renderGoodsCount } from './renderGoodsCount';
 import { renderSwitchView } from './renderSwitchView';
+import { PromoCode } from '../../types';
 import { setSortingSettings } from './sortGoods';
 
 export const handlerSortSelectChange = (event: Event) => {
@@ -30,6 +31,7 @@ export const handlerSortSelectChange = (event: Event) => {
 
     renderShopCards('#goods');
 };
+
 
 export const handlerSearchFieldKeyUp = (event: Event) => {
     event.preventDefault();
@@ -140,13 +142,6 @@ export const handlerFilterValueSwitch = (event: Event) => {
     renderGoodsCount();
 };
 
-const promoCodes = [
-    { promoCode: 'RS', disc: 10 },
-    { promoCode: 'EPM', disc: 5 },
-    { promoCode: 'edolgov', disc: 15 },
-    { promoCode: 'dudarik', disc: 15 },
-];
-
 export const handlerButtonClick = (event: Event) => {
     const buttonElem = event.target as HTMLElement;
     const id = buttonElem.dataset.goodsId as string;
@@ -167,13 +162,8 @@ export const handlerButtonClick = (event: Event) => {
     renderCart();
 };
 
-export type PromoArray = {
-    promoCode: string;
-    disc: number;
-};
-
 export function handlerDeleteOneItemBtn(event: Event) {
-    let promoArr: PromoArray[] = JSON.parse(localStorage.getItem('PromoARR') as string);
+    let promoArr: PromoCode[] = JSON.parse(localStorage.getItem('PromoARR') as string);
     const targetBtn = event.target;
     if (!(targetBtn instanceof HTMLButtonElement)) return;
     const promoId = targetBtn.dataset.promoCode;
@@ -183,7 +173,7 @@ export function handlerDeleteOneItemBtn(event: Event) {
 }
 
 export function handlerAddOneItemBtn(event: Event) {
-    let promoArr: PromoArray[] = JSON.parse(localStorage.getItem('PromoARR') as string);
+    let promoArr: PromoCode[] = JSON.parse(localStorage.getItem('PromoARR') as string);
     if (!promoArr) {
         promoArr = [];
     }
@@ -191,16 +181,16 @@ export function handlerAddOneItemBtn(event: Event) {
     if (!(targetBtn instanceof HTMLButtonElement)) return;
     const promoText = document.querySelector('#promo-text');
     if (!(promoText instanceof HTMLInputElement)) return;
-    const promoCode = promoCodes.filter((item) => item.promoCode === promoText.value);
+    const promoCode = store.promoCodes.filter((item) => item.promoCode === promoText.value);
     promoArr.push(promoCode[0]);
     localStorage.setItem('PromoARR', JSON.stringify(promoArr));
     renderCart();
 }
 
 export function handlerPromoCodeInputChanges(event: Event) {
-    const promoArr: PromoArray[] = JSON.parse(localStorage.getItem('PromoARR') as string);
+    const promoArr: PromoCode[] = JSON.parse(localStorage.getItem('PromoARR') as string);
     const inputValue = event.target as HTMLInputElement;
-    const onePromoCode = promoCodes.filter((el) => el.promoCode === inputValue.value);
+    const onePromoCode = store.promoCodes.filter((el) => el.promoCode === inputValue.value);
     const argeeBtn = document.getElementById('promo-button') as HTMLButtonElement;
 
     if (promoArr === null || promoArr.length === 0) {

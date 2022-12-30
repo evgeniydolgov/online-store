@@ -1,6 +1,6 @@
-import { CartItems } from '../../types';
+import { CartItems, PromoCode } from '../../types';
 import { store } from '../store';
-import { PromoArray } from './handlers';
+
 import { loadDataStore } from './loadData';
 
 export const getCartSum = (cart: CartItems) => {
@@ -21,7 +21,7 @@ export const getPromoSum = (sum: number, procent: number) => {
 };
 
 export function creatNewPrice() {
-    const promoArr: PromoArray[] = JSON.parse(localStorage.getItem('PromoARR') as string);
+    const promoArr: PromoCode[] = JSON.parse(localStorage.getItem('PromoARR') as string);
     const totalPrice = document.querySelector('#totalPrice') as HTMLElement;
     if (promoArr !== null && promoArr.length !== 0) {
         totalPrice.classList.add('after-promo');
