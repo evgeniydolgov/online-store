@@ -1,5 +1,6 @@
 import { SortFieldType, SortOrder } from '../../enums';
 import { GoodsItem } from '../../interfaces';
+import { store } from '../store';
 
 const sortByFieldNameStringAsc = (fieldName: string) => (a: GoodsItem, b: GoodsItem) =>
     a[fieldName] > b[fieldName] ? 1 : -1;
@@ -23,6 +24,16 @@ const sortByFieldName = (fieldName: string, fieldType: SortFieldType, order: Sor
     return sortByFieldNameStringAsc(fieldName);
 };
 
-export const sortGoods = (goods: GoodsItem[], fieldName: string, fieldType: SortFieldType, order: SortOrder) => {
+const sortGoods = (goods: GoodsItem[], fieldName: string, fieldType: SortFieldType, order: SortOrder) => {
     return goods.sort(sortByFieldName(fieldName, fieldType, order));
+};
+
+export const sortByPrice = (order: SortOrder) => {
+    sortGoods(store.filteredGoodsItems, 'price', SortFieldType.number, order);
+};
+export const sortByTitle = (order: SortOrder) => {
+    sortGoods(store.filteredGoodsItems, 'title', SortFieldType.string, order);
+};
+export const sortByRating = (order: SortOrder) => {
+    sortGoods(store.filteredGoodsItems, 'rating', SortFieldType.number, order);
 };
