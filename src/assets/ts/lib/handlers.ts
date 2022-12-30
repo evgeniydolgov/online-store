@@ -15,6 +15,20 @@ import { PromoCode } from '../../types';
 
 import { removeAllFiltersFromUrl, removeSearchStringFromUrl } from './filterGoods';
 
+export const handlersCopyToClipboardButtonClick = (event: Event) => {
+    const target = event.target;
+
+    if (!(target instanceof HTMLButtonElement)) return;
+
+    target.innerText = 'Скопировано...';
+    const url = location.href;
+
+    navigator.clipboard.writeText(url);
+    setTimeout(() => {
+        target.innerText = 'Копировать URL';
+    }, 2000);
+};
+
 export const handlerResetFiltersButtonClick = (event: Event) => {
     const target = event.target;
 

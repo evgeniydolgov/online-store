@@ -5,10 +5,9 @@ import { renderShopCards } from './renderShopCards';
 import { renderFilters } from './renderFilters';
 import { renderGoodsCount } from './renderGoodsCount';
 import { renderSwitchView } from './renderSwitchView';
-import { handlerResetFiltersButtonClick } from './handlers';
+import { handlerResetFiltersButtonClick, handlersCopyToClipboardButtonClick } from './handlers';
 import { renderSortSelect } from './renderSortSelect';
 import { setSortingSettings } from './sortGoods';
-
 
 export async function renderStore() {
     console.log(store);
@@ -25,10 +24,13 @@ export async function renderStore() {
     newPage = checkElem(newPage);
 
     const resetFilterBtn = newPage.querySelector('#reset_filters');
+    const copyUrlBtn = newPage.querySelector('#copy_url');
 
     if (!(resetFilterBtn instanceof HTMLButtonElement)) throw new Error('Cant find resetFilters button');
+    if (!(copyUrlBtn instanceof HTMLButtonElement)) throw new Error('Cant find copyUrlButton button');
 
     resetFilterBtn.addEventListener('click', handlerResetFiltersButtonClick);
+    copyUrlBtn.addEventListener('click', handlersCopyToClipboardButtonClick);
 
     const app = checkElem(document.querySelector('#app'));
 
