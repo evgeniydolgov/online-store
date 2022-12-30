@@ -146,3 +146,22 @@ export const setFiltredItemsToStore = () => {
             break;
     }
 };
+
+export const removeAllFiltersFromUrl = (urlToReset: string) => {
+    const url = new URL(urlToReset);
+    const urlFilters = getFiltersFromUrl();
+
+    urlFilters.forEach((filter) => {
+        url.searchParams.delete(filter.name);
+    });
+
+    return decodeURIComponent(url.toString());
+};
+
+export const removeSearchStringFromUrl = (urlToReset: string) => {
+    const url = new URL(urlToReset);
+
+    url.searchParams.delete('search');
+
+    return url.toString();
+};
