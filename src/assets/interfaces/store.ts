@@ -1,6 +1,6 @@
 import { CardView } from '../enums/cardView';
 import { dualRangeSlider } from '../ts/helpers/slide_finctions';
-import { CartItems } from '../types';
+import { CartItems, PromoCode } from '../types';
 import { GoodsItem } from './goodsItem';
 
 export interface Store {
@@ -27,6 +27,8 @@ export interface Store {
     sliders?: {
         [key: string]: dualRangeSlider;
     };
+
+    promoCodes: PromoCode[];
 
     ls_key_cart: string;
     ls_key_settings: string;

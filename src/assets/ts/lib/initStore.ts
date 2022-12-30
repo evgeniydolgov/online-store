@@ -10,6 +10,7 @@ import { store } from '../store';
 import { loadDataStore } from './loadData';
 import { getCartSum } from './cartFunctions';
 import { getMinMaxByFieldName, setFiltredItemsToStore } from './filterGoods';
+import { getPromoCodes } from './getPromoCodes';
 // import { getCardViewFromUrl } from './cardView';
 
 const getGoodsBrands = (goods: GoodsItem[]) => Array.from(new Set(goods.map((goodsItem) => String(goodsItem.brand))));
@@ -20,6 +21,8 @@ const getGoodsCategories = (goods: GoodsItem[]) =>
 export function initStore() {
     store.settings.isLSAvailabel = LS.isLSAvailabel();
     // store.view_settings.mode = getCardViewFromUrl();
+
+    store.promoCodes = getPromoCodes();
 
     store.goodsItems = loadDataStore();
 

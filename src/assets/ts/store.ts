@@ -20,6 +20,8 @@ export const store: Store = {
         stock: [],
     },
 
+    promoCodes: [],
+
     view_settings: {
         mode: CardView.simple,
     },
