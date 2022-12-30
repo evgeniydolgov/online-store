@@ -11,6 +11,25 @@ import { renderShopCards } from './renderShopCards';
 import { renderValueFilters } from './renderFilters';
 import { renderGoodsCount } from './renderGoodsCount';
 import { renderSwitchView } from './renderSwitchView';
+import { setSortingSettings } from './sortGoods';
+
+export const handlerSortSelectChange = (event: Event) => {
+    event.preventDefault();
+
+    const target = event.target;
+
+    const url = new URL(location.href);
+
+    if (!(target instanceof HTMLSelectElement)) return;
+
+    url.searchParams.set('sortBy', target.value);
+
+    history.pushState(null, '', decodeURIComponent(url.toString()));
+
+    setSortingSettings();
+
+    renderShopCards('#goods');
+};
 
 export const handlerSearchFieldKeyUp = (event: Event) => {
     event.preventDefault();
@@ -18,7 +37,6 @@ export const handlerSearchFieldKeyUp = (event: Event) => {
 
     if (!(target instanceof HTMLInputElement)) return;
 
-    console.log(target.value);
     const url = new URL(location.href);
 
     url.searchParams.set('search', target.value);

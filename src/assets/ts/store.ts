@@ -1,3 +1,4 @@
+import { SortOrder } from '../enums';
 import { CardView } from '../enums/cardView';
 import { Store } from '../interfaces/store';
 
@@ -18,6 +19,10 @@ export const store: Store = {
         _category: [],
         price: [],
         stock: [],
+    },
+    sort_settings: {
+        field_name: 'title',
+        direction: SortOrder.asc,
     },
 
     view_settings: {
