@@ -1,28 +1,32 @@
 <section class="cart-page" id="page">
-    <div class="cart__info">
-        <div class="cart-page__about">
-            <h3>Корзина</h3>
-            <p>Количествово элементов:</p>
-            <input type="text" id="num_elems_pagination" class="promo-text">
-            <p>страница</p>
-            <div class="button_block">
-                <button id="minus-one-page" class="minusOneitemBtn"></button>
-                <div id="current-page" class="counterNum">1</div>
-                <button id="plus-one-page" class="plusOneitemBtn"></button>
+    <div class = "cart_container" id = 'cart_container'>
+        <div class="cart__info">
+            <div class="cart-page__about">
+                <h3>Корзина</h3>
+                <p>Количествово элементов:</p>
+                <input type="text" id="num_elems_pagination" class="promo-text">
+                <p>страница</p>
+                <div class="button_block">
+                    <button id="minus-one-page" class="minusOneitemBtn"></button>
+                    <div id="current-page" class="counterNum">1</div>
+                    <button id="plus-one-page" class="plusOneitemBtn"></button>
+                </div>
             </div>
+        <div class="cart-page__goods" id="cart-goods"></div>
         </div>
-    <div class="cart-page__goods" id="cart-goods"></div>
+        <div class="cart__pay">
+            <h3 class="cart__pay-logo">Итого</h3>
+            <div id="totalPrice" class="cart__total-price">0 ₽</div>
+            <div id="newPrice" class="new-price"></div>
+            <div id="allCartStock" class="cart__all-stock">Всего товара: 0</div>
+            <div>Ввести промокод:</div>
+            <div class="input_block" id="inputBlock">
+                <input type="text" class="promo-text" id="promo-text">
+                <button class="promo-button" id='promo-button' style="display: none;"></button>
+            </div>
+            <div class="go_buy_page">Оформить товар</div>
+        </div>
     </div>
-    <div class="cart__pay">
-        <h3 class="cart__pay-logo">Итого</h3>
-        <div id="totalPrice" class="cart__total-price">0 ₽</div>
-        <div id="newPrice" class="new-price"></div>
-        <div id="allCartStock" class="cart__all-stock">Всего товара: 0</div>
-        <div>Ввести промокод:</div>
-        <div class="input_block" id="inputBlock">
-            <input type="text" class="promo-text" id="promo-text">
-            <button class="promo-button" id='promo-button' style="display: none;"></button>
-        </div>
-        <div class="go_buy_page">Оформить товар</div>
+    <div id="empty_cart_container" class="empty">Корзина пуста
     </div>
 </section>

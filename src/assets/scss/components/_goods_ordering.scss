@@ -1,0 +1,26 @@
+.goods_ordering_background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.649);
+}
+
+.goods_ordering_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 70%;
+    background-color: $color_main_black;
+    border: 1px solid $color_main_green;
+    border-radius: 12%;
+}
+
+input:invalid {
+    border: red solid 3px;
+}
