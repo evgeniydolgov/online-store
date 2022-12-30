@@ -26,16 +26,17 @@ const sortByFieldName = (fieldName: string, fieldType: SortFieldType, order: Sor
     return sortByFieldNameStringAsc(fieldName);
 };
 
-export const sortGoods = (goods: GoodsItem[], fieldName: string, fieldType: SortFieldType, order: SortOrder) =>
+export const sortGoods = (goods: GoodsItem[], fieldName: string, fieldType: SortFieldType, order: SortOrder) => {
     goods.sort(sortByFieldName(fieldName, fieldType, order));
+};
 
-export const sortByPrice = (order: SortOrder) =>
+export const sortByPrice = (order: SortOrder): void =>
     sortGoods(store.filteredGoodsItems, 'price', SortFieldType.number, order);
 
-export const sortByTitle = (order: SortOrder) =>
+export const sortByTitle = (order: SortOrder): void =>
     sortGoods(store.filteredGoodsItems, 'title', SortFieldType.string, order);
 
-export const sortByRating = (order: SortOrder) =>
+export const sortByRating = (order: SortOrder): void =>
     sortGoods(store.filteredGoodsItems, 'rating', SortFieldType.number, order);
 
 export const getSortParamFromUrl = () => {
