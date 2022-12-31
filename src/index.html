@@ -22,8 +22,10 @@
                         </a>
                         <h1 class="logo_title">G-line</h1>
                     </div>
-                    <div class="header_basket-icon">
-                        <a href="/cart" data-anchor>
+
+                    <a href="/cart" data-anchor class="basket_link">
+                        <div class="header_basket-icon" id="header_cart_icon" data-count-goods="15">
+                            <span class="basket-counter_badge">1</span>
                             <svg viewBox="0 0 20 20" width="30" height="30">
                                 <defs>
                                     <style>
@@ -43,8 +45,9 @@
                                     </g>
                                 </g>
                             </svg>
-                        </a>
-                    </div>
+                            <div class="header_basket_sum" id="cart_sum">0r</div>
+                        </div>
+                    </a>
                 </div>
             </header>
             <main id="app" class="app">
