@@ -1,7 +1,7 @@
 import { store } from '../store';
 import { checkElem } from '../helpers/checkers';
 import { handlerAddOneItemBtn, handlerGoodsOnPage, handlerPromoCodeInputChanges, nextPage, prevPage, renderPromoHtml } from './handlers';
-import {checkerPriceInCart, creatNewPrice, getCartSum } from './cartFunctions';
+import {checkerPriceInCart, checkerValidation, creatNewPrice, getCartSum } from './cartFunctions';
 import { displayShowListPagination } from './paginationGoodsCart';
 
 export async function renderCart() {
@@ -58,4 +58,6 @@ export async function renderCart() {
 
     promoButton.addEventListener('click', handlerAddOneItemBtn)
     creatNewPrice ();
+
+    checkerValidation ();
 }

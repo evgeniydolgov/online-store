@@ -24,3 +24,13 @@
 input:invalid {
     border: red solid 3px;
 }
+
+.goods_ordering_container {
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+
+.debit-card_about {
+    display: flex;
+}

@@ -3,6 +3,7 @@ import { changePage } from './assets/ts/helpers/router';
 import { handlerDocumentClick } from './assets/ts/lib/handlers';
 import { initStore } from './assets/ts/lib/initStore';
 
+
 window.addEventListener('popstate', () => {
     // console.log('popstate', location.href);
     changePage(location.href);
