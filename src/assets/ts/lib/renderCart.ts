@@ -10,6 +10,7 @@ import {
 } from './handlers';
 import { checkerPriceInCart, creatNewPrice } from './cartFunctions';
 import { displayShowListPagination } from './paginationGoodsCart';
+import { formatSum } from '../helpers';
 
 export async function renderCart() {
     console.log(store);
@@ -52,7 +53,7 @@ export async function renderCart() {
     minusPageBtn.addEventListener('click', prevPage);
 
     const totalPrice = document.querySelector('#totalPrice') as HTMLElement;
-    totalPrice.textContent = `${store.sumCartItems} ₽`;
+    totalPrice.textContent = formatSum(store.sumCartItems, 0);
 
     const promoText = document.querySelector('#promo-text') as HTMLInputElement;
     promoText.addEventListener('input', handlerPromoCodeInputChanges);
