@@ -110,7 +110,6 @@ export const handlerAddToCartClick = (event: Event) => {
     updateCartInfo();
     setCartInfoHtml();
     LS.saveCartDataToLS(store.cart);
-    console.log(store.sumCartItems, store.countCartItems);
 };
 
 export const handlerViewSwitch = async (event: Event) => {
