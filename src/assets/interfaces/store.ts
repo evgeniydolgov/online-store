@@ -9,6 +9,7 @@ export interface Store {
     filteredGoodsItems: GoodsItem[];
     cart: CartItems;
     sumCartItems: number;
+    countCartItems: number;
 
     filters_settings: {
         [key: string]: string[];

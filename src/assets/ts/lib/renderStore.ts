@@ -9,7 +9,6 @@ import { handlerResetFiltersButtonClick } from './handlers';
 import { renderSortSelect } from './renderSortSelect';
 import { setSortingSettings } from './sortGoods';
 
-
 export async function renderStore() {
     console.log(store);
 

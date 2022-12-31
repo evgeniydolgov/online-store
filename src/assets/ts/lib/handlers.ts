@@ -6,7 +6,13 @@ import { LS } from './localstorage';
 import { renderCart } from './renderCart';
 
 import { setCardView } from './cardView';
-import { addGoodsItemToCart, isGoodsItemInCart, removeGoodsItemsFromCart } from './cartFunctions';
+import {
+    addGoodsItemToCart,
+    isGoodsItemInCart,
+    removeGoodsItemsFromCart,
+    setCartInfoHtml,
+    updateCartInfo,
+} from './cartFunctions';
 import { renderShopCards } from './renderShopCards';
 import { renderValueFilters } from './renderFilters';
 import { renderGoodsCount } from './renderGoodsCount';
@@ -101,7 +107,10 @@ export const handlerAddToCartClick = (event: Event) => {
         addGoodsItemToCart(goodsId);
         btn.dataset.btnTitle = 'Удалить из корзины';
     }
+    updateCartInfo();
+    setCartInfoHtml();
     LS.saveCartDataToLS(store.cart);
+    console.log(store.sumCartItems, store.countCartItems);
 };
 
 export const handlerViewSwitch = async (event: Event) => {
@@ -171,6 +180,9 @@ export const handlerButtonClick = (event: Event) => {
     } else if (count === 1) {
         delete store.cart[id];
     }
+
+    updateCartInfo();
+    setCartInfoHtml();
 
     LS.saveCartDataToLS(store.cart);
     renderCart();

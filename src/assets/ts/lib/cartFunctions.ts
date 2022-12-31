@@ -3,7 +3,7 @@ import { store } from '../store';
 
 import { loadDataStore } from './loadData';
 
-export const getCartSum = (cart: CartItems) => {
+const getCartSum = (cart: CartItems) => {
     const cartItems = Object.entries(cart);
 
     const goods = loadDataStore();
@@ -14,6 +14,17 @@ export const getCartSum = (cart: CartItems) => {
 
         return acc;
     }, 0);
+};
+
+const getCartGoodsCount = (cart: CartItems) => {
+    const cartItems = Object.values(cart);
+
+    return cartItems.reduce((acc, item) => acc + parseInt(item), 0);
+};
+
+export const updateCartInfo = () => {
+    store.sumCartItems = getCartSum(store.cart);
+    store.countCartItems = getCartGoodsCount(store.cart);
 };
 
 export const getPromoSum = (sum: number, procent: number) => {
@@ -59,3 +70,14 @@ export function checkerPriceInCart(price: number) {
         emptyElement.style.display = 'flex';
     }
 }
+
+export const setCartInfoHtml = () => {
+    const cartInfoSum = document.querySelector('#cart_sum_info');
+    const cartInfoCount = document.querySelector('#cart_count_info');
+
+    if (!(cartInfoSum instanceof HTMLDivElement)) throw new Error('Cant find cart info sum div');
+    if (!(cartInfoCount instanceof HTMLDivElement)) throw new Error('Cant find cart info count div');
+
+    cartInfoSum.innerText = `${store.sumCartItems} Ꝑ`;
+    cartInfoCount.innerText = store.countCartItems.toString();
+};

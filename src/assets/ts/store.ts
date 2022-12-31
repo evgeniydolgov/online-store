@@ -7,6 +7,7 @@ export const store: Store = {
     filteredGoodsItems: [],
     cart: {},
     sumCartItems: 0.0,
+    countCartItems: 0,
 
     filters_settings: {
         all_brand: [],

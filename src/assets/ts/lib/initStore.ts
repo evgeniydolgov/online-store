@@ -8,7 +8,7 @@ import { GoodsItem } from '../../interfaces';
 import { LS } from './localstorage';
 import { store } from '../store';
 import { loadDataStore } from './loadData';
-import { getCartSum } from './cartFunctions';
+import { updateCartInfo } from './cartFunctions';
 import { getMinMaxByFieldName, setFiltredItemsToStore } from './filterGoods';
 import { getPromoCodes } from './getPromoCodes';
 // import { getCardViewFromUrl } from './cardView';
@@ -29,7 +29,9 @@ export function initStore() {
     const cart = LS.loadCartDataFromLS() || {};
 
     store.cart = cart;
-    store.sumCartItems = getCartSum(cart);
+    updateCartInfo();
+    // store.sumCartItems = getCartSum(cart);
+    // store.countCartItems = getCartGoodsCount(cart);
 
     setFiltredItemsToStore();
 
