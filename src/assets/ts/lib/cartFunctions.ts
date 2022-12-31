@@ -1,4 +1,5 @@
 import { CartItems, PromoCode } from '../../types';
+import { formatSum } from '../helpers';
 import { store } from '../store';
 
 import { loadDataStore } from './loadData';
@@ -78,6 +79,6 @@ export const setCartInfoHtml = () => {
     if (!(cartInfoSum instanceof HTMLDivElement)) throw new Error('Cant find cart info sum div');
     if (!(cartInfoCount instanceof HTMLDivElement)) throw new Error('Cant find cart info count div');
 
-    cartInfoSum.innerText = `${store.sumCartItems} Ꝑ`;
+    cartInfoSum.innerText = formatSum(store.sumCartItems, 0);
     cartInfoCount.innerText = store.countCartItems.toString();
 };

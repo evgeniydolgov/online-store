@@ -1,6 +1,7 @@
 import { CardView } from '../../enums/cardView';
 import { GoodsItem } from '../../interfaces';
 import { CardOptions } from '../../types';
+import { formatSum } from '../helpers';
 import { checkElem } from '../helpers/checkers';
 import { isGoodsItemInCart } from './cartFunctions';
 import { handlerAddToCartClick } from './handlers';
@@ -29,7 +30,10 @@ export async function getCardHtml(cardData: GoodsItem, { view }: CardOptions) {
         }
 
         CARD_IDS.forEach((item) => {
-            checkElem(card.querySelector(`#${item}`)).innerText = String(cardData[item.slice(3)]);
+            const currElem = checkElem(card.querySelector(`#${item}`));
+
+            if (item === 'gc_price') currElem.innerText = formatSum(parseInt(cardData[item.slice(3)].toString()), 0);
+            else currElem.innerText = cardData[item.slice(3)].toString();
         });
     }
 
