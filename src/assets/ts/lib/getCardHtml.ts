@@ -32,8 +32,24 @@ export async function getCardHtml(cardData: GoodsItem, { view }: CardOptions) {
         CARD_IDS.forEach((item) => {
             const currElem = checkElem(card.querySelector(`#${item}`));
 
-            if (item === 'gc_price') currElem.innerText = formatSum(parseInt(cardData[item.slice(3)].toString()), 0);
-            else currElem.innerText = cardData[item.slice(3)].toString();
+            switch (item) {
+                case 'gc_price':
+                    currElem.innerText = formatSum(parseInt(cardData[item.slice(3)].toString()), 0);
+                    break;
+                case 'gc_title':
+                    // eslint-disable-next-line
+                    const anchor = document.createElement('a');
+
+                    anchor.href = `/goods/${cardData.id}`;
+                    anchor.innerText = cardData[item.slice(3)].toString();
+                    anchor.classList.add('card_link');
+
+                    currElem.append(anchor);
+                    break;
+                default:
+                    currElem.innerText = cardData[item.slice(3)].toString();
+                    break;
+            }
         });
     }
 
