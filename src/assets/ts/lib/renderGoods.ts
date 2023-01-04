@@ -7,9 +7,10 @@ export const isItemInStore = (itemId: number) => store.goodsItems.find((item) =>
 export async function renderGoods() {
     const url = new URL(location.href);
 
-    const urlGoodsId = parseInt(url.pathname.split('/')[2]);
+    const urlGoodsId = url.pathname.split('/')[2];
 
-    if (Number.isNaN(urlGoodsId) || !isItemInStore(urlGoodsId)) location.href = `${url.origin}/404`;
+    // console.log(Number.isNaN(urlGoodsId));
+    if (Number.isNaN(Number(urlGoodsId)) || !isItemInStore(parseInt(urlGoodsId))) location.href = `${url.origin}/404`;
 
     console.log(store);
 

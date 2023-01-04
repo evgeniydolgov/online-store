@@ -1,3 +1,51 @@
 <section class="goods_page" id="page">
-    <div class="wrapper shop-page_wrapper"></div>
+    <div class="wrapper shop-page_wrapper">
+        <ul class="breadcrumbs" id="breadcrumbs">
+            <li>bredcrunbs ></li>
+        </ul>
+        <div class="goods_card" data-goodsId="" id="goods_card">
+            <div class="top_section">
+                <div class="images_section">
+                    <div class="main_img">
+                        <img src="" alt="" id="gc_image" width="300" height="20" class="card_img" />
+                    </div>
+                    <div class="thubs_image">
+                        <img src="" alt="" id="gc_image" width="100" height="20" class="card_thumbs_img" />
+                    </div>
+                </div>
+
+                <div class="card_description_section">
+                    <div class="card_title">
+                        <h2>Название: <span id="gc_title"></span></h2>
+                    </div>
+                    <div class="card_description">
+                        Описание:
+                        <p id="gc_description">Description</p>
+                    </div>
+                    <h2 class="card_price">Цена: <span id="gc_price"></span></h2>
+                    <div class="card_rating">Рейтинг: <span id="gc_rating"></span></div>
+                    <div class="card_buttons">
+                        <button
+                            class="btn_card btn_add-to-cart"
+                            id="btn_add_to_cart"
+                            data-btn-title="Добавить в корзину"
+                            data-btn-goods-id=""
+                        ></button>
+                        <button
+                            class="btn_card btn_add-to-cart"
+                            id="btn_add_to_cart_and_buy"
+                            data-btn-title="Быстрая покупка"
+                            data-btn-goods-id=""
+                        ></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom_section">
+                <div class="card_brand">Брэнд: <span id="gc_brand"></span></div>
+                <div class="card_category">Категория: <span id="gc_category"></span></div>
+                <div class="card_stock">Остаток: <span id="gc_stock"></span></div>
+            </div>
+        </div>
+    </div>
 </section>
