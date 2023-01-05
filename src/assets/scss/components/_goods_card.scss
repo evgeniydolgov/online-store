@@ -229,3 +229,54 @@
         gap: 0.5rem;
     }
 }
+
+.goods_page {
+    padding: 1rem;
+    .breadcrumbs {
+        --gap-size: 2rem;
+        padding: 1rem;
+
+        list-style-type: none;
+
+        display: flex;
+        flex-direction: row;
+        gap: var(--gap-size);
+
+        .crumb {
+            position: relative;
+            &::after {
+                content: '>';
+                position: absolute;
+                right: calc(-1 * (var(--gap-size) / 2) - 4px);
+            }
+            &:last-of-type.crumb::after {
+                content: '';
+            }
+        }
+    }
+    .goods_card {
+        box-shadow: none;
+        border: none;
+
+        .images_section {
+            .main_img {
+                .card_img {
+                    --img-size: 400px;
+                    width: var(--img-size);
+                    height: var(--img-size);
+                    object-fit: contain;
+                }
+            }
+            .thumbs_image {
+                display: flex;
+                flex-direction: row;
+                .card_thumbs_img {
+                    --img-thumbs: 80px;
+                    width: var(--img-thumbs);
+                    height: var(--img-thumbs);
+                    object-fit: contain;
+                }
+            }
+        }
+    }
+}
