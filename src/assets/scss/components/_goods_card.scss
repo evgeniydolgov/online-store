@@ -1,3 +1,11 @@
+.card_link {
+    text-decoration: none;
+    color: $color_main_green;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 .goods_card {
     display: flex;
     flex-direction: column;
@@ -75,16 +83,6 @@
             flex-direction: column;
 
             justify-content: space-between;
-            .card_title h2 {
-                .card_link {
-                    text-decoration: none;
-                    color: $color_main_green;
-                    &:hover {
-                        text-decoration: underline;
-                    }
-                }
-                color: $color_main_green;
-            }
 
             .card_description p {
                 display: -webkit-box;
@@ -227,5 +225,131 @@
         display: flex;
         flex-direction: row;
         gap: 0.5rem;
+    }
+}
+
+.goods_page {
+    padding: 1rem;
+
+    .breadcrumbs {
+        --gap-size: 2rem;
+        padding: 1rem;
+
+        list-style-type: none;
+
+        display: flex;
+        flex-direction: row;
+        gap: var(--gap-size);
+
+        .crumb {
+            position: relative;
+
+            &::after {
+                content: '>';
+                position: absolute;
+                right: calc(-1 * (var(--gap-size) / 2) - 4px);
+            }
+
+            &:last-of-type.crumb::after {
+                content: '';
+            }
+        }
+    }
+
+    .goods_card {
+        box-shadow: none;
+        border: none;
+
+        .top_section {
+            gap: 3rem;
+        }
+
+        .images_section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            .main_img {
+                --min-img-size: 500px;
+                min-width: var(--min-img-size);
+                min-height: var(--min-img-size);
+
+                .card_img {
+                    --img-size: 500px;
+                    width: var(--img-size);
+                    height: var(--img-size);
+                    object-fit: contain;
+                }
+            }
+            .thumbs_images {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+
+                gap: 1rem;
+
+                .card_thumbs_img {
+                    cursor: pointer;
+
+                    --img-thumbs: 80px;
+                    width: var(--img-thumbs);
+                    height: var(--img-thumbs);
+                    object-fit: contain;
+
+                    box-shadow: 0 0 0.1rem 0.05rem $color_main_green;
+                    border-radius: 0.3rem;
+
+                    transition: box-shadow 0.2s;
+
+                    &:hover {
+                        box-shadow: 0 0 0.4rem 0.05rem $color_main_green;
+                        border-radius: 0.3rem;
+                    }
+                }
+            }
+        }
+        .card_description_section {
+            .card_description {
+                p {
+                    display: flex !important;
+                    overflow: auto !important;
+                    height: auto !important;
+                }
+            }
+            .btn_add-to-cart-fast {
+                background-image: url(../images/cart_icon_fast.png);
+                background-repeat: no-repeat;
+                background-position: 9rem;
+                background-size: 35px;
+                position: relative;
+
+                @keyframes hovercart {
+                    0% {
+                        background-position: 9rem;
+                    }
+                    30% {
+                        background-position: 20rem;
+                        background-image: none;
+                    }
+                    40% {
+                        background-position: 5rem;
+                    }
+                    100% {
+                        background-position: 9rem;
+                    }
+                }
+
+                &:hover {
+                    animation: hovercart 0.8s;
+                }
+
+                &::before {
+                    content: attr(data-btn-title);
+                    display: block;
+                    width: 7rem;
+                    text-align: center;
+                }
+            }
+        }
     }
 }
