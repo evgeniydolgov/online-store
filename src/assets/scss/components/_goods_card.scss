@@ -1,3 +1,11 @@
+.card_link {
+    text-decoration: none;
+    color: $color_main_green;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 .goods_card {
     display: flex;
     flex-direction: column;
@@ -75,15 +83,6 @@
             flex-direction: column;
 
             justify-content: space-between;
-            .card_title h2 {
-                .card_link {
-                    text-decoration: none;
-                    color: $color_main_green;
-                    &:hover {
-                        text-decoration: underline;
-                    }
-                }
-            }
 
             .card_description p {
                 display: -webkit-box;
@@ -309,12 +308,47 @@
                 }
             }
         }
+        .card_description_section {
+            .card_description {
+                p {
+                    display: flex !important;
+                    overflow: auto !important;
+                    height: auto !important;
+                }
+            }
+            .btn_add-to-cart-fast {
+                background-image: url(../images/cart_icon_fast.png);
+                background-repeat: no-repeat;
+                background-position: 9rem;
+                background-size: 35px;
+                position: relative;
 
-        .card_description {
-            p {
-                display: flex !important;
-                overflow: auto !important;
-                height: auto !important;
+                @keyframes hovercart {
+                    0% {
+                        background-position: 9rem;
+                    }
+                    30% {
+                        background-position: 20rem;
+                        background-image: none;
+                    }
+                    40% {
+                        background-position: 5rem;
+                    }
+                    100% {
+                        background-position: 9rem;
+                    }
+                }
+
+                &:hover {
+                    animation: hovercart 0.8s;
+                }
+
+                &::before {
+                    content: attr(data-btn-title);
+                    display: block;
+                    width: 7rem;
+                    text-align: center;
+                }
             }
         }
     }

@@ -22,6 +22,43 @@ export async function getGoodsPageCardHtml(cardData: GoodsItem) {
             img.setAttribute('alt', cardData.title);
         }
 
+        const breadcrumbs = [
+            { title: 'Store', link: '/' },
+            { title: cardData.category, link: `/?_category=${cardData.category}` },
+            { title: cardData.brand, link: `/?_brand=${cardData.brand}` },
+            { title: cardData.title, link: null },
+        ];
+
+        const breadcrumbsHtml = breadcrumbs.map((crumbData) => {
+            const newCrumb = document.createElement('li');
+
+            if (crumbData.link !== null) {
+                const newAnchor = document.createElement('a');
+
+                newAnchor.href = crumbData.link;
+
+                newAnchor.innerText = crumbData.title;
+
+                newAnchor.classList.add('card_link');
+
+                newCrumb.append(newAnchor);
+            } else {
+                newCrumb.append(crumbData.title);
+            }
+
+            newCrumb.classList.add('crumb');
+
+            return newCrumb;
+        });
+
+        const breadcrumbsUl = card.querySelector('#breadcrumbs');
+
+        console.log(breadcrumbsUl);
+
+        if (!(breadcrumbsUl instanceof HTMLUListElement)) throw new Error('Cant find UL for breadcrumbs');
+
+        breadcrumbsUl.append(...breadcrumbsHtml);
+
         const thumbs_imgs_html = cardData.images.map((imgPath) => {
             const newImg = document.createElement('img');
             newImg.dataset.pathToImg = imgPath;
