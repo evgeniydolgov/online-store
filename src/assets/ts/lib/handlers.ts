@@ -194,6 +194,29 @@ export const handlerThumbsImageClick = (event: Event) => {
     gc_image.setAttribute('src', newPath);
 };
 
+export const handlerFastBuyClick = (event: Event) => {
+    const target = event.target;
+
+    if (!(target instanceof HTMLButtonElement)) return;
+
+    const goodsId = parseInt(String(target.dataset.btnGoodsId));
+
+    addGoodsItemToCart(goodsId);
+
+    updateCartInfo();
+
+    setCartInfoHtml();
+
+    LS.saveCartDataToLS(store.cart);
+
+    //TODO: Заменить на вызов функции рендера корзины
+
+    location.href = '/cart';
+    // renderCart();
+
+    // history.pushState(null, '', '/cart');
+};
+
 export const handlerButtonClick = (event: Event) => {
     const buttonElem = event.target as HTMLElement;
     const id = buttonElem.dataset.goodsId as string;

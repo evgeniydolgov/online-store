@@ -3,7 +3,7 @@ import { formatSum } from '../helpers';
 import { checkElem } from '../helpers/checkers';
 import { isGoodsItemInCart } from './cartFunctions';
 import { getHtmlTpl } from './getHtmlTpl';
-import { handlerAddToCartClick, handlerThumbsImageClick } from './handlers';
+import { handlerAddToCartClick, handlerFastBuyClick, handlerThumbsImageClick } from './handlers';
 
 export async function getGoodsPageCardHtml(cardData: GoodsItem) {
     const url = new URL(location.href);
@@ -84,15 +84,19 @@ export async function getGoodsPageCardHtml(cardData: GoodsItem) {
     }
 
     const btnAddToCart = checkElem(card.querySelector('#btn_add_to_cart'));
+    const btnFastBuy = checkElem(card.querySelector('#btn_add_to_cart_and_buy'));
 
     const goodsItemInCart = isGoodsItemInCart(cardData.id);
 
     btnAddToCart.dataset.btnTitle = goodsItemInCart ? 'Удалить из корзины' : 'Добавить в корзину';
     btnAddToCart.dataset.btnGoodsId = String(cardData.id);
 
+    btnFastBuy.dataset.btnGoodsId = String(cardData.id);
+
     if (goodsItemInCart) btnAddToCart.classList.add('in-cart');
 
     btnAddToCart.addEventListener('click', handlerAddToCartClick);
+    btnFastBuy.addEventListener('click', handlerFastBuyClick);
 
     return card;
 }
