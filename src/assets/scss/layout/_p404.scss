@@ -1,0 +1,35 @@
+.wrapper_404 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+
+    gap: 2rem;
+
+    flex-direction: column;
+
+    .menu_404 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        flex-direction: column;
+
+        gap: 1rem;
+
+        list-style-type: none;
+        li {
+            &:first-of-type {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    .link_404 {
+        text-decoration: none;
+        color: $color_main_green;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
