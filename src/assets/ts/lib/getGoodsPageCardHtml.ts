@@ -53,8 +53,6 @@ export async function getGoodsPageCardHtml(cardData: GoodsItem) {
 
         const breadcrumbsUl = card.querySelector('#breadcrumbs');
 
-        console.log(breadcrumbsUl);
-
         if (!(breadcrumbsUl instanceof HTMLUListElement)) throw new Error('Cant find UL for breadcrumbs');
 
         breadcrumbsUl.append(...breadcrumbsHtml);
