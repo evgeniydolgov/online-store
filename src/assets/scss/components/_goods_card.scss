@@ -271,32 +271,50 @@
             gap: 1rem;
 
             .main_img {
-                --min-img-size: 400px;
+                --min-img-size: 500px;
                 min-width: var(--min-img-size);
                 min-height: var(--min-img-size);
-                border: 1px dotted green;
 
                 .card_img {
-                    --img-size: 400px;
+                    --img-size: 500px;
                     width: var(--img-size);
                     height: var(--img-size);
                     object-fit: contain;
                 }
             }
-            .thumbs_image {
+            .thumbs_images {
                 display: flex;
                 flex-direction: row;
+                justify-content: center;
 
                 gap: 1rem;
 
-                cursor: pointer;
-
                 .card_thumbs_img {
+                    cursor: pointer;
+
                     --img-thumbs: 80px;
                     width: var(--img-thumbs);
                     height: var(--img-thumbs);
                     object-fit: contain;
+
+                    box-shadow: 0 0 0.1rem 0.05rem $color_main_green;
+                    border-radius: 0.3rem;
+
+                    transition: box-shadow 0.2s;
+
+                    &:hover {
+                        box-shadow: 0 0 0.4rem 0.05rem $color_main_green;
+                        border-radius: 0.3rem;
+                    }
                 }
+            }
+        }
+
+        .card_description {
+            p {
+                display: flex !important;
+                overflow: auto !important;
+                height: auto !important;
             }
         }
     }

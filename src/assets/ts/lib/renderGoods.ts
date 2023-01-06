@@ -1,6 +1,6 @@
 import { store } from '../store';
 import { checkElem } from '../helpers/checkers';
-import { getHtmlTpl } from './getHtmlTpl';
+import { getGoodsPageCardHtml } from './getGoodsPageCardHtml';
 
 export const isItemInStore = (itemId: number) => store.goodsItems.find((item) => item.id === itemId) !== undefined;
 
@@ -14,9 +14,14 @@ export async function renderGoods() {
 
     console.log(store);
 
-    const tplToRender = 'goodsPage.html';
+    const cardData = store.goodsItems.find((item) => item.id === parseInt(urlGoodsId));
 
-    const newPage = await getHtmlTpl(url.origin + '/' + tplToRender, 'page');
+    if (cardData === undefined) {
+        location.href = `${url.origin}/404`;
+        throw new Error('404');
+    }
+
+    const newPage = await getGoodsPageCardHtml(cardData);
 
     const app = checkElem(document.querySelector('#app'));
     app.innerHTML = '';
