@@ -21,8 +21,8 @@
     border-radius: 12%;
 }
 
-input:invalid {
-    border: red solid 3px;
+.buy-input:invalid {
+    border: rgb(255, 0, 4) solid 3px;
 }
 
 .goods_ordering_container {

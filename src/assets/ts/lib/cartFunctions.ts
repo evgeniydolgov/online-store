@@ -59,22 +59,3 @@ export function checkerPriceInCart(price: number) {
         emptyElement.style.display = 'flex';
     }
 }
-
-export function checkerValidation () {
-    const nameInput = document.querySelectorAll('#buy-input') as NodeListOf <HTMLInputElement>;
-
-    nameInput.forEach(el => {
-        if (el.value === '' || el.validity.valid !== true) {
-            console.log('ошибка');
-        }else{
-            console.log('работаем');
-        }
-        el.addEventListener('change', () => {
-            if (el.value !== '' && el.validity.valid === true) {
-                console.log('!');
-            }else{
-                el.dataset.showButton = 'visebel';
-            }
-        })
-    });
-}

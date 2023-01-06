@@ -1,8 +1,9 @@
 import { store } from '../store';
 import { checkElem } from '../helpers/checkers';
 import { handlerAddOneItemBtn, handlerGoodsOnPage, handlerPromoCodeInputChanges, nextPage, prevPage, renderPromoHtml } from './handlers';
-import {checkerPriceInCart, checkerValidation, creatNewPrice, getCartSum } from './cartFunctions';
+import {checkerPriceInCart, creatNewPrice, getCartSum } from './cartFunctions';
 import { displayShowListPagination } from './paginationGoodsCart';
+import { checkCVV, checkDateCard, checkDebetCardNumber, checkerValidation } from './popUp_validations';
 
 export async function renderCart() {
     console.log(store);
@@ -59,5 +60,19 @@ export async function renderCart() {
     promoButton.addEventListener('click', handlerAddOneItemBtn)
     creatNewPrice ();
 
-    checkerValidation ();
+    //checkerValidation ();
+
+    const nameInput = document.querySelectorAll('.buy-input') as NodeListOf <HTMLInputElement>;
+    nameInput.forEach(el => {
+        el.addEventListener('input', checkerValidation)
+    })
+
+    const cardNumber = document.querySelector('#debit_card-number') as HTMLInputElement;
+    cardNumber.addEventListener('input', checkDebetCardNumber);
+
+    const cardDate = document.querySelector('#debit_card-date') as HTMLInputElement;
+    cardDate.addEventListener('input', checkDateCard);
+
+    const cardCVV = document.querySelector('#debit_card-ccv') as HTMLInputElement;
+    cardCVV.addEventListener('input', checkCVV)
 }
