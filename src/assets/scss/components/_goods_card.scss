@@ -231,6 +231,7 @@
 
 .goods_page {
     padding: 1rem;
+
     .breadcrumbs {
         --gap-size: 2rem;
         padding: 1rem;
@@ -243,16 +244,19 @@
 
         .crumb {
             position: relative;
+
             &::after {
                 content: '>';
                 position: absolute;
                 right: calc(-1 * (var(--gap-size) / 2) - 4px);
             }
+
             &:last-of-type.crumb::after {
                 content: '';
             }
         }
     }
+
     .goods_card {
         box-shadow: none;
         border: none;
