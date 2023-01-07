@@ -71,7 +71,6 @@ export const renderFilters = async () => {
 
     const search = url.searchParams.get('search');
     const search_field = document.querySelector('#search_field');
-    console.log(search_field);
 
     if (!(search_field instanceof HTMLInputElement)) throw new Error('Cant find search field div #search_field');
 

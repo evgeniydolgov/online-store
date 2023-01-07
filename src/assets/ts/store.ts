@@ -1,3 +1,4 @@
+import { SortOrder } from '../enums';
 import { CardView } from '../enums/cardView';
 import { Store } from '../interfaces/store';
 
@@ -6,6 +7,7 @@ export const store: Store = {
     filteredGoodsItems: [],
     cart: {},
     sumCartItems: 0.0,
+    countCartItems: 0,
 
     filters_settings: {
         all_brand: [],
@@ -19,6 +21,12 @@ export const store: Store = {
         price: [],
         stock: [],
     },
+    sort_settings: {
+        field_name: 'title',
+        direction: SortOrder.asc,
+    },
+
+    promoCodes: [],
 
     view_settings: {
         mode: CardView.simple,

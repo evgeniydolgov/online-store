@@ -1,5 +1,6 @@
 import { Filter, GoodsItem } from '../../interfaces';
 import { store } from '../store';
+import { sortByPrice, sortByRating, sortByTitle } from './sortGoods';
 
 const FILTERS_NAME_ARRAY = ['_brand', '_category', 'price', 'stock'];
 
@@ -126,4 +127,41 @@ export const setFiltredItemsToStore = () => {
     }
 
     store.filteredGoodsItems = filterGoods(store.goodsItems, filters, getSearchStringFromUrl());
+
+    switch (store.sort_settings.field_name) {
+        case 'title':
+            sortByTitle(store.sort_settings.direction);
+            break;
+
+        case 'price':
+            sortByPrice(store.sort_settings.direction);
+            break;
+
+        case 'rating':
+            sortByRating(store.sort_settings.direction);
+            break;
+
+        default:
+            sortByTitle(store.sort_settings.direction);
+            break;
+    }
+};
+
+export const removeAllFiltersFromUrl = (urlToReset: string) => {
+    const url = new URL(urlToReset);
+    const urlFilters = getFiltersFromUrl();
+
+    urlFilters.forEach((filter) => {
+        url.searchParams.delete(filter.name);
+    });
+
+    return decodeURIComponent(url.toString());
+};
+
+export const removeSearchStringFromUrl = (urlToReset: string) => {
+    const url = new URL(urlToReset);
+
+    url.searchParams.delete('search');
+
+    return url.toString();
 };

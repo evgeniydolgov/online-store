@@ -1,9 +1,10 @@
-import { CartItems } from '../../types';
+import { CartItems, PromoCode } from '../../types';
+import { formatSum } from '../helpers';
 import { store } from '../store';
-import { PromoArray } from './handlers';
+
 import { loadDataStore } from './loadData';
 
-export const getCartSum = (cart: CartItems) => {
+const getCartSum = (cart: CartItems) => {
     const cartItems = Object.entries(cart);
 
     const goods = loadDataStore();
@@ -16,12 +17,23 @@ export const getCartSum = (cart: CartItems) => {
     }, 0);
 };
 
+const getCartGoodsCount = (cart: CartItems) => {
+    const cartItems = Object.values(cart);
+
+    return cartItems.reduce((acc, item) => acc + parseInt(item), 0);
+};
+
+export const updateCartInfo = () => {
+    store.sumCartItems = getCartSum(store.cart);
+    store.countCartItems = getCartGoodsCount(store.cart);
+};
+
 export const getPromoSum = (sum: number, procent: number) => {
     return `${Math.floor(sum - sum * procent)}`;
 };
 
 export function creatNewPrice() {
-    const promoArr: PromoArray[] = JSON.parse(localStorage.getItem('PromoARR') as string);
+    const promoArr: PromoCode[] = JSON.parse(localStorage.getItem('PromoARR') as string);
     const totalPrice = document.querySelector('#totalPrice') as HTMLElement;
     if (promoArr !== null && promoArr.length !== 0) {
         totalPrice.classList.add('after-promo');
@@ -57,5 +69,28 @@ export function checkerPriceInCart(price: number) {
     } else {
         fullElement.style.display = 'none';
         emptyElement.style.display = 'flex';
+    }
+}
+
+export const setCartInfoHtml = () => {
+    const cartInfoSum = document.querySelector('#cart_sum_info');
+    const cartInfoCount = document.querySelector('#cart_count_info');
+
+    if (!(cartInfoSum instanceof HTMLDivElement)) throw new Error('Cant find cart info sum div');
+    if (!(cartInfoCount instanceof HTMLDivElement)) throw new Error('Cant find cart info count div');
+
+    cartInfoSum.innerText = formatSum(store.sumCartItems, 0);
+    cartInfoCount.innerText = store.countCartItems.toString();
+};
+
+export function popUpOpenButton() {
+    const popUpBackground = document.querySelector('#popUp_background') as HTMLElement;
+        popUpBackground.classList.add('move_pop_up');
+}
+
+export function popUpCloseButton(event:Event) {
+    const popUpBackground = document.querySelector('#popUp_background') as HTMLElement;
+    if (event.target === popUpBackground) {
+        popUpBackground.classList.remove('move_pop_up');
     }
 }

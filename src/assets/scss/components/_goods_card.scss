@@ -76,6 +76,13 @@
 
             justify-content: space-between;
             .card_title h2 {
+                .card_link {
+                    text-decoration: none;
+                    color: $color_main_green;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
                 color: $color_main_green;
             }
 

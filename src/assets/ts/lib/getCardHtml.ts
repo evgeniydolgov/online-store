@@ -1,6 +1,7 @@
 import { CardView } from '../../enums/cardView';
 import { GoodsItem } from '../../interfaces';
 import { CardOptions } from '../../types';
+import { formatSum } from '../helpers';
 import { checkElem } from '../helpers/checkers';
 import { isGoodsItemInCart } from './cartFunctions';
 import { handlerAddToCartClick } from './handlers';
@@ -29,7 +30,26 @@ export async function getCardHtml(cardData: GoodsItem, { view }: CardOptions) {
         }
 
         CARD_IDS.forEach((item) => {
-            checkElem(card.querySelector(`#${item}`)).innerText = String(cardData[item.slice(3)]);
+            const currElem = checkElem(card.querySelector(`#${item}`));
+
+            switch (item) {
+                case 'gc_price':
+                    currElem.innerText = formatSum(parseInt(cardData[item.slice(3)].toString()), 0);
+                    break;
+                case 'gc_title':
+                    // eslint-disable-next-line
+                    const anchor = document.createElement('a');
+
+                    anchor.href = `/goods/${cardData.id}`;
+                    anchor.innerText = cardData[item.slice(3)].toString();
+                    anchor.classList.add('card_link');
+
+                    currElem.append(anchor);
+                    break;
+                default:
+                    currElem.innerText = cardData[item.slice(3)].toString();
+                    break;
+            }
         });
     }
 

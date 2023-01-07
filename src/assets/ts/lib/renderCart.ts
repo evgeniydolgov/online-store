@@ -1,30 +1,38 @@
 import { store } from '../store';
 import { checkElem } from '../helpers/checkers';
-import { handlerAddOneItemBtn, handlerGoodsOnPage, handlerPromoCodeInputChanges, nextPage, prevPage, renderPromoHtml } from './handlers';
-import {checkerPriceInCart, creatNewPrice, getCartSum } from './cartFunctions';
+import {
+    handlerAddOneItemBtn,
+    handlerGoodsOnPage,
+    handlerPromoCodeInputChanges,
+    nextPage,
+    prevPage,
+    renderPromoHtml,
+} from './handlers';
+import { checkerPriceInCart, creatNewPrice, popUpCloseButton, popUpOpenButton } from './cartFunctions';
 import { displayShowListPagination } from './paginationGoodsCart';
-import { checkCVV, checkDateCard, checkDebetCardNumber, checkerValidation } from './popUp_validations';
+import { checkAllInputValidation, checkCVV, checkDateCard, checkDebetCardNumber, checkerValidation } from './popUp_validations';
+import { formatSum } from '../helpers';
 
 export async function renderCart() {
     console.log(store);
 
-        const tplToRender = 'cartPage.html';
-        const newPage = await fetch(tplToRender)
-            .then((response) => response.text())
-            .then((text) => {
-                const domParcer = new DOMParser();
-                const html = domParcer.parseFromString(text, 'text/html');
-                return html.querySelector('#page');
-            });
+    const tplToRender = 'cartPage.html';
+    const newPage = await fetch(tplToRender)
+        .then((response) => response.text())
+        .then((text) => {
+            const domParcer = new DOMParser();
+            const html = domParcer.parseFromString(text, 'text/html');
+            return html.querySelector('#page');
+        });
 
     const app = checkElem(document.querySelector('#app'));
     app.innerHTML = '';
     app.append(checkElem(newPage));
-    checkerPriceInCart(getCartSum(store.cart));
+    checkerPriceInCart(store.sumCartItems);
 
     let stockNum = 0;
     const buysGoodsIdArr = [];
-    for (const key in store.cart){
+    for (const key in store.cart) {
         buysGoodsIdArr.push(key);
         const allCartStock = document.querySelector('#allCartStock') as HTMLElement;
         stockNum += Number(store.cart[key]);
@@ -46,7 +54,7 @@ export async function renderCart() {
     minusPageBtn.addEventListener('click', prevPage);
 
     const totalPrice = document.querySelector('#totalPrice') as HTMLElement;
-    totalPrice.textContent = `${getCartSum(store.cart)} ₽`;
+    totalPrice.textContent = formatSum(store.sumCartItems, 0);
 
     const promoText = document.querySelector('#promo-text') as HTMLInputElement;
     promoText.addEventListener('input', handlerPromoCodeInputChanges);
@@ -60,12 +68,17 @@ export async function renderCart() {
     promoButton.addEventListener('click', handlerAddOneItemBtn)
     creatNewPrice ();
 
-    //checkerValidation ();
+    const goBuyPage = document.querySelector('#go_buy_page') as HTMLButtonElement;
+    goBuyPage.addEventListener('click', popUpOpenButton)
+
+    const popUpBackground = document.querySelector('#popUp_background') as HTMLElement;
+    popUpBackground.addEventListener('click', popUpCloseButton)
 
     const nameInput = document.querySelectorAll('.buy-input') as NodeListOf <HTMLInputElement>;
     nameInput.forEach(el => {
-        el.addEventListener('input', checkerValidation)
+        el.addEventListener('change', checkerValidation);
     })
+    console.log(nameInput);
 
     const cardNumber = document.querySelector('#debit_card-number') as HTMLInputElement;
     cardNumber.addEventListener('input', checkDebetCardNumber);
@@ -74,5 +87,10 @@ export async function renderCart() {
     cardDate.addEventListener('input', checkDateCard);
 
     const cardCVV = document.querySelector('#debit_card-ccv') as HTMLInputElement;
-    cardCVV.addEventListener('input', checkCVV)
+    cardCVV.addEventListener('input', checkCVV);
+
+    const submitButton = document.querySelector('#order_button') as HTMLButtonElement;
+    submitButton.addEventListener('click', () => {
+        checkAllInputValidation(nameInput)
+    })
 }

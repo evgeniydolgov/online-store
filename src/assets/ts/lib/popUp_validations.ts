@@ -1,31 +1,17 @@
+const arrValid = new Array(7).fill(false);
 
-// export function checker () {
-//     const nameInput = document.querySelectorAll('.buy-input') as NodeListOf <HTMLInputElement>;
-//     console.log(nameInput);
-    
-//     nameInput.forEach(el => {
-//         if (el.value === '' || el.validity.valid !== true) {
-//             console.log('ошибка');
-//         }else{
-//             console.log('работаем');
-//         }
-//         el.addEventListener('change', () => {
-//             if (el.value !== '' && el.validity.valid === true) {
-//                 console.log('!');
-//             }else{
-//                 el.dataset.showButton = 'visebel';
-//             }
-//         })
-//     });
-// }
 export function checkerValidation (event: Event) {
     if (!(event.target instanceof HTMLInputElement)) {
         throw new Error('error');
     }
+    const index = Number(event.target.dataset.index);
+
     if (event.target.validity.valid && event.target.value.length > 0) {
-        console.log(event.target.validity.valid);
+        arrValid[index] = true;
+    } else {
+        arrValid[index] = false;
     }
-    
+    console.log(arrValid);
 }
 
 export function checkDebetCardNumber (event: Event) {
@@ -59,5 +45,24 @@ export function checkCVV (event: Event) {
     if (!(event.target instanceof HTMLInputElement)) {
         throw new Error('error');
     }
-    event.target.value = event.target.value.replace(/\D/gi, '').substring(0,3)
+    event.target.value = event.target.value.replace(/\D/gi, '').substring(0,3);
+}
+
+export function checkAllInputValidation (elem: NodeListOf <HTMLInputElement>){
+    elem.forEach(el => {
+        if (arrValid[Number(el.dataset.index)] === false) {
+            (<HTMLElement>el.parentElement).classList.add('input_error');
+        } else {
+            (<HTMLElement>el.parentElement).classList.remove('input_error');
+        }
+    })
+    if (!arrValid.includes(false)) {
+        const popUpBackground = document.querySelector('#popUp_background') as HTMLElement;
+        popUpBackground.innerHTML = '';
+        popUpBackground.style.fontSize = '30px'
+        popUpBackground.textContent = 'Спасибо за покупку!'
+        setTimeout(() => {
+            location.href = '/'
+        }, 3000);
+    }
 }
