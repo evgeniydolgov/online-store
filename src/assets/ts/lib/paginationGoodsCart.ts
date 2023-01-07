@@ -23,10 +23,10 @@ export function displayShowListPagination(arrGoods: string[], goodsOnPage:number
 
     numElemPagination.value = showNumber.toString();
     cartList.innerHTML = '';
-   
+
     const start = Number(goodsOnPage) * page;
     const end = start + Number(goodsOnPage);
-    
+
     numPageElem.textContent = `${page + 1}`;
     const arrVisibleOnPage = arrGoods.slice(start, end);
     const maxNumberPage = Math.ceil(arrGoods.length / goodsOnPage);

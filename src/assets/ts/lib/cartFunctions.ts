@@ -82,3 +82,15 @@ export const setCartInfoHtml = () => {
     cartInfoSum.innerText = formatSum(store.sumCartItems, 0);
     cartInfoCount.innerText = store.countCartItems.toString();
 };
+
+export function popUpOpenButton() {
+    const popUpBackground = document.querySelector('#popUp_background') as HTMLElement;
+        popUpBackground.classList.add('move_pop_up');
+}
+
+export function popUpCloseButton(event:Event) {
+    const popUpBackground = document.querySelector('#popUp_background') as HTMLElement;
+    if (event.target === popUpBackground) {
+        popUpBackground.classList.remove('move_pop_up');
+    }
+}

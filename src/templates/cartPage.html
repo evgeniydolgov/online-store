@@ -24,9 +24,27 @@
                 <input type="text" class="promo-text" id="promo-text">
                 <button class="promo-button" id='promo-button' style="display: none;"></button>
             </div>
-            <div class="go_buy_page">Оформить товар</div>
+            <div class="go_buy_page" id="go_buy_page">Оформить товар</div>
         </div>
     </div>
     <div id="empty_cart_container" class="empty">Корзина пуста
+    </div>
+    <div class="goods_ordering_background" id="popUp_background">
+        <div class="goods_ordering_container">
+            <div class="goods_ordering-list_container">
+                <div class="name_field"><input data-index = '0' class="buy-input" type="text" pattern="[A-Za-zА-Яа-яЁё]{3,}\s[A-Za-zА-Яа-яЁё]{3,}\D*" placeholder="Имя Фамилия" style="text-transform: capitalize"></div>
+                <div class="tel_field"><input data-index = '1' class="buy-input" type="tel" pattern="\+[0-9]{9,}" placeholder="Номер телефона"></div>
+                <div class="located_field"><input data-index = '2' class="buy-input" type="text" pattern="[A-Za-zА-Яа-яЁё]{5,}\s[A-Za-zА-Яа-яЁё]{5,}\s[A-Za-zА-Яа-яЁё]{5,}" placeholder="Адрес доставки"></div>
+                <div class="email_field"><input data-index = '3' class="buy-input" type="email" placeholder="email"></div>
+            </div>
+            <div class="goods_ordering-card_info">
+                <div class="debit-card_number"><input class="buy-input" data-index = '4' id="debit_card-number" pattern="\w{4}\s{1}\w{4}\s{1}\w{4}\s{1}\w{4}" placeholder="Номер карты" type="text"></div>
+                <div class="debit-card_about">
+                    <div class="dateIssue"><input class="buy-input" data-index = '5' id="debit_card-date" pattern="\S{5,}" placeholder="Дата" type="text"></div>
+                    <div class="cvv"><input class="buy-input" data-index = '6' id="debit_card-ccv" pattern="[0-9]{3,}" placeholder="CVV" type="text"></div>
+                </div>
+            </div>
+            <div><button class="order_button" id="order_button">отправить форму</button></div>
+        </div>
     </div>
 </section>
