@@ -1,6 +1,6 @@
 module.exports = {
   mode: 'production',
   output: {
-    publicPath: 'https://dudarik.github.io/online-store-rss/',
+    publicPath: 'https://zingy-cactus-c32f7f.netlify.app/',
   },
 };
