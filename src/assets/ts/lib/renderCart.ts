@@ -10,14 +10,19 @@ import {
 } from './handlers';
 import { checkerPriceInCart, creatNewPrice, popUpCloseButton, popUpOpenButton } from './cartFunctions';
 import { displayShowListPagination } from './paginationGoodsCart';
-import { checkAllInputValidation, checkCVV, checkDateCard, checkDebetCardNumber, checkerValidation } from './popUp_validations';
+import {
+    checkAllInputValidation,
+    checkCVV,
+    checkDateCard,
+    checkDebetCardNumber,
+    checkerValidation,
+} from './popUp_validations';
 import { formatSum } from '../helpers';
 
-export async function renderCart() {
-    console.log(store);
-
+export async function renderCart(fastBuy = false) {
     const tplToRender = 'cartPage.html';
-    const newPage = await fetch(tplToRender)
+    const url = new URL(location.href);
+    const newPage = await fetch(url.origin + '/' + tplToRender)
         .then((response) => response.text())
         .then((text) => {
             const domParcer = new DOMParser();
@@ -65,19 +70,20 @@ export async function renderCart() {
         renderPromoHtml();
     }
 
-    promoButton.addEventListener('click', handlerAddOneItemBtn)
-    creatNewPrice ();
+    promoButton.addEventListener('click', handlerAddOneItemBtn);
+    creatNewPrice();
 
     const goBuyPage = document.querySelector('#go_buy_page') as HTMLButtonElement;
-    goBuyPage.addEventListener('click', popUpOpenButton)
+    goBuyPage.addEventListener('click', popUpOpenButton);
 
     const popUpBackground = document.querySelector('#popUp_background') as HTMLElement;
-    popUpBackground.addEventListener('click', popUpCloseButton)
+    if (fastBuy) popUpBackground.classList.add('move_pop_up');
+    popUpBackground.addEventListener('click', popUpCloseButton);
 
-    const nameInput = document.querySelectorAll('.buy-input') as NodeListOf <HTMLInputElement>;
-    nameInput.forEach(el => {
+    const nameInput = document.querySelectorAll('.buy-input') as NodeListOf<HTMLInputElement>;
+    nameInput.forEach((el) => {
         el.addEventListener('change', checkerValidation);
-    })
+    });
 
     const cardNumber = document.querySelector('#debit_card-number') as HTMLInputElement;
     cardNumber.addEventListener('input', checkDebetCardNumber);
@@ -90,6 +96,6 @@ export async function renderCart() {
 
     const submitButton = document.querySelector('#order_button') as HTMLButtonElement;
     submitButton.addEventListener('click', () => {
-        checkAllInputValidation(nameInput)
-    })
+        checkAllInputValidation(nameInput);
+    });
 }

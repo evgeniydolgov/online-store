@@ -194,7 +194,7 @@ export const handlerThumbsImageClick = (event: Event) => {
     gc_image.setAttribute('src', newPath);
 };
 
-export const handlerFastBuyClick = (event: Event) => {
+export const handlerFastBuyClick = async (event: Event) => {
     const target = event.target;
 
     if (!(target instanceof HTMLButtonElement)) return;
@@ -209,12 +209,9 @@ export const handlerFastBuyClick = (event: Event) => {
 
     LS.saveCartDataToLS(store.cart);
 
-    //TODO: Заменить на вызов функции рендера корзины
+    await renderCart(true);
 
-    location.href = '/cart';
-    // renderCart();
-
-    // history.pushState(null, '', '/cart');
+    history.pushState(null, '', '/cart');
 };
 
 export const handlerButtonClick = (event: Event) => {
