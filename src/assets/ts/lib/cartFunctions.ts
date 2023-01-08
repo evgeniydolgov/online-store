@@ -41,7 +41,6 @@ export function creatNewPrice() {
         const percent = promoArr.reduce((acc, el) => {
             return (acc = acc + el.disc);
         }, 0);
-        console.log(percent);
 
         newPrice.textContent = `${getPromoSum(getCartSum(store.cart), percent / 100)} ₽`;
     } else {
