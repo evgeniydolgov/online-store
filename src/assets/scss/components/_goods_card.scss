@@ -122,29 +122,32 @@
                     background-position: 9.5rem;
                     position: relative;
 
+                    transition: all 0.5s;
                     &::before {
                         content: attr(data-btn-title);
                         display: block;
                         width: 7rem;
                         text-align: center;
                     }
-                    &::after {
-                        content: '';
+
+                    .button_plus {
                         position: absolute;
-                        width: 18px;
-                        height: 18px;
-                        top: 0.7rem;
-                        right: 1.6rem;
-                        border-radius: 50%;
-                        background-image: url(../images/add-delete_icon.png);
+                        fill: $color_main_green;
                         transform: rotate(45deg);
                         transition: all 0.5s;
+                        top: 0.75rem;
+                        right: 1.55rem;
                     }
+
                     &.in-cart {
-                        color: red;
-                    }
-                    &.in-cart.btn_add-to-cart::after {
-                        transform: rotate(0);
+                        // box-sizing: conten;
+                        color: $color_white;
+                        background-color: $color_main_black;
+                        box-shadow: inset 0px 0px 0px 3px $color_main_green;
+                        .button_plus {
+                            fill: $color_main_black;
+                            transform: rotate(0);
+                        }
                     }
                 }
                 .btn_more-info {
