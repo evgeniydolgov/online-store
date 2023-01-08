@@ -78,7 +78,6 @@ export async function renderCart() {
     nameInput.forEach(el => {
         el.addEventListener('change', checkerValidation);
     })
-    console.log(nameInput);
 
     const cardNumber = document.querySelector('#debit_card-number') as HTMLInputElement;
     cardNumber.addEventListener('input', checkDebetCardNumber);
