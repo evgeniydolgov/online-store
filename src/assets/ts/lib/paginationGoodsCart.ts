@@ -40,7 +40,6 @@ export function displayShowListPagination(arrGoods: string[], goodsOnPage:number
 function getCreatedGoodsElement (el:string) {
     const cartList = (document.querySelector('#cart-goods')) as HTMLElement;
         const goodsElem = goods.find(elem => elem.id === Number(el));
-        console.log(goodsElem);
         if (goodsElem !== undefined) {
 
         const cartElem = document.createElement('div') as HTMLElement;
