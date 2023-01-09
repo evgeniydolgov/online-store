@@ -44,6 +44,7 @@ export async function renderCart(fastBuy = false) {
         allCartStock.textContent = `Всего товара: ${stockNum} шт`;
     }
 
+
     const numElemPagination = document.getElementById('num_elems_pagination') as HTMLInputElement;
     numElemPagination.addEventListener('input', handlerGoodsOnPage);
 

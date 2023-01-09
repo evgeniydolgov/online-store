@@ -33,13 +33,14 @@ export function displayShowListPagination(arrGoods: string[], goodsOnPage: numbe
     localStorage.setItem('maxNumberPage', JSON.stringify(maxNumberPage));
 
     arrVisibleOnPage.forEach((el) => {
-        getCreatedGoodsElement(el);
+        getCreatedGoodsElement(el, arrGoods);
     });
 }
 
-function getCreatedGoodsElement(el: string) {
+function getCreatedGoodsElement(el: string, arr: string[]) {
     const cartList = document.querySelector('#cart-goods') as HTMLElement;
     const goodsElem = goods.find((elem) => elem.id === Number(el));
+
     if (goodsElem !== undefined) {
         const cartElem = document.createElement('div') as HTMLElement;
         cartElem.className = 'cart__container';
@@ -50,6 +51,11 @@ function getCreatedGoodsElement(el: string) {
         cartImg.className = 'cart__img';
         cartImg.src = `${goodsElem.images[0]}`;
         cartImgContainer.append(cartImg);
+
+        const numberOfGoods = document.createElement('div') as HTMLElement;
+        numberOfGoods.textContent = `${arr.indexOf(el) + 1}`
+        numberOfGoods.className = 'number_goods';
+        cartElem.append(numberOfGoods)
 
         const anchorCartTitle = document.createElement('a');
         anchorCartTitle.href = `/goods/${goodsElem.id}`;
