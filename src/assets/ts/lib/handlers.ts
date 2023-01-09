@@ -106,7 +106,12 @@ export const handlerDocumentClick = async (event: Event) => {
 };
 
 export const handlerAddToCartClick = (event: Event) => {
-    const btn = checkEventTarget(event.target);
+    const target = event.target;
+    let btn = target;
+
+    if (target instanceof SVGElement) btn = target.closest('#btn_add_to_cart');
+
+    if (!(btn instanceof HTMLButtonElement)) throw new Error('Cant find button element');
 
     let goodsId = -1;
 
