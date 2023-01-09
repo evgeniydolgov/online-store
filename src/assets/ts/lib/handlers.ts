@@ -20,7 +20,6 @@ import { renderSwitchView } from './renderSwitchView';
 import { PromoCode } from '../../types';
 
 import { removeAllFiltersFromUrl, removeSearchStringFromUrl } from './filterGoods';
-const url = new URL(location.href);
 
 export const handlersCopyToClipboardButtonClick = (event: Event) => {
     const target = event.target;
@@ -311,22 +310,27 @@ export function renderPromoHtml() {
 }
 
 export function handlerGoodsOnPage(event: Event) {
+    const url = new URL(location.href)
     const inputValue = event.target as HTMLInputElement;
     if (typeof Number(inputValue.value) === 'number' && Number(inputValue.value) > 0) {
-        localStorage.setItem('numOfElem', JSON.stringify(inputValue.value));
+        //localStorage.setItem('numOfElem', JSON.stringify(inputValue.value));
+        url.searchParams.set('numOfElem', inputValue.value)
+
     } else {
-        localStorage.setItem('numOfElem', JSON.stringify(null));
+        //localStorage.setItem('numOfElem', JSON.stringify(null));
+        url.searchParams.set('numOfElem', `${null}`)
     }
-    localStorage.setItem('', JSON.stringify(0));
+    // localStorage.setItem('', JSON.stringify(0));
+    history.pushState(null, '', decodeURIComponent(url.toString()));
     setTimeout(() => {
         renderCart();
     }, 1000);
 }
 
 export function nextPage() {
+    const url = new URL(location.href);
     //let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
     let checkPage = Number(url.searchParams.get('pageNumber'));
-    console.log(checkPage);
     if (!checkPage) {
         checkPage = 0;
     }
@@ -335,6 +339,8 @@ export function nextPage() {
     const pageNum = url.searchParams.get('MaxPage');
     if (checkPage < Number(pageNum) - 1) {
         checkPage += 1;
+
+
         //localStorage.setItem('pageNumber', JSON.stringify(checkPage));
         url.searchParams.set('pageNumber', `${checkPage}`);
         history.pushState(null, '', decodeURIComponent(url.toString()));
@@ -343,6 +349,7 @@ export function nextPage() {
 }
 
 export function prevPage() {
+    const url = new URL(location.href);
     //let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
     let checkPage = Number(url.searchParams.get('pageNumber'));
     if (!checkPage) {

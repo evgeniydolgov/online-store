@@ -9,8 +9,9 @@ export function displayShowListPagination(arrGoods: string[], goodsOnPage: numbe
     const numPageElem = document.getElementById('current-page') as HTMLElement;
     const url = new URL(location.href);
 
+    
     let showNumber;
-    if (goodsOnPage === null) {
+    if (goodsOnPage === 0) {
         goodsOnPage = goods.length;
         showNumber = '';
     } else {
@@ -26,7 +27,8 @@ export function displayShowListPagination(arrGoods: string[], goodsOnPage: numbe
 
     numElemPagination.value = showNumber.toString();
     cartList.innerHTML = '';
-
+   
+    
     const start = Number(goodsOnPage) * page;
     const end = start + Number(goodsOnPage);
 
