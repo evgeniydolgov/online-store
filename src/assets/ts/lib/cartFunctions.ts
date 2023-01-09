@@ -49,7 +49,6 @@ export function creatNewPrice() {
 }
 
 export const isGoodsItemInCart = (id: number) => Object.prototype.hasOwnProperty.call(store.cart, id);
-
 export const addGoodsItemToCart = (id: number) => {
     if (!isGoodsItemInCart(id)) store.cart[id] = '1';
 };
