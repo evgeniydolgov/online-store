@@ -20,6 +20,7 @@ import { renderSwitchView } from './renderSwitchView';
 import { PromoCode } from '../../types';
 
 import { removeAllFiltersFromUrl, removeSearchStringFromUrl } from './filterGoods';
+const url = new URL(location.href);
 
 export const handlersCopyToClipboardButtonClick = (event: Event) => {
     const target = event.target;
@@ -316,32 +317,42 @@ export function handlerGoodsOnPage(event: Event) {
     } else {
         localStorage.setItem('numOfElem', JSON.stringify(null));
     }
-    localStorage.setItem('pageNumber', JSON.stringify(0));
+    localStorage.setItem('', JSON.stringify(0));
     setTimeout(() => {
         renderCart();
     }, 1000);
 }
 
 export function nextPage() {
-    let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
+    //let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
+    let checkPage = Number(url.searchParams.get('pageNumber'));
+    console.log(checkPage);
     if (!checkPage) {
         checkPage = 0;
     }
-    if (checkPage < JSON.parse(localStorage.getItem('maxNumberPage') as string) - 1) {
+    // if (checkPage < JSON.parse(localStorage.getItem('maxNumberPage') as string) - 1)
+
+    const pageNum = url.searchParams.get('MaxPage');
+    if (checkPage < Number(pageNum) - 1) {
         checkPage += 1;
-        localStorage.setItem('pageNumber', JSON.stringify(checkPage));
+        //localStorage.setItem('pageNumber', JSON.stringify(checkPage));
+        url.searchParams.set('pageNumber', `${checkPage}`);
+        history.pushState(null, '', decodeURIComponent(url.toString()));
         renderCart();
     }
 }
 
 export function prevPage() {
-    let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
+    //let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
+    let checkPage = Number(url.searchParams.get('pageNumber'));
     if (!checkPage) {
         checkPage = 0;
     }
     if (checkPage > 0) {
         checkPage -= 1;
-        localStorage.setItem('pageNumber', JSON.stringify(checkPage));
+        //localStorage.setItem('pageNumber', JSON.stringify(checkPage));
+        url.searchParams.set('pageNumber', `${checkPage}`);
+        history.pushState(null, '', decodeURIComponent(url.toString()));
         renderCart();
     }
 }

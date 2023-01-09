@@ -48,7 +48,7 @@ export async function renderCart(fastBuy = false) {
     numElemPagination.addEventListener('input', handlerGoodsOnPage);
 
     const sumOfPageGoods = JSON.parse(localStorage.getItem('numOfElem') as string);
-    const numberPage = JSON.parse(localStorage.getItem('pageNumber') as string);
+    const numberPage = JSON.parse(localStorage.getItem('') as string);
 
     displayShowListPagination(buysGoodsIdArr, sumOfPageGoods, numberPage);
 
@@ -99,5 +99,5 @@ export async function renderCart(fastBuy = false) {
         checkAllInputValidation(nameInput);
     });
 
-    console.log( "Промокоды для проверки:\n1) RS\n2) EPM\n3) dudarik\n4) edolgov\nРегистр букв - учитывается." )
+    console.log("Промокоды для проверки:\n1) RS\n2) EPM\n3) dudarik\n4) edolgov\nРегистр букв - учитывается.")
 }
