@@ -1,14 +1,13 @@
 import { FilterValueOptions } from '../../types';
 import { checkElem } from '../helpers/checkers';
 import { getCountGoodsByFieldName } from './filterGoods';
-import { getHtmlTpl } from './getHtmlTpl';
 import { handlerFilterValueSwitch } from './handlers';
 
-export async function getValueFilterHtml(filterData: string[], options: FilterValueOptions) {
-    const tplToRender = 'valueFilterTpl.html';
-
-    const valueFilterHtml = await getHtmlTpl(tplToRender, 'value_filter');
-
+export async function getValueFilterHtml(
+    filterData: string[],
+    valueFilterHtml: HTMLElement,
+    options: FilterValueOptions
+) {
     const ft = valueFilterHtml.querySelector('#filter_title');
 
     const { filter_title, filter_name, filter_settings, goods, filtredGoods } = options;

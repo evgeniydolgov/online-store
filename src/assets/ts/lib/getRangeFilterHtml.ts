@@ -1,12 +1,11 @@
 import { FilterRangeOptions } from '../../types';
 import { checkElem } from '../helpers/checkers';
-import { getHtmlTpl } from './getHtmlTpl';
 
-export const getRangeFilterHtml = async (filterData: string[], options: FilterRangeOptions) => {
-    const tplToRender = 'rangeFilterTpl.html';
-
-    const rangeFilterHtml = await getHtmlTpl(tplToRender, 'range_filter');
-
+export const getRangeFilterHtml = async (
+    filterData: string[],
+    rangeFilterHtml: HTMLElement,
+    options: FilterRangeOptions
+) => {
     const filterTitle = rangeFilterHtml.querySelector('#filter_title');
 
     const { filter_title, filter_name, filter_settings } = options;
