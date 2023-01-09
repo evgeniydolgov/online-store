@@ -85,8 +85,6 @@ export const setCartInfoHtml = () => {
 export function popUpOpenButton() {
     const popUpBackground = document.querySelector('#popUp_background') as HTMLElement;
         popUpBackground.classList.add('move_pop_up');
-    const page = document.querySelector('.body_main') as HTMLElement;
-    page.style.overflow = 'hidden'
 }
 
 export function popUpCloseButton(event:Event) {
@@ -94,6 +92,4 @@ export function popUpCloseButton(event:Event) {
     if (event.target === popUpBackground) {
         popUpBackground.classList.remove('move_pop_up');
     }
-    const page = document.querySelector('.body_main') as HTMLElement;
-    page.style.overflow = 'auto'
 }
