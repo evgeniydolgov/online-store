@@ -315,38 +315,56 @@ export function renderPromoHtml() {
 }
 
 export function handlerGoodsOnPage(event: Event) {
+    const url = new URL(location.href)
     const inputValue = event.target as HTMLInputElement;
     if (typeof Number(inputValue.value) === 'number' && Number(inputValue.value) > 0) {
-        localStorage.setItem('numOfElem', JSON.stringify(inputValue.value));
+        //localStorage.setItem('numOfElem', JSON.stringify(inputValue.value));
+        url.searchParams.set('numOfElem', inputValue.value)
+
     } else {
-        localStorage.setItem('numOfElem', JSON.stringify(null));
+        //localStorage.setItem('numOfElem', JSON.stringify(null));
+        url.searchParams.set('numOfElem', `${null}`)
     }
-    localStorage.setItem('pageNumber', JSON.stringify(0));
+    // localStorage.setItem('', JSON.stringify(0));
+    history.pushState(null, '', decodeURIComponent(url.toString()));
     setTimeout(() => {
         renderCart();
     }, 1000);
 }
 
 export function nextPage() {
-    let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
+    const url = new URL(location.href);
+    //let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
+    let checkPage = Number(url.searchParams.get('pageNumber'));
     if (!checkPage) {
         checkPage = 0;
     }
-    if (checkPage < JSON.parse(localStorage.getItem('maxNumberPage') as string) - 1) {
+    // if (checkPage < JSON.parse(localStorage.getItem('maxNumberPage') as string) - 1)
+
+    const pageNum = url.searchParams.get('MaxPage');
+    if (checkPage < Number(pageNum) - 1) {
         checkPage += 1;
-        localStorage.setItem('pageNumber', JSON.stringify(checkPage));
+
+
+        //localStorage.setItem('pageNumber', JSON.stringify(checkPage));
+        url.searchParams.set('pageNumber', `${checkPage}`);
+        history.pushState(null, '', decodeURIComponent(url.toString()));
         renderCart();
     }
 }
 
 export function prevPage() {
-    let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
+    const url = new URL(location.href);
+    //let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
+    let checkPage = Number(url.searchParams.get('pageNumber'));
     if (!checkPage) {
         checkPage = 0;
     }
     if (checkPage > 0) {
         checkPage -= 1;
-        localStorage.setItem('pageNumber', JSON.stringify(checkPage));
+        //localStorage.setItem('pageNumber', JSON.stringify(checkPage));
+        url.searchParams.set('pageNumber', `${checkPage}`);
+        history.pushState(null, '', decodeURIComponent(url.toString()));
         renderCart();
     }
 }
