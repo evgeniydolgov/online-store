@@ -8,7 +8,7 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.649);
-    transform: translate(0, -1000px);
+    // transform: translate(0, -1000px);
     transition: all 0.3s ease 0s;
     z-index: 101;
 }
@@ -58,27 +58,83 @@
     border-radius: 0.5rem;
 }
 
+.card_image {
+    position: absolute;
+    border-radius: 5px;
+    top: 5px;
+    left: 5px;
+    width: 2.5rem;
+    height: 1.5rem;
+    background: url(../images/no-logo.jpg) 0/100% no-repeat;
+}
+
+.card_image_american-express {
+    position: absolute;
+    border-radius: 5px;
+    top: 5px;
+    left: 5px;
+    width: 2.5rem;
+    height: 1.5rem;
+    background: url(../images/american-express.svg) 0/100% no-repeat;
+}
+
+.card_image_visa {
+    position: absolute;
+    border-radius: 5px;
+    top: 5px;
+    left: 5px;
+    width: 2.5rem;
+    height: 1.5rem;
+    background: url(../images/visa.png) 0/100% no-repeat;
+}
+
+.card_image_master-card {
+    position: absolute;
+    border-radius: 5px;
+    top: 5px;
+    left: 5px;
+    width: 2.5rem;
+    height: 1.5rem;
+    background: url(../images/master-card.svg) 0/100% no-repeat;
+}
+
+.card_image_union-pay {
+    position: absolute;
+    border-radius: 5px;
+    top: 5px;
+    left: 5px;
+    width: 2.5rem;
+    height: 1.5rem;
+    background: url(../images/union-pay.png) 0/100% no-repeat;
+}
+
 .debit-card_number > input {
+    padding-left: 55px;
     width: 16rem;
     height: 35px;
 }
 
 .debit-card_about > div > input {
-    width: 5rem;
+    width: 3.5rem;
 }
 
 .debit-card_number {
+    position: relative;
     width: 16rem;
 }
 
 .debit-card_about {
     display: flex;
-    gap: 6rem;
+    gap: 9rem;
+}
+
+.debit-card_about>:nth-child(2)>input {
+    padding-left: 10px;
 }
 
 .buy-input {
     outline: none;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .input_error {

@@ -11,24 +11,35 @@ export function checkerValidation (event: Event) {
     } else {
         arrValid[index] = false;
     }
-    console.log(arrValid);
+}
+
+function checkImageCardNumber (elem: string) {
+    const cardImage = document.querySelector('#card_image');
+    if (!(cardImage instanceof HTMLElement)) throw new Error('card image error');
+    if (elem[0] == undefined) cardImage.className = 'card_image';
+    if (elem[0] === '3') cardImage.className = 'card_image_american-express';
+    else if (elem[0] === '4') cardImage.className = 'card_image_visa';
+    else if (elem[0] === '5') cardImage.className = 'card_image_master-card';
+    else if (elem[0] === '6') cardImage.className = 'card_image_union-pay';
+    else cardImage.className = 'card_image';
 }
 
 export function checkDebetCardNumber (event: Event) {
     if (!(event.target instanceof HTMLInputElement)) {
-        throw new Error('error');
+        throw new Error('card number error');
     }
     const inpValueArr = event.target.value.replace(/\D/gi, '').substring(0,16).match(/.{1,4}/g);
     if (inpValueArr === null){
        event.target.value = '';
        return;
     }
+    checkImageCardNumber(event.target.value)
     event.target.value = inpValueArr.join(' ');
 }
 
 export function checkDateCard (event: Event) {
     if (!(event.target instanceof HTMLInputElement)) {
-        throw new Error('error');
+        throw new Error('date card error');
     }
     const inpValueArr = event.target.value.replace(/\D/gi, '').substring(0,4).match(/.{1,2}/g);
     if (inpValueArr === null){
@@ -43,7 +54,7 @@ export function checkDateCard (event: Event) {
 
 export function checkCVV (event: Event) {
     if (!(event.target instanceof HTMLInputElement)) {
-        throw new Error('error');
+        throw new Error('cvv card error');
     }
     event.target.value = event.target.value.replace(/\D/gi, '').substring(0,3);
 }

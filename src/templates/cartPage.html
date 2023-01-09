@@ -24,7 +24,7 @@
                 <input type="text" class="promo-text" id="promo-text">
                 <button class="promo-button" id='promo-button' style="display: none;"></button>
             </div>
-            <div class="go_buy_page" id="go_buy_page">Оформить товар</div>
+            <button  class="go_buy_page" id="go_buy_page">Оформить товар</button>
         </div>
     </div>
     <div id="empty_cart_container" class="empty">Корзина пуста
@@ -38,10 +38,12 @@
                 <div class="email_field"><input data-index = '3' class="buy-input" type="email" placeholder="email"></div>
             </div>
             <div class="goods_ordering-card_info">
-                <div class="debit-card_number"><input class="buy-input" data-index = '4' id="debit_card-number" pattern="\w{4}\s{1}\w{4}\s{1}\w{4}\s{1}\w{4}" placeholder="Номер карты" type="text"></div>
+                <div class="debit-card_number">
+                    <div class="card_image" id="card_image"></div>
+                    <input class="buy-input" data-index = '4' id="debit_card-number" pattern="\w{4}\s{1}\w{4}\s{1}\w{4}\s{1}\w{4}" placeholder="Номер карты" type="text"></div>
                 <div class="debit-card_about">
                     <div class="dateIssue"><input class="buy-input" data-index = '5' id="debit_card-date" pattern="\S{5,}" placeholder="Дата" type="text"></div>
-                    <div class="cvv"><input class="buy-input" data-index = '6' id="debit_card-ccv" pattern="[0-9]{3,}" placeholder="CVV" type="text"></div>
+                    <div class="cvv"><input class="buy-input" data-index = '6' id="debit_card-ccv" pattern="[0-9]{3,}" placeholder="cvv" type="text"></div>
                 </div>
             </div>
             <div><button class="order_button" id="order_button">Оформить покупку</button></div>

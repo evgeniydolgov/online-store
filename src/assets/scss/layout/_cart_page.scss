@@ -179,11 +179,12 @@
 }
 
 .go_buy_page {
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
-    font-size: 1em;
+    font-size: 1.5em;
     color: $color_white;
     border: 0;
     background-color: $color_main_green;
