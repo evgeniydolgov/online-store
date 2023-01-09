@@ -85,7 +85,11 @@ export async function renderCart(fastBuy = false) {
     goBuyPage.addEventListener('click', popUpOpenButton);
 
     const popUpBackground = document.querySelector('#popUp_background') as HTMLElement;
-    if (fastBuy) popUpBackground.classList.add('move_pop_up');
+    if (fastBuy) {
+        const body = document.querySelector('#body_main') as HTMLElement;
+        body.classList.add('stop-scroll');
+        popUpBackground.classList.add('move_pop_up')
+    }
     popUpBackground.addEventListener('click', popUpCloseButton);
 
     const nameInput = document.querySelectorAll('.buy-input') as NodeListOf<HTMLInputElement>;
