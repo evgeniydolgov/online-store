@@ -25,7 +25,16 @@
 }
 
 .cart-page__goods>div {
+    position: relative;
     margin: 20px 0;
+}
+
+.number_goods {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 30px;
+    color: $color_main_green;
 }
 
 .cart__info {

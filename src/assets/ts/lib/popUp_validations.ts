@@ -73,7 +73,8 @@ export function checkAllInputValidation (elem: NodeListOf <HTMLInputElement>){
         popUpBackground.style.fontSize = '30px'
         popUpBackground.textContent = 'Спасибо за покупку!'
         setTimeout(() => {
-            location.href = '/'
+            location.href = '/';
+            localStorage.clear();
         }, 3000);
     }
 }
