@@ -1,4 +1,3 @@
-import { store } from '../store';
 import { checkElem } from '../helpers/checkers';
 
 import { renderShopCards } from './renderShopCards';
@@ -10,8 +9,6 @@ import { renderSortSelect } from './renderSortSelect';
 import { setSortingSettings } from './sortGoods';
 
 export async function renderStore() {
-    console.log(store);
-
     const tplToRender = 'storePage.html';
     let newPage = await fetch(tplToRender)
         .then((response) => response.text())

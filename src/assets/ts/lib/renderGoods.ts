@@ -9,10 +9,7 @@ export async function renderGoods() {
 
     const urlGoodsId = url.pathname.split('/')[2];
 
-    // console.log(Number.isNaN(urlGoodsId));
     if (Number.isNaN(Number(urlGoodsId)) || !isItemInStore(parseInt(urlGoodsId))) location.href = `${url.origin}/404`;
-
-    console.log(store);
 
     const cardData = store.goodsItems.find((item) => item.id === parseInt(urlGoodsId));
 

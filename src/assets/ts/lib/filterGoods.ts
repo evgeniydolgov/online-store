@@ -88,11 +88,6 @@ export const getFiltersFromUrl = () => {
 };
 
 export const getSearchStringFromUrl = () => new URL(location.href).searchParams.get('search');
-// {
-// const url = new URL(location.href);
-
-// return url.searchParams.get('search');
-// };
 
 export const getCountGoodsByFieldName = (goods: GoodsItem[], fieldName: string, valueField: string) =>
     goods.filter((goodsItem) => String(goodsItem[fieldName]).toLocaleLowerCase() === valueField.toLocaleLowerCase())

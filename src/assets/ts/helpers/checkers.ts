@@ -3,7 +3,6 @@ function checkElem<T extends HTMLElement | null>(elem: T): HTMLElement;
 function checkElem<T extends Element | null>(elem: T): HTMLElement;
 function checkElem<T extends EventTarget | null>(elem: T): HTMLElement {
     if (!(elem instanceof EventTarget)) throw new Error(`${elem} : element null or undefined`);
-    //  if (!(elem instanceof EventTarget)) console.log();
     if (elem instanceof HTMLTemplateElement) return elem;
     if (elem instanceof HTMLElement) return elem;
     if (elem instanceof Element) return <HTMLElement>elem;
