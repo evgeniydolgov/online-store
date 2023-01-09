@@ -1,9 +1,9 @@
-import { goods } from "../goods/goodsArray";
-import { store } from "../store";
-import { handlerButtonClick } from "./handlers";
+import { goods } from '../goods/goodsArray';
+import { store } from '../store';
+import { handlerButtonClick } from './handlers';
 
-export function displayShowListPagination(arrGoods: string[], goodsOnPage:number, page: number){
-    const cartList = (document.querySelector('#cart-goods')) as HTMLElement;
+export function displayShowListPagination(arrGoods: string[], goodsOnPage: number, page: number) {
+    const cartList = document.querySelector('#cart-goods') as HTMLElement;
     const numElemPagination = document.getElementById('num_elems_pagination') as HTMLInputElement;
     const numPageElem = document.getElementById('current-page') as HTMLElement;
 
@@ -11,7 +11,7 @@ export function displayShowListPagination(arrGoods: string[], goodsOnPage:number
     if (goodsOnPage === null) {
         goodsOnPage = goods.length;
         showNumber = '';
-    }else{
+    } else {
         showNumber = goodsOnPage;
     }
 
@@ -19,7 +19,7 @@ export function displayShowListPagination(arrGoods: string[], goodsOnPage:number
         page = 0;
     }
 
-    localStorage.setItem('pageNumber', JSON.stringify(page))
+    localStorage.setItem('pageNumber', JSON.stringify(page));
 
     numElemPagination.value = showNumber.toString();
     cartList.innerHTML = '';
@@ -32,16 +32,15 @@ export function displayShowListPagination(arrGoods: string[], goodsOnPage:number
     const maxNumberPage = Math.ceil(arrGoods.length / goodsOnPage);
     localStorage.setItem('maxNumberPage', JSON.stringify(maxNumberPage));
 
-    arrVisibleOnPage.forEach(el => {
-        getCreatedGoodsElement(el)
-    })
+    arrVisibleOnPage.forEach((el) => {
+        getCreatedGoodsElement(el);
+    });
 }
 
-function getCreatedGoodsElement (el:string) {
-    const cartList = (document.querySelector('#cart-goods')) as HTMLElement;
-        const goodsElem = goods.find(elem => elem.id === Number(el));
-        if (goodsElem !== undefined) {
-
+function getCreatedGoodsElement(el: string) {
+    const cartList = document.querySelector('#cart-goods') as HTMLElement;
+    const goodsElem = goods.find((elem) => elem.id === Number(el));
+    if (goodsElem !== undefined) {
         const cartElem = document.createElement('div') as HTMLElement;
         cartElem.className = 'cart__container';
 
@@ -50,11 +49,12 @@ function getCreatedGoodsElement (el:string) {
         const cartImg = document.createElement('img') as HTMLImageElement;
         cartImg.className = 'cart__img';
         cartImg.src = `${goodsElem.images[0]}`;
-        cartImgContainer.append(cartImg)
+        cartImgContainer.append(cartImg);
 
-        const cartTitle = document.createElement('div') as HTMLElement;
-        cartTitle.className = 'cart__title';
-        cartTitle.textContent = goodsElem.title;
+        const anchorCartTitle = document.createElement('a');
+        anchorCartTitle.href = `/goods/${goodsElem.id}`;
+        anchorCartTitle.classList.add('cart__title');
+        anchorCartTitle.innerText = goodsElem.title;
 
         const cartPrice = document.createElement('div') as HTMLElement;
         cartPrice.className = 'cart__price';
@@ -74,12 +74,12 @@ function getCreatedGoodsElement (el:string) {
         buttonMinus.addEventListener('click', handlerButtonClick);
 
         const buttonCounter = document.createElement('div') as HTMLElement;
-        buttonCounter.classList.add('counterNum')
+        buttonCounter.classList.add('counterNum');
         buttonCounter.textContent = `${store.cart[el]}`;
 
         const buttonPlus = document.createElement('button') as HTMLElement;
         buttonPlus.classList.add('plusOneitemBtn');
-        buttonPlus.dataset.typeButton = '+'
+        buttonPlus.dataset.typeButton = '+';
         buttonPlus.dataset.goodsId = el;
         buttonPlus.dataset.maxCount = goodsElem.stock.toString();
         buttonPlus.addEventListener('click', handlerButtonClick);
@@ -89,9 +89,9 @@ function getCreatedGoodsElement (el:string) {
         cartButtons.append(buttonPlus);
         cartElem.append(cartPrice);
         cartElem.append(cartImgContainer);
-        cartElem.append(cartTitle);
+        cartElem.append(anchorCartTitle);
         cartElem.append(cartStock);
         cartElem.append(cartButtons);
         cartList.append(cartElem);
-        }
     }
+}
