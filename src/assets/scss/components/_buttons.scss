@@ -128,18 +128,20 @@
     height: 20px;
     border: none;
     cursor: pointer;
-    background: url(../images/delete.png) 0 0/auto 100% no-repeat;
+    background: url(../images/delete.png) 0 0 / auto 100% no-repeat;
     background-position: 0px 4px;
 }
 
 .order_button {
-    margin: 0 2%;
     padding: 5px 0;
-    font-size: 1em;
+    font-size: 1.5rem;
+    font-weight: bold;
     color: $color_white;
-    border: 0;
+    border: none;
     background-color: $color_main_green;
-    border-radius: 3%;
+    width: 20rem;
+    height: 3rem;
+    border-radius: 0.2rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
 
     &:hover {
