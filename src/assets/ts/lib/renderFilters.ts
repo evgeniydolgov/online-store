@@ -1,4 +1,3 @@
-// import { dualRangeSlider } from '../helpers/slide_finctions';
 import { dualRangeSlider } from '../helpers/slide_finctions';
 import { store } from '../store';
 import { getMinMaxByFieldName, setFiltredItemsToStore } from './filterGoods';
@@ -6,8 +5,6 @@ import { getRangeFilterHtml } from './getRangeFilterHtml';
 import { getValueFilterHtml } from './getValueFilterHtml';
 import { handlerSearchFieldKeyUp } from './handlers';
 import { renderRangeFiltersStats } from './renderRangeFiltersStats';
-
-// import { dualRangeSlider } from '../helpers/slide_finctions';
 
 export const renderValueFilters = async () => {
     setFiltredItemsToStore();
@@ -96,9 +93,4 @@ export const renderFilters = async () => {
 
     new dualRangeSlider(priceFilterRendered, 'min_price', 'max_price', 'price');
     new dualRangeSlider(stockFilterRendered, 'min_stock', 'max_stock', 'stock');
-
-    // return {
-    //     priceSlider,
-    //     stockSlider,
-    // };
 };

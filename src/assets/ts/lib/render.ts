@@ -1,7 +1,8 @@
 import { store } from '../store';
+
 import { getCardViewFromUrl } from './cardView';
 import { setCartInfoHtml } from './cartFunctions';
-// import { filterGoods, getFiltersFromUrl, getSearchStringFromUrl } from './filterGoods';
+
 import { render404 } from './render404';
 import { renderCart } from './renderCart';
 import { renderGoods } from './renderGoods';

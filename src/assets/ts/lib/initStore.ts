@@ -1,17 +1,10 @@
 import { GoodsItem } from '../../interfaces';
-// import // filterGoods,
-// // getCountGoodsByFieldName,
-// // getFiltersFromUrl,
-// // getMinMaxByFieldName,
-// // getSearchStringFromUrl,
-// './filterGoods';
 import { LS } from './localstorage';
 import { store } from '../store';
 import { loadDataStore } from './loadData';
 import { updateCartInfo } from './cartFunctions';
 import { getMinMaxByFieldName, setFiltredItemsToStore } from './filterGoods';
 import { getPromoCodes } from './getPromoCodes';
-// import { getCardViewFromUrl } from './cardView';
 
 const getGoodsBrands = (goods: GoodsItem[]) => Array.from(new Set(goods.map((goodsItem) => String(goodsItem.brand))));
 
@@ -20,7 +13,6 @@ const getGoodsCategories = (goods: GoodsItem[]) =>
 
 export function initStore() {
     store.settings.isLSAvailabel = LS.isLSAvailabel();
-    // store.view_settings.mode = getCardViewFromUrl();
 
     store.promoCodes = getPromoCodes();
 
@@ -30,8 +22,6 @@ export function initStore() {
 
     store.cart = cart;
     updateCartInfo();
-    // store.sumCartItems = getCartSum(cart);
-    // store.countCartItems = getCartGoodsCount(cart);
 
     setFiltredItemsToStore();
 
@@ -43,14 +33,4 @@ export function initStore() {
 
     store.filters_settings.price = [...store.filters_settings.minMaxPrice];
     store.filters_settings.stock = [...store.filters_settings.minMaxStock];
-
-    // LS.saveCartDataToLS({ '1': '2', '5': '2' }); //fake data
-
-    // console.log(filters);
-    // console.log(getGoodsBrands(store.goodsItems), getGoodsCategories(store.goodsItems));
-    // console.log(getGoodsBrands(store.filteredGoodsItems), getGoodsCategories(store.filteredGoodsItems));
-    // console.log(getCountGoodsByFieldName(store.goodsItems, 'brand', 'msi'));
-    // console.log(getCountGoodsByFieldName(store.filteredGoodsItems, 'brand', 'msi'));
-    // console.log(getMinMaxByFieldName(store.goodsItems, 'price'));
-    // console.log(getMinMaxByFieldName(store.filteredGoodsItems, 'price'));
 }

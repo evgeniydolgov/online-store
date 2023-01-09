@@ -1,10 +1,7 @@
-import { store } from '../store';
 import { checkElem } from '../helpers/checkers';
 import { getHtmlTpl } from './getHtmlTpl';
 
 export async function render404() {
-    console.log(store);
-
     const url = new URL(location.href);
 
     const tplToRender = `404Page.html`;

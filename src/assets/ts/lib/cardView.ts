@@ -21,7 +21,6 @@ export const setCardView = (newView: CardView) => {
 
     url.searchParams.set(CARD_VIEW_KEY, newView.toString());
 
-    // location.href = decodeURIComponent(url.toString());
     history.pushState(null, '', decodeURIComponent(url.toString()));
     renderShopCards('#goods');
 };
