@@ -1,6 +1,7 @@
 import { goods } from '../goods/goodsArray';
 import { store } from '../store';
 import { handlerButtonClick } from './handlers';
+import { renderCart } from './renderCart';
 
 export function displayShowListPagination(arrGoods: string[], goodsOnPage: number, page: number) {
     const cartList = document.querySelector('#cart-goods') as HTMLElement;
@@ -30,6 +31,14 @@ export function displayShowListPagination(arrGoods: string[], goodsOnPage: numbe
     numPageElem.textContent = `${page + 1}`;
     const arrVisibleOnPage = arrGoods.slice(start, end);
     const maxNumberPage = Math.ceil(arrGoods.length / goodsOnPage);
+
+    if (arrVisibleOnPage.length === 0 && arrGoods.length !== 0 ) {
+        let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
+        checkPage -= 1;
+        localStorage.setItem('pageNumber', JSON.stringify(checkPage));
+        renderCart();
+    }
+
     localStorage.setItem('maxNumberPage', JSON.stringify(maxNumberPage));
 
     arrVisibleOnPage.forEach((el) => {
