@@ -98,4 +98,6 @@ export async function renderCart(fastBuy = false) {
     submitButton.addEventListener('click', () => {
         checkAllInputValidation(nameInput);
     });
+
+    console.log( "Промокоды для проверки:\n1) RS\n2) EPM\n3) dudarik\n4) edolgov\nРегистр букв - учитывается." )
 }
