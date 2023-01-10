@@ -102,6 +102,11 @@ function getCreatedGoodsElement(el: string, arr: string[]) {
         buttonCounter.classList.add('counterNum');
         buttonCounter.textContent = `${store.cart[el]}`;
 
+        const priseForOneGoods = document.createElement('div') as HTMLElement;
+        const sumOfGoods = parseInt(store.cart[el]) * goodsElem.price;
+        priseForOneGoods.textContent = `Сумма покупки: ${sumOfGoods} ₽`
+        cartPrice.append(priseForOneGoods);
+
         const buttonPlus = document.createElement('button') as HTMLElement;
         buttonPlus.classList.add('plusOneitemBtn');
         buttonPlus.dataset.typeButton = '+';

@@ -92,7 +92,8 @@ export function popUpCloseButton(event:Event) {
     const popUpBackground = document.querySelector('#popUp_background') as HTMLElement;
     if (event.target === popUpBackground) {
         popUpBackground.classList.remove('move_pop_up');
+        const body = document.querySelector('#body_main') as HTMLElement;
+        body.classList.remove('stop-scroll');
     }
-    const body = document.querySelector('#body_main') as HTMLElement;
-    body.classList.remove('stop-scroll');
+
 }
