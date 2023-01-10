@@ -25,8 +25,7 @@ export async function getCardHtml(cardData: GoodsItem, card: HTMLElement, { view
                 case 'gc_price':
                     currElem.innerText = formatSum(parseInt(cardData[item.slice(3)].toString()), 0);
                     break;
-                case 'gc_title':
-                    // eslint-disable-next-line
+                case 'gc_title': {
                     const anchor = document.createElement('a');
 
                     anchor.href = `/goods/${cardData.id}`;
@@ -35,6 +34,29 @@ export async function getCardHtml(cardData: GoodsItem, card: HTMLElement, { view
 
                     currElem.append(anchor);
                     break;
+                }
+                case 'gc_brand': {
+                    const anchor = document.createElement('a');
+
+                    anchor.href = `/?_brand=${cardData.brand}`;
+                    anchor.innerText = cardData[item.slice(3)].toString();
+                    anchor.classList.add('card_link');
+
+                    currElem.append(anchor);
+                    break;
+                }
+
+                case 'gc_category': {
+                    const anchor = document.createElement('a');
+
+                    anchor.href = `/?_category=${cardData.category}`;
+                    anchor.innerText = cardData[item.slice(3)].toString();
+                    anchor.classList.add('card_link');
+
+                    currElem.append(anchor);
+                    break;
+                }
+
                 default:
                     currElem.innerText = cardData[item.slice(3)].toString();
                     break;
