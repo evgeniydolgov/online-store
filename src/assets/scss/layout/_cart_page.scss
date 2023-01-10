@@ -88,12 +88,12 @@
 }
 
 .cart__price{
-    margin-right: 10%;
+    margin-right: 5%;
     grid-area: price;
-    display: block;
     display: flex;
-    align-items: flex-start;
-    justify-content: end;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-end;
     font-size: 1.3em;
     font-weight: bold;
     letter-spacing: 0.1rem;
