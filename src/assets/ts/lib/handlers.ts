@@ -315,21 +315,20 @@ export function renderPromoHtml() {
 }
 
 export function handlerGoodsOnPage(event: Event) {
-    const url = new URL(location.href)
+    const url = new URL(location.href);
     const inputValue = event.target as HTMLInputElement;
     if (typeof Number(inputValue.value) === 'number' && Number(inputValue.value) > 0) {
         //localStorage.setItem('numOfElem', JSON.stringify(inputValue.value));
-        url.searchParams.set('numOfElem', inputValue.value)
-
+        url.searchParams.set('numOfElem', inputValue.value);
+        history.pushState(null, '', decodeURIComponent(url.toString()));
+        setTimeout(() => {
+            renderCart();
+        }, 1000);
     } else {
         //localStorage.setItem('numOfElem', JSON.stringify(null));
-        url.searchParams.set('numOfElem', `${null}`)
+        url.searchParams.set('numOfElem', `${null}`);
     }
     // localStorage.setItem('', JSON.stringify(0));
-    history.pushState(null, '', decodeURIComponent(url.toString()));
-    setTimeout(() => {
-        renderCart();
-    }, 1000);
 }
 
 export function nextPage() {
@@ -344,7 +343,6 @@ export function nextPage() {
     const pageNum = url.searchParams.get('MaxPage');
     if (checkPage < Number(pageNum) - 1) {
         checkPage += 1;
-
 
         //localStorage.setItem('pageNumber', JSON.stringify(checkPage));
         url.searchParams.set('pageNumber', `${checkPage}`);
