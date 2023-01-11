@@ -3,6 +3,8 @@ import { checkElem } from '../helpers/checkers';
 import {
     handlerAddOneItemBtn,
     handlerGoodsOnPage,
+    handlerGoodsOnPageBlur,
+    handlerGoodsOnPageFocus,
     handlerPromoCodeInputChanges,
     nextPage,
     prevPage,
@@ -44,13 +46,14 @@ export async function renderCart(fastBuy = false) {
         allCartStock.textContent = `Всего товара: ${stockNum} шт`;
     }
 
-
     const numElemPagination = document.getElementById('num_elems_pagination') as HTMLInputElement;
     numElemPagination.addEventListener('input', handlerGoodsOnPage);
+    numElemPagination.addEventListener('focus', handlerGoodsOnPageFocus);
+    numElemPagination.addEventListener('blur', handlerGoodsOnPageBlur);
 
     //const sumOfPageGoods = JSON.parse(localStorage.getItem('numOfElem') as string);
     const sumOfPageGoodsURL = url.searchParams.get('numOfElem') as string;
-    
+
     let sumOfPageGoods = 0;
     if (sumOfPageGoodsURL !== null) {
         sumOfPageGoods = parseInt(sumOfPageGoodsURL);
@@ -88,7 +91,7 @@ export async function renderCart(fastBuy = false) {
     if (fastBuy) {
         const body = document.querySelector('#body_main') as HTMLElement;
         body.classList.add('stop-scroll');
-        popUpBackground.classList.add('move_pop_up')
+        popUpBackground.classList.add('move_pop_up');
     }
     popUpBackground.addEventListener('click', popUpCloseButton);
 
@@ -111,5 +114,5 @@ export async function renderCart(fastBuy = false) {
         checkAllInputValidation(nameInput);
     });
 
-    console.log("Промокоды для проверки:\n1) RS\n2) EPM\n3) dudarik\n4) edolgov\nРегистр букв - учитывается.")
+    console.log('Промокоды для проверки:\n1) RS\n2) EPM\n3) dudarik\n4) edolgov\nРегистр букв - учитывается.');
 }

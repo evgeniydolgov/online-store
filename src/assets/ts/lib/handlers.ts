@@ -21,6 +21,8 @@ import { PromoCode } from '../../types';
 
 import { removeAllFiltersFromUrl, removeSearchStringFromUrl } from './filterGoods';
 
+let currentCountPageElem = '0';
+
 export const handlersCopyToClipboardButtonClick = (event: Event) => {
     const target = event.target;
 
@@ -330,6 +332,21 @@ export function handlerGoodsOnPage(event: Event) {
     }
     // localStorage.setItem('', JSON.stringify(0));
 }
+export const handlerGoodsOnPageFocus = (event: Event) => {
+    const target = event.target;
+
+    if (!(target instanceof HTMLInputElement)) throw new Error('Cant find input elem!');
+
+    currentCountPageElem = target.value;
+};
+
+export const handlerGoodsOnPageBlur = (event: Event) => {
+    const target = event.target;
+
+    if (!(target instanceof HTMLInputElement)) throw new Error('Cant find input elem!');
+
+    if (target.value === '') target.value = currentCountPageElem;
+};
 
 export function nextPage() {
     const url = new URL(location.href);
