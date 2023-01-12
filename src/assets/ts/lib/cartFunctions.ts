@@ -4,7 +4,7 @@ import { store } from '../store';
 
 import { loadDataStore } from './loadData';
 
-const getCartSum = (cart: CartItems) => {
+export const getCartSum = (cart: CartItems) => {
     const cartItems = Object.entries(cart);
 
     const goods = loadDataStore();
@@ -17,7 +17,7 @@ const getCartSum = (cart: CartItems) => {
     }, 0);
 };
 
-const getCartGoodsCount = (cart: CartItems) => {
+export const getCartGoodsCount = (cart: CartItems) => {
     const cartItems = Object.values(cart);
 
     return cartItems.reduce((acc, item) => acc + parseInt(item), 0);
@@ -84,16 +84,15 @@ export const setCartInfoHtml = () => {
 export function popUpOpenButton() {
     const popUpBackground = document.querySelector('#popUp_background') as HTMLElement;
     const body = document.querySelector('#body_main') as HTMLElement;
-        popUpBackground.classList.add('move_pop_up');
-        body.classList.add('stop-scroll');
+    popUpBackground.classList.add('move_pop_up');
+    body.classList.add('stop-scroll');
 }
 
-export function popUpCloseButton(event:Event) {
+export function popUpCloseButton(event: Event) {
     const popUpBackground = document.querySelector('#popUp_background') as HTMLElement;
     if (event.target === popUpBackground) {
         popUpBackground.classList.remove('move_pop_up');
         const body = document.querySelector('#body_main') as HTMLElement;
         body.classList.remove('stop-scroll');
     }
-
 }

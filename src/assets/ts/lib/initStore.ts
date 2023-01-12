@@ -6,7 +6,8 @@ import { updateCartInfo } from './cartFunctions';
 import { getMinMaxByFieldName, setFiltredItemsToStore } from './filterGoods';
 import { getPromoCodes } from './getPromoCodes';
 
-const getGoodsBrands = (goods: GoodsItem[]) => Array.from(new Set(goods.map((goodsItem) => String(goodsItem.brand))));
+export const getGoodsBrands = (goods: GoodsItem[]) =>
+    Array.from(new Set(goods.map((goodsItem) => String(goodsItem.brand))));
 
 const getGoodsCategories = (goods: GoodsItem[]) =>
     Array.from(new Set(goods.map((goodsItem) => String(goodsItem.category))));
