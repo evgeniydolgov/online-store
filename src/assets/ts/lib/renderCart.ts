@@ -51,14 +51,12 @@ export async function renderCart(fastBuy = false) {
     numElemPagination.addEventListener('focus', handlerGoodsOnPageFocus);
     numElemPagination.addEventListener('blur', handlerGoodsOnPageBlur);
 
-    //const sumOfPageGoods = JSON.parse(localStorage.getItem('numOfElem') as string);
     const sumOfPageGoodsURL = url.searchParams.get('numOfElem') as string;
 
     let sumOfPageGoods = 0;
     if (sumOfPageGoodsURL !== null) {
         sumOfPageGoods = parseInt(sumOfPageGoodsURL);
     }
-    //const numberPage = JSON.parse(localStorage.getItem('') as string);
     const numberPage = Number(url.searchParams.get('pageNumber'));
 
     displayShowListPagination(buysGoodsIdArr, sumOfPageGoods, numberPage);

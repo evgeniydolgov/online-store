@@ -20,4 +20,3 @@ export function goodsFilter(goods: GoodsItem[], args: string[], sum: number[]) {
     newArr = newArr.filter(el => el.price >= sum[0] && el.price <= sum[1])
     return newArr
 }
-

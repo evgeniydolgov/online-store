@@ -13,13 +13,6 @@ export interface Store {
 
     filters_settings: {
         [key: string]: string[];
-        // _brand: string[];
-
-        // _category: string[];
-
-        // price: string[];
-
-        // stock: string[];
     };
 
     sort_settings: {

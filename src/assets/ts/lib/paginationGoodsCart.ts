@@ -9,7 +9,6 @@ export function displayShowListPagination(arrGoods: string[], goodsOnPage: numbe
     const numPageElem = document.getElementById('current-page') as HTMLElement;
     const url = new URL(location.href);
 
-    
     let showNumber;
     if (goodsOnPage === 0) {
         goodsOnPage = goods.length;
@@ -22,13 +21,11 @@ export function displayShowListPagination(arrGoods: string[], goodsOnPage: numbe
         page = 0;
     }
 
-   //localStorage.setItem('pageNumber', JSON.stringify(page));
     url.searchParams.set('pageNumber', `${page}`);
 
     numElemPagination.value = showNumber.toString();
     cartList.innerHTML = '';
-   
-    
+
     const start = Number(goodsOnPage) * page;
     const end = start + Number(goodsOnPage);
 
@@ -37,20 +34,15 @@ export function displayShowListPagination(arrGoods: string[], goodsOnPage: numbe
     const maxNumberPage = Math.ceil(arrGoods.length / goodsOnPage);
 
     if (arrVisibleOnPage.length === 0 && arrGoods.length !== 0 ) {
-        //let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
         let checkPage = Number(url.searchParams.get('pageNumber') as string);
         checkPage -= 1;
-        //localStorage.setItem('pageNumber', JSON.stringify(checkPage));
         url.searchParams.set('pageNumber', `${checkPage}`);
         renderCart();
     }
 
-    //localStorage.setItem('maxNumberPage', JSON.stringify(maxNumberPage));
     url.searchParams.set('MaxPage', `${maxNumberPage}`);
     history.pushState(null, '', decodeURIComponent(url.toString()));
 
-    //url.searchParams.set(this.filter_name, store.filters_settings[this.filter_name].join(','));
-    
     arrVisibleOnPage.forEach((el) => {
         getCreatedGoodsElement(el, arrGoods);
     });

@@ -174,9 +174,6 @@ export const handlerFilterValueSwitch = (event: Event) => {
     if (currFilterParams.length > 0) url.searchParams.set(filter_name, currFilterParams.join(','));
     else url.searchParams.delete(filter_name);
 
-    // url.searchParams.delete('price');
-    // url.searchParams.delete('stock');
-
     store.filters_settings[filter_name] = currFilterParams;
 
     history.pushState(null, '', decodeURIComponent(url.toString()));
@@ -320,17 +317,14 @@ export function handlerGoodsOnPage(event: Event) {
     const url = new URL(location.href);
     const inputValue = event.target as HTMLInputElement;
     if (typeof Number(inputValue.value) === 'number' && Number(inputValue.value) > 0) {
-        //localStorage.setItem('numOfElem', JSON.stringify(inputValue.value));
         url.searchParams.set('numOfElem', inputValue.value);
         history.pushState(null, '', decodeURIComponent(url.toString()));
         setTimeout(() => {
             renderCart();
         }, 1000);
     } else {
-        //localStorage.setItem('numOfElem', JSON.stringify(null));
         url.searchParams.set('numOfElem', `${null}`);
     }
-    // localStorage.setItem('', JSON.stringify(0));
 }
 export const handlerGoodsOnPageFocus = (event: Event) => {
     const target = event.target;
@@ -350,18 +344,14 @@ export const handlerGoodsOnPageBlur = (event: Event) => {
 
 export function nextPage() {
     const url = new URL(location.href);
-    //let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
     let checkPage = Number(url.searchParams.get('pageNumber'));
     if (!checkPage) {
         checkPage = 0;
     }
-    // if (checkPage < JSON.parse(localStorage.getItem('maxNumberPage') as string) - 1)
 
     const pageNum = url.searchParams.get('MaxPage');
     if (checkPage < Number(pageNum) - 1) {
         checkPage += 1;
-
-        //localStorage.setItem('pageNumber', JSON.stringify(checkPage));
         url.searchParams.set('pageNumber', `${checkPage}`);
         history.pushState(null, '', decodeURIComponent(url.toString()));
         renderCart();
@@ -370,14 +360,12 @@ export function nextPage() {
 
 export function prevPage() {
     const url = new URL(location.href);
-    //let checkPage = JSON.parse(localStorage.getItem('pageNumber') as string);
     let checkPage = Number(url.searchParams.get('pageNumber'));
     if (!checkPage) {
         checkPage = 0;
     }
     if (checkPage > 0) {
         checkPage -= 1;
-        //localStorage.setItem('pageNumber', JSON.stringify(checkPage));
         url.searchParams.set('pageNumber', `${checkPage}`);
         history.pushState(null, '', decodeURIComponent(url.toString()));
         renderCart();

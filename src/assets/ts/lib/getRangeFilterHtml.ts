@@ -34,8 +34,6 @@ export const getRangeFilterHtml = async (
 
     const filter_info = rangeFilterHtml.querySelector('#range_filter_info_');
 
-    // console.log(current_min, filterData[0]);
-
     if (
         !(min_value instanceof HTMLDivElement) ||
         !(max_value instanceof HTMLDivElement) ||

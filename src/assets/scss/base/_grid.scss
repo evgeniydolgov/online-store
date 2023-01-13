@@ -6,8 +6,6 @@ html {
     height: 100%;
     background-color: $color_black;
     color: $color_white;
-    // display: flex;
-    // flex-direction: column;
 }
 
 .wrapper {
@@ -20,7 +18,4 @@ html {
     min-height: 100%;
     display: flex;
     flex-direction: column;
-    // max-width: 1200px;
-    // margin: 0 auto;
-    // height: 100%;
 }

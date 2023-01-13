@@ -28,6 +28,7 @@ export const updateCartInfo = () => {
     store.countCartItems = getCartGoodsCount(store.cart);
 };
 
+
 export const getPromoSum = (sum: number, procent: number) => {
     return `${Math.floor(sum - sum * procent)}`;
 };

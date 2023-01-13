@@ -28,7 +28,6 @@ export class dualRangeSlider {
         if (!(left instanceof HTMLElement) || !(right instanceof HTMLElement)) throw new Error('No divs for slider');
 
         this.handles = [left, right];
-        // this.handles = [...this.range.querySelectorAll('.handle')];
         this.startPos = 0;
         this.activeHandle;
         this.minCost = document.getElementById(minId) as HTMLElement;
@@ -36,16 +35,12 @@ export class dualRangeSlider {
 
         this.handles.forEach((handle) => {
             (handle as HTMLElement).addEventListener('mousedown', this.startMove.bind(this));
-            // (handle as HTMLElement).addEventListener('touchstart', this.startMoveTouch.bind(this));
         });
 
         window.addEventListener('mouseup', this.stopMove.bind(this));
         window.addEventListener('touchend', this.stopMove.bind(this));
         window.addEventListener('touchcancel', this.stopMove.bind(this));
         window.addEventListener('touchleave', this.stopMove.bind(this));
-
-        // const rangeRect = this.range.getBoundingClientRect();
-        // const handleRect = this.handles[0].getBoundingClientRect();
 
         const min_value = parseInt(String(left.dataset.value));
         const max_value = parseInt(String(right.dataset.value));
@@ -54,24 +49,6 @@ export class dualRangeSlider {
         this.prevMax = max_value;
 
         this.setThumbsPosition(min_value, max_value);
-        //==================
-        // const min_position = ((min_value - this.min) / this.max) * (rangeRect.width - handleRect.width / 2) + 'px';
-        // let max_position = rangeRect.width - handleRect.width / 2 + 'px';
-
-        // if (this.max - max_value !== 0)
-        //     max_position = (max_value / this.max) * (rangeRect.width - handleRect.width / 2) + 'px';
-
-        // this.range.style.setProperty('--x-1', min_position);
-        // this.range.style.setProperty('--x-2', max_position);
-        // // this.range.style.setProperty('--x-2', rangeRect.width - handleRect.width / 2 + 'px');
-        // // (this.handles[0] as HTMLElement).dataset.value = this.range.dataset.min;
-        // // (this.handles[1] as HTMLElement).dataset.value = this.range.dataset.max;
-
-        // this.minCost.textContent = `${left.dataset.value}`;
-        // this.maxCost.textContent = `${right.dataset.value}`;
-        // // this.minCost.textContent = `${this.range.dataset.min}`;
-        // // this.maxCost.textContent = `${this.range.dataset.max}`;
-        //+==========
     }
 
     public setThumbsPosition(valLeft: number, valRight: number) {
@@ -153,9 +130,6 @@ export class dualRangeSlider {
 
         this.minCost.textContent = `${this.handles[0].dataset.value}`;
         this.maxCost.textContent = `${this.handles[1].dataset.value}`;
-
-        // this.minCost.textContent = `${this.handles[0].dataset.value}`;
-        // this.maxCost.textContent = `${this.handles[1].dataset.value}`;
     }
 
     private calcHandleValue(percentage: number): number {
