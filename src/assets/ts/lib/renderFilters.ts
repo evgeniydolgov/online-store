@@ -1,4 +1,4 @@
-import { dualRangeSlider } from '../helpers/slide_finctions';
+import { dualRangeSlider } from '../helpers/slide_functions';
 import { store } from '../store';
 import { getMinMaxByFieldName, setFiltredItemsToStore } from './filterGoods';
 import { getHtmlTpl } from './getHtmlTpl';

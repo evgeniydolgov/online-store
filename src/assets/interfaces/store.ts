@@ -1,6 +1,6 @@
 import { SortOrder } from '../enums';
 import { CardView } from '../enums/cardView';
-import { dualRangeSlider } from '../ts/helpers/slide_finctions';
+import { dualRangeSlider } from '../ts/helpers/slide_functions';
 import { CartItems, PromoCode } from '../types';
 import { GoodsItem } from './goodsItem';
 
