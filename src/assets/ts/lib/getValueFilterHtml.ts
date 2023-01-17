@@ -34,8 +34,6 @@ export async function getValueFilterHtml(
 
                 const total_count_filter_goods = clone.querySelector('#total_count_filter_goods');
 
-                // getCountGoodsByFieldName
-
                 if (!(input instanceof HTMLInputElement)) return;
 
                 input.checked = filter_settings.includes(filterData[i]);
