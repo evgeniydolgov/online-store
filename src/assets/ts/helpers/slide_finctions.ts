@@ -84,10 +84,6 @@ export class dualRangeSlider {
         window.addEventListener('mousemove', this.moveListener);
     }
 
-    private moveTouch(e: TouchEvent) {
-        this.move({ clientX: e.touches[0].clientX });
-    }
-
     private move(e: { clientX: number }) {
         const isLeft = (this.activeHandle as HTMLElement).classList.contains('left');
         const property = isLeft ? '--x-1' : '--x-2';
