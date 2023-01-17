@@ -17,9 +17,9 @@ const sortByFieldNameNumberDesc = (fieldName: string) => (a: GoodsItem, b: Goods
     parseFloat(a[fieldName].toString()) < parseFloat(b[fieldName].toString()) ? 1 : -1;
 
 const sortByFieldName = (fieldName: string, fieldType: SortFieldType, order: SortOrder) => {
-    if (fieldType === SortFieldType.number && order === SortOrder.asc) return sortByFieldNameNumberAsc(fieldName);
+    if (fieldType === SortFieldType.Number && order === SortOrder.asc) return sortByFieldNameNumberAsc(fieldName);
 
-    if (fieldType === SortFieldType.number && order === SortOrder.desc) return sortByFieldNameNumberDesc(fieldName);
+    if (fieldType === SortFieldType.Number && order === SortOrder.desc) return sortByFieldNameNumberDesc(fieldName);
 
     if (order === SortOrder.desc) return sortByFieldNameStringDesc(fieldName);
 
@@ -31,13 +31,13 @@ export const sortGoods = (goods: GoodsItem[], fieldName: string, fieldType: Sort
 };
 
 export const sortByPrice = (order: SortOrder): void =>
-    sortGoods(store.filteredGoodsItems, 'price', SortFieldType.number, order);
+    sortGoods(store.filteredGoodsItems, 'price', SortFieldType.Number, order);
 
 export const sortByTitle = (order: SortOrder): void =>
-    sortGoods(store.filteredGoodsItems, 'title', SortFieldType.string, order);
+    sortGoods(store.filteredGoodsItems, 'title', SortFieldType.String, order);
 
 export const sortByRating = (order: SortOrder): void =>
-    sortGoods(store.filteredGoodsItems, 'rating', SortFieldType.number, order);
+    sortGoods(store.filteredGoodsItems, 'rating', SortFieldType.Number, order);
 
 export const getSortParamFromUrl = () => {
     const url = new URL(location.href);

@@ -1,4 +1,4 @@
 export enum SortFieldType {
-    number = 'number',
-    string = 'string',
+    Number = 'number',
+    String = 'string',
 }

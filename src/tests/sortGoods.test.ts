@@ -9,7 +9,7 @@ describe('Sorting goods test', () => {
     test('sortGoods() - must sorting by name ASC', () => {
         cloneGoods.sort((a, b) => (a.title >= b.title ? 1 : -1));
 
-        sortGoods(goods, 'title', SortFieldType.string, SortOrder.asc);
+        sortGoods(goods, 'title', SortFieldType.String, SortOrder.asc);
 
         expect(goods).toStrictEqual(cloneGoods);
     });
@@ -17,7 +17,7 @@ describe('Sorting goods test', () => {
     test('sortGoods() - must sorting by name DESC', () => {
         cloneGoods.sort((a, b) => (a.title >= b.title ? -1 : 1));
 
-        sortGoods(goods, 'title', SortFieldType.string, SortOrder.desc);
+        sortGoods(goods, 'title', SortFieldType.String, SortOrder.desc);
 
         expect(goods).toStrictEqual(cloneGoods);
     });
@@ -25,7 +25,7 @@ describe('Sorting goods test', () => {
     test('sortGoods() - must sorting by price ASC', () => {
         cloneGoods.sort((a, b) => (a.price >= b.price ? 1 : -1));
 
-        sortGoods(goods, 'price', SortFieldType.string, SortOrder.asc);
+        sortGoods(goods, 'price', SortFieldType.String, SortOrder.asc);
 
         expect(goods).toStrictEqual(cloneGoods);
     });
@@ -33,7 +33,7 @@ describe('Sorting goods test', () => {
     test('sortGoods() - must sorting by price DESC', () => {
         cloneGoods.sort((a, b) => (a.price >= b.price ? -1 : 1));
 
-        sortGoods(goods, 'price', SortFieldType.string, SortOrder.desc);
+        sortGoods(goods, 'price', SortFieldType.String, SortOrder.desc);
 
         expect(goods).toStrictEqual(cloneGoods);
     });
