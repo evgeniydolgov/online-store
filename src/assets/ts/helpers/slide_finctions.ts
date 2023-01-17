@@ -77,14 +77,6 @@ export class dualRangeSlider {
         this.maxCost.textContent = `${valRight}`;
     }
 
-    private startMoveTouch(e: TouchEvent): void {
-        const handleRect = (e.target as HTMLElement).getBoundingClientRect();
-        this.startPos = e.touches[0].clientX - handleRect.x;
-        this.activeHandle = e.target as HTMLElement;
-        this.moveTouchListener = this.moveTouch.bind(this);
-        window.addEventListener('touchmove', this.moveTouchListener);
-    }
-
     private startMove(e: MouseEvent) {
         this.startPos = e.offsetX;
         this.activeHandle = e.target as HTMLElement;
