@@ -17,11 +17,11 @@ const sortByFieldNameNumberDesc = (fieldName: string) => (a: GoodsItem, b: Goods
     parseFloat(a[fieldName].toString()) < parseFloat(b[fieldName].toString()) ? 1 : -1;
 
 const sortByFieldName = (fieldName: string, fieldType: SortFieldType, order: SortOrder) => {
-    if (fieldType === SortFieldType.Number && order === SortOrder.asc) return sortByFieldNameNumberAsc(fieldName);
+    if (fieldType === SortFieldType.Number && order === SortOrder.Asc) return sortByFieldNameNumberAsc(fieldName);
 
-    if (fieldType === SortFieldType.Number && order === SortOrder.desc) return sortByFieldNameNumberDesc(fieldName);
+    if (fieldType === SortFieldType.Number && order === SortOrder.Desc) return sortByFieldNameNumberDesc(fieldName);
 
-    if (order === SortOrder.desc) return sortByFieldNameStringDesc(fieldName);
+    if (order === SortOrder.Desc) return sortByFieldNameStringDesc(fieldName);
 
     return sortByFieldNameStringAsc(fieldName);
 };
@@ -45,7 +45,7 @@ export const getSortParamFromUrl = () => {
     const urlSortString = url.searchParams.get('sortBy');
 
     let field_name = 'title';
-    let direction = SortOrder.asc;
+    let direction = SortOrder.Asc;
 
     if (urlSortString === null) return { field_name, direction };
 
@@ -53,7 +53,7 @@ export const getSortParamFromUrl = () => {
 
     if (SORT_FIELDS.includes(urlField)) field_name = urlField;
 
-    if (urlDirect === SortOrder.desc) direction = SortOrder.desc;
+    if (urlDirect === SortOrder.Desc) direction = SortOrder.Desc;
 
     return { field_name, direction };
 };

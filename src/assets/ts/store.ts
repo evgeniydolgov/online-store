@@ -23,7 +23,7 @@ export const store: Store = {
     },
     sort_settings: {
         field_name: 'title',
-        direction: SortOrder.asc,
+        direction: SortOrder.Asc,
     },
 
     promoCodes: [],
