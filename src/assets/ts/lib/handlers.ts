@@ -141,8 +141,8 @@ export const handlerViewSwitch = async (event: Event) => {
 
     if (option instanceof HTMLInputElement) {
         if (store.view_settings.mode === option.value) return;
-        if (option.value === CardView.tile) setCardView(CardView.tile);
-        if (option.value === CardView.simple) setCardView(CardView.simple);
+        if (option.value === CardView.Tile) setCardView(CardView.Tile);
+        if (option.value === CardView.Simple) setCardView(CardView.Simple);
         renderSwitchView();
     }
 };

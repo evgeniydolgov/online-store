@@ -11,7 +11,7 @@ export async function getCardHtml(cardData: GoodsItem, card: HTMLElement, { view
 
     if (card) {
         card.dataset.goodsId = String(cardData.id);
-        if (view === CardView.tile) card.classList.add('tile_card');
+        if (view === CardView.Tile) card.classList.add('tile_card');
         const img = checkElem(card).querySelector('#gc_image');
         if (img instanceof HTMLImageElement) {
             img.setAttribute('src', cardData.images[0]);

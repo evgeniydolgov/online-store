@@ -29,7 +29,7 @@ export const store: Store = {
     promoCodes: [],
 
     view_settings: {
-        mode: CardView.simple,
+        mode: CardView.Simple,
     },
 
     ls_key_cart: 'dudarik_online_shop_cart',

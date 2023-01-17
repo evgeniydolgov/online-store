@@ -9,9 +9,9 @@ export const getCardViewFromUrl = () => {
 
     const view = url.searchParams.get(CARD_VIEW_KEY);
 
-    if (view && view === CardView.tile) return view;
+    if (view && view === CardView.Tile) return view;
 
-    return CardView.simple;
+    return CardView.Simple;
 };
 
 export const setCardView = (newView: CardView) => {
