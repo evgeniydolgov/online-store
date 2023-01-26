@@ -1,0 +1,21 @@
+html {
+    height: 100%;
+}
+
+.body_main {
+    height: 100%;
+    background-color: $color_black;
+    color: $color_white;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.shop-container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}

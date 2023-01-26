@@ -1,0 +1,11 @@
+.footer {
+    width: 100%;
+
+    .footer_wrapper {
+        @include header-footer-wrapper;
+    }
+
+    .footer_year {
+        color: aliceblue;
+    }
+}

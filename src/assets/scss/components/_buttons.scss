@@ -1,0 +1,151 @@
+.form_radio_btn {
+    position: relative;
+    padding: 0;
+    display: inline-block;
+}
+
+.btn__list {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    height: 20px;
+    width: 20px;
+    z-index: 5;
+    pointer-events: none;
+    background: url(../images/icons-list.png) 0 0/100% auto no-repeat;
+}
+.btn__list {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    height: 20px;
+    width: 20px;
+    z-index: 5;
+    pointer-events: none;
+    background: url(../images/icons-list.png) 0 0/100% auto no-repeat;
+}
+.btn__block {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    height: 20px;
+    width: 20px;
+    z-index: 5;
+    pointer-events: none;
+    background: url(../images/icons-block.png) 0 0/100% auto no-repeat;
+}
+
+.form_radio_btn input[type='radio'] {
+    display: none;
+}
+
+.form_radio_btn label {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 3px;
+    user-select: none;
+}
+
+.form_radio_btn input[type='radio']:checked + label {
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.9);
+    background: $color_main_green;
+}
+
+.form_radio_btn label:hover {
+    color: $color_light_green;
+}
+
+.form_radio_btn input[type='radio']:disabled + label {
+    background: $color_white;
+    color: $color_mid_green;
+}
+
+.shop-page__content {
+    padding-top: 5%;
+}
+
+.button__container {
+    display: flex;
+    margin: 30px 0 0 0;
+}
+
+.button__container > button {
+    margin: 0 2%;
+    padding: 5px 0;
+    font-size: 1em;
+    color: $color_white;
+    width: 50%;
+    border: 0;
+    background-color: $color_main_green;
+    border-radius: 3%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+
+    &:hover {
+        cursor: pointer;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.9);
+    }
+}
+
+.minusOneitemBtn {
+    height: 20px;
+    width: 20px;
+    border: none;
+    background: url(../images/left-arrow.png) 0 0/100% auto no-repeat;
+    cursor: pointer;
+}
+
+.counterNum {
+    display: flex;
+    justify-content: center;
+    width: 30px;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.plusOneitemBtn {
+    height: 20px;
+    width: 20px;
+    border: none;
+    background: url(../images/right-arrow.png) 0 0/100% 100% no-repeat;
+    cursor: pointer;
+}
+
+.promo-button {
+    margin-left: 3%;
+    width: 30px;
+    height: 30px;
+    display: inline;
+    border: none;
+    background: url(../images/sale.png) 0 0/100% 100% no-repeat;
+    cursor: pointer;
+}
+
+.deletePromoBtn {
+    margin-left: 2%;
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+    background: url(../images/delete.png) 0 0 / auto 100% no-repeat;
+    background-position: 0px 4px;
+}
+
+.order_button {
+    padding: 5px 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $color_white;
+    border: none;
+    background-color: $color_main_green;
+    width: 20rem;
+    height: 3rem;
+    border-radius: 0.2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+
+    &:hover {
+        cursor: pointer;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.9);
+    }
+}

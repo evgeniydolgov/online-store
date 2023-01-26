@@ -1,0 +1,117 @@
+<section class="cart-page" id="page">
+    <div class="cart_container" id="cart_container">
+        <div class="cart__info">
+            <div class="cart-page__about">
+                <h3>Корзина</h3>
+                <p>Количествово элементов:</p>
+                <input type="number" min="1" max="99" value="1" step="1" id="num_elems_pagination" class="promo-text" />
+                <p>страница</p>
+                <div class="button_block">
+                    <button id="minus-one-page" class="minusOneitemBtn"></button>
+                    <div id="current-page" class="counterNum">1</div>
+                    <button id="plus-one-page" class="plusOneitemBtn"></button>
+                </div>
+            </div>
+            <div class="cart-page__goods" id="cart-goods"></div>
+        </div>
+        <div class="cart__pay">
+            <h3 class="cart__pay-logo">Итого</h3>
+            <div id="totalPrice" class="cart__total-price">0 ₽</div>
+            <div id="newPrice" class="new-price"></div>
+            <div id="allCartStock" class="cart__all-stock">Всего товара: 0</div>
+            <div>Ввести промокод:</div>
+            <div class="input_block" id="inputBlock">
+                <input type="text" class="promo-text" id="promo-text" />
+                <button class="promo-button" id="promo-button" style="display: none"></button>
+            </div>
+            <button class="go_buy_page" id="go_buy_page">Оформить товар</button>
+            <ul class="promocodes">
+                <li>Промокоды для проверки:</li>
+                <li>RS</li>
+                <li>EPM</li>
+                <li>dudarik</li>
+                <li>edolgov</li>
+            </ul>
+        </div>
+    </div>
+    <div id="empty_cart_container" class="empty">Корзина пуста</div>
+    <div class="goods_ordering_background" id="popUp_background">
+        <div class="goods_ordering_container">
+            <div class="goods_ordering-list_container">
+                <div class="name_field">
+                    <input
+                        data-index="0"
+                        class="buy-input"
+                        type="text"
+                        pattern="[A-Za-zА-Яа-яЁё]{3,}\s[A-Za-zА-Яа-яЁё]{3,}\D*"
+                        placeholder="Имя Фамилия"
+                        style="text-transform: capitalize"
+                    />
+                </div>
+                <div class="tel_field">
+                    <input
+                        data-index="1"
+                        class="buy-input"
+                        type="tel"
+                        pattern="\+[0-9]{9,}"
+                        placeholder="Номер телефона"
+                    />
+                </div>
+                <div class="located_field">
+                    <input
+                        data-index="2"
+                        class="buy-input"
+                        type="text"
+                        pattern="[A-Za-zА-Яа-яЁё]{5,}\s[A-Za-zА-Яа-яЁё]{5,}\s[A-Za-zА-Яа-яЁё]{5,}"
+                        placeholder="Адрес доставки"
+                    />
+                </div>
+                <div class="email_field">
+                    <input
+                        data-index="3"
+                        class="buy-input"
+                        type="email"
+                        placeholder="email"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    />
+                </div>
+            </div>
+            <div class="goods_ordering-card_info">
+                <div class="debit-card_number">
+                    <div class="card_image" id="card_image"></div>
+                    <input
+                        class="buy-input"
+                        data-index="4"
+                        id="debit_card-number"
+                        pattern="\w{4}\s{1}\w{4}\s{1}\w{4}\s{1}\w{4}"
+                        placeholder="Номер карты"
+                        type="text"
+                    />
+                </div>
+                <div class="debit-card_about">
+                    <div class="dateIssue">
+                        <input
+                            class="buy-input"
+                            data-index="5"
+                            id="debit_card-date"
+                            pattern="\S{5,}"
+                            placeholder="Дата"
+                            type="text"
+                        />
+                    </div>
+                    <div class="cvv">
+                        <input
+                            class="buy-input"
+                            data-index="6"
+                            id="debit_card-ccv"
+                            pattern="[0-9]{3,}"
+                            placeholder="cvv"
+                            type="text"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div><button class="order_button" id="order_button">Оформить покупку</button></div>
+        </div>
+    </div>
+</section>

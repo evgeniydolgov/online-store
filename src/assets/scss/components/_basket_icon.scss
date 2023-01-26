@@ -1,0 +1,47 @@
+.basket_link {
+    color: $color_white;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    position: relative;
+    .header_basket-icon {
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        border: 1px solid $color_main_green;
+        box-shadow: 2px 2px 5px $color_main_green;
+    }
+
+    .basket-counter_badge {
+        position: absolute;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        min-width: 1.7rem;
+
+        background-color: $color_main_green;
+        padding: 0.1rem;
+
+        border-radius: 0.6rem;
+        border: 3px solid black;
+
+        color: black;
+
+        font-size: 1rem;
+        font-weight: bold;
+
+        top: -0.7rem;
+        left: -0.7rem;
+        &.more10 {
+            padding-right: 0.2rem;
+        }
+    }
+
+    .header_basket_sum {
+        margin-left: 0.5rem;
+    }
+}

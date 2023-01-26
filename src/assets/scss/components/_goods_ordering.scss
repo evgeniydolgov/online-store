@@ -1,0 +1,153 @@
+.goods_ordering_background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.649);
+    transform: translate(0, -3000px);
+    transition: all 0.3s ease 0s;
+    z-index: 101;
+}
+
+.move_pop_up {
+    transform: translate(0, 0);
+    transition: all 0.3s ease 0s;
+}
+
+.goods_ordering_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 27rem;
+    height: 37rem;
+    background-color: $color_main_black;
+    border: 1px solid $color_main_green;
+    border-radius: 0.5rem;
+}
+
+.goods_ordering-list_container {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.goods_ordering-list_container > div {
+    margin-top: 20px;
+}
+
+.goods_ordering-list_container > div > input {
+    height: 50px;
+    width: 22rem;
+    padding-left: 5px;
+}
+
+.goods_ordering-card_info {
+    padding: 20px 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 20rem;
+    border: 2px solid $color_main_green;
+    border-radius: 0.5rem;
+}
+
+.card_image {
+    position: absolute;
+    border-radius: 5px;
+    top: 5px;
+    left: 5px;
+    width: 2.5rem;
+    height: 1.5rem;
+    background: url(../images/no-logo.jpg) 0/100% no-repeat;
+}
+
+.card_image_american-express {
+    position: absolute;
+    border-radius: 5px;
+    top: 5px;
+    left: 5px;
+    width: 2.5rem;
+    height: 1.5rem;
+    background: url(../images/american-express.svg) 0/100% no-repeat;
+}
+
+.card_image_visa {
+    position: absolute;
+    border-radius: 5px;
+    top: 5px;
+    left: 5px;
+    width: 2.5rem;
+    height: 1.5rem;
+    background: url(../images/visa.png) 0/100% no-repeat;
+}
+
+.card_image_master-card {
+    position: absolute;
+    border-radius: 5px;
+    top: 5px;
+    left: 5px;
+    width: 2.5rem;
+    height: 1.5rem;
+    background: url(../images/master-card.svg) 0/100% no-repeat;
+}
+
+.card_image_union-pay {
+    position: absolute;
+    border-radius: 5px;
+    top: 5px;
+    left: 5px;
+    width: 2.5rem;
+    height: 1.5rem;
+    background: url(../images/union-pay.png) 0/100% no-repeat;
+}
+
+.debit-card_number > input {
+    padding-left: 55px;
+    width: 16rem;
+    height: 35px;
+}
+
+.debit-card_about > div > input {
+    width: 3.5rem;
+}
+
+.debit-card_number {
+    position: relative;
+    width: 16rem;
+}
+
+.debit-card_about {
+    display: flex;
+    gap: 9rem;
+}
+
+.debit-card_about>:nth-child(2)>input {
+    padding-left: 10px;
+}
+
+.buy-input {
+    outline: none;
+    font-size: 20px;
+}
+
+.input_error {
+    position: relative;
+    &::after {
+        content: 'ошибка';
+        color: red;
+        position: absolute;
+        top: -20px;
+        right: 0px;
+    }
+}
+
+.stop-scroll {
+    overflow: hidden;
+}
